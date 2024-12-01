@@ -8,15 +8,69 @@ import { Providers } from './providers'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Miloš Minić - Software Engineer',
+  metadataBase: new URL('https://milosminic.net'),
+  title: {
+    default: 'Miloš Minić - Software Engineer',
+    template: '%s | Miloš Minić'
+  },
   description: 'Software Engineer specializing in frontend development and web technologies',
-  metadataBase: new URL('https://milosminic.dev'), // Replace with your actual domain
+  keywords: [
+    'Software Engineer',
+    'Web Development',
+    'Frontend Developer',
+    'React Developer',
+    'TypeScript',
+    'Next.js',
+    'Miloš Minić'
+  ],
+  authors: [{ name: 'Miloš Minić' }],
+  creator: 'Miloš Minić',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://milosminic.net',
+    siteName: 'Miloš Minić - Portfolio',
+    title: 'Miloš Minić - Software Engineer',
+    description: 'Software Engineer specializing in frontend development and web technologies',
+    images: [
+      {
+        url: '/og-image.jpg', // Make sure to add this image to your public folder
+        width: 1200,
+        height: 630,
+        alt: 'Miloš Minić - Software Engineer'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Miloš Minić - Software Engineer',
+    description: 'Software Engineer specializing in frontend development and web technologies',
+    images: ['/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 }
 
 export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0d1117' }
+  ],
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: 'cover',
+  colorScheme: 'dark light'
 }
 
 export default function RootLayout({
@@ -25,8 +79,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className="scroll-smooth"
+    >
+      <body className={`${inter.className} antialiased`}>
         <Providers>
           <div className="flex min-h-screen flex-col">
             <Navbar />
