@@ -8,7 +8,9 @@ import { Code, GraduationCap, Briefcase, Languages } from 'lucide-react'
 
 export function About() {
     return (
-        <section className="relative py-24 sm:py-32 bg-gradient-to-br from-[#ffffff] to-[#f6f8fa] dark:from-[#0d1117] dark:to-[#161b22]">
+        <section
+            id="about"
+            className="relative py-24 sm:py-32 bg-gradient-to-br from-[#ffffff] to-[#f6f8fa] dark:from-[#0d1117] dark:to-[#161b22]">
             <div className="absolute inset-0 dark:bg-grid-white/5 bg-grid-black/5" />
             <Container className="relative z-10">
                 <motion.div

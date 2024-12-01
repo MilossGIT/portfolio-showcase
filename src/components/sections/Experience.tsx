@@ -8,7 +8,9 @@ import { Briefcase, ChevronRight } from 'lucide-react'
 
 export function Experience() {
     return (
-        <section className="relative py-24 sm:py-32 bg-[#f6f8fa] dark:bg-[#0d1117]">
+        <section
+            id="experience"
+            className="relative py-24 sm:py-32 bg-[#f6f8fa] dark:bg-[#0d1117]">
             <Container>
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
