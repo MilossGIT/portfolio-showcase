@@ -9,11 +9,11 @@ import TextReveal from '../animations/TextReveal'
 
 export function Hero() {
     return (
-        <section className="relative min-h-screen flex items-center justify-center">
+        <section className="relative min-h-screen pt-24 md:pt-32 pb-16 flex flex-col justify-center">
             <ParticleBackground />
 
             <div className="container px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="flex flex-col lg:flex-row items-center gap-12">
+                <div className="flex flex-col lg:flex-row items-center justify-center gap-12 mb-16">
                     {/* Text content */}
                     <div className="flex-1 text-center lg:text-left space-y-6">
                         <div className="space-y-2">
@@ -47,7 +47,18 @@ export function Hero() {
                             className="flex flex-wrap gap-4 justify-center lg:justify-start"
                         >
                             <Button
-                                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                                onClick={() => {
+                                    const element = document.getElementById('contact')
+                                    if (element) {
+                                        const headerOffset = 80
+                                        const elementPosition = element.getBoundingClientRect().top
+                                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+                                        window.scrollTo({
+                                            top: offsetPosition,
+                                            behavior: 'smooth'
+                                        })
+                                    }
+                                }}
                                 variant="primary"
                                 className="group"
                             >
@@ -105,7 +116,7 @@ export function Hero() {
                             stiffness: 100,
                             delay: 0.5
                         }}
-                        className="relative"
+                        className="relative mt-8 lg:mt-0"
                     >
                         <div className="w-64 h-64 sm:w-72 sm:h-72 lg:w-96 lg:h-96 relative">
                             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#0366d6] to-[#2ea44f] animate-pulse" />
@@ -131,10 +142,23 @@ export function Hero() {
                         repeat: Infinity,
                         repeatType: "reverse"
                     }}
-                    className="absolute bottom-10 left-1/2 -translate-x-1/2"
+                    className="hidden md:flex flex-col items-center justify-center mt-8"
                 >
                     <a
                         href="#about"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            const element = document.getElementById('about')
+                            if (element) {
+                                const headerOffset = 80
+                                const elementPosition = element.getBoundingClientRect().top
+                                const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+                                window.scrollTo({
+                                    top: offsetPosition,
+                                    behavior: 'smooth'
+                                })
+                            }
+                        }}
                         className="flex flex-col items-center gap-2 text-sm text-[#586069] dark:text-[#8b949e] hover:text-[#0366d6] dark:hover:text-[#58a6ff] transition-colors"
                     >
                         Scroll down

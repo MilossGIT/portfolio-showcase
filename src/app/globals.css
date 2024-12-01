@@ -6,22 +6,16 @@
   /* GitHub Light Theme Colors */
   --background: 0 0% 100%;
   --foreground: 215 13% 19%;
-
   --primary: 216 89% 33%;
   --primary-foreground: 0 0% 100%;
-
   --secondary: 220 14% 96%;
   --secondary-foreground: 215 13% 19%;
-
   --muted: 220 14% 96%;
   --muted-foreground: 215 13% 45%;
-
   --accent: 212 92% 45%;
   --accent-foreground: 0 0% 100%;
-
   --card: 0 0% 100%;
   --card-foreground: 215 13% 19%;
-
   --border: 216 11% 91%;
   --input: 216 11% 91%;
   --ring: 216 89% 33%;
@@ -31,22 +25,16 @@
   /* GitHub Dark Theme Colors */
   --background: 215 21% 11%;
   --foreground: 210 18% 89%;
-
   --primary: 212 92% 45%;
   --primary-foreground: 210 18% 89%;
-
   --secondary: 215 13% 19%;
   --secondary-foreground: 210 18% 89%;
-
   --muted: 215 13% 19%;
   --muted-foreground: 215 13% 65%;
-
   --accent: 212 92% 45%;
   --accent-foreground: 210 18% 89%;
-
   --card: 215 21% 13%;
   --card-foreground: 210 18% 89%;
-
   --border: 215 13% 22%;
   --input: 215 13% 22%;
   --ring: 212 92% 45%;
@@ -57,11 +45,81 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
+    position: relative;
   }
 }
 
-html {
-  scroll-behavior: smooth;
+/* Custom Grid Pattern */
+.bg-grid-slate-900 {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(15 23 42 / 0.04)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+}
+
+.dark .bg-grid-slate-100 {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(241 245 249 / 0.03)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+}
+
+/* Grid Patterns */
+.bg-grid-black {
+  background-size: 40px 40px;
+  background-image: linear-gradient(
+      to right,
+      rgb(15 23 42 / 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgb(15 23 42 / 0.05) 1px, transparent 1px);
+}
+
+.dark .bg-grid-white {
+  background-size: 40px 40px;
+  background-image: linear-gradient(
+      to right,
+      rgb(255 255 255 / 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+}
+
+/* Gradient animations */
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s linear infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Hide scrollbar but allow scrolling */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom scroll margin for header */
+.scroll-mt-header {
+  scroll-margin-top: 5rem;
 }

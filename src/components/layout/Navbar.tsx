@@ -25,19 +25,37 @@ export function Navbar() {
         if (href.startsWith('http')) {
             window.open(href, '_blank', 'noopener noreferrer')
         } else {
-            const element = document.querySelector(href)
-            element?.scrollIntoView({ behavior: 'smooth' })
+            // Get the ID without the #
+            const id = href.replace('#', '')
+            const element = document.getElementById(id)
+
+            if (element) {
+                // Close mobile menu first
+                setIsOpen(false)
+
+                // Small delay to allow menu animation to complete
+                setTimeout(() => {
+                    const headerHeight = 64 // This should match your header height
+                    const elementPosition = element.getBoundingClientRect().top
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    })
+                }, 300)
+            }
         }
-        setIsOpen(false)
     }
 
     return (
         <header
             className={`fixed inset-x-0 top-0 z-50 transition-all duration-200
-        ${isScrolled
-                    ? 'bg-[#ffffff]/80 border-b border-[#e1e4e8] dark:bg-[#0d1117]/80 dark:border-[#30363d] backdrop-blur-sm'
-                    : 'bg-transparent'
-                }`}
+                ${isScrolled
+                    ? 'bg-[#ffffff] dark:bg-[#0d1117] border-b border-[#e1e4e8] dark:border-[#30363d] shadow-sm'
+                    : 'bg-[#ffffff] dark:bg-[#0d1117]'
+                }
+            `}
         >
             <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
@@ -92,7 +110,7 @@ export function Navbar() {
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="md:hidden border-t border-[#e1e4e8] dark:border-[#30363d]"
+                            className="md:hidden border-t border-[#e1e4e8] dark:border-[#30363d] bg-[#ffffff] dark:bg-[#0d1117]"
                         >
                             <div className="py-3 px-4 space-y-1">
                                 {NAV_LINKS.map((link) => (

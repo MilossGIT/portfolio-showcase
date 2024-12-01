@@ -6,7 +6,7 @@ import { Projects } from '@/components/sections/Projects'
 
 export default function Home() {
   return (
-    <main className="relative flex min-h-screen flex-col bg-[#ffffff] dark:bg-[#0d1117]">
+    <main className="relative flex min-h-screen flex-col bg-[#ffffff] dark:bg-[#0d1117] overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-[#ffffff] dark:bg-[#0d1117]">
         <div className="absolute inset-0 bg-gradient-to-br from-[#f6f8fa] to-transparent dark:from-[#161b22] dark:to-transparent" />
@@ -14,29 +14,31 @@ export default function Home() {
 
       {/* Content */}
       <div className="relative">
-        <Hero />
+        {/* Hero Section */}
+        <div className="relative z-10">
+          <Hero />
+        </div>
 
-        <div className="relative z-10 bg-[#ffffff] dark:bg-[#0d1117]">
+        {/* About Section */}
+        <div id="about" className="relative z-10 bg-[#ffffff] dark:bg-[#0d1117] scroll-mt-16">
           <About />
         </div>
 
-        <div className="relative z-10 bg-[#f6f8fa] dark:bg-[#161b22]">
+        {/* Experience Section */}
+        <div id="experience" className="relative z-10 bg-[#f6f8fa] dark:bg-[#161b22] scroll-mt-16">
           <Experience />
         </div>
 
-        <div className="relative z-10 bg-[#ffffff] dark:bg-[#0d1117]">
+        {/* Projects Section */}
+        <div id="projects" className="relative z-10 bg-[#ffffff] dark:bg-[#0d1117] scroll-mt-16">
           <Projects />
         </div>
 
-        <div className="relative z-10 bg-[#f6f8fa] dark:bg-[#161b22]">
+        {/* Contact Section */}
+        <div id="contact" className="relative z-10 bg-[#f6f8fa] dark:bg-[#161b22] scroll-mt-16">
           <Contact />
         </div>
       </div>
     </main>
   )
-}
-
-export const metadata = {
-  title: 'Home | Miloš Minić',
-  description: 'Personal portfolio of Miloš Minić, a Software Engineer specializing in web development.'
 }

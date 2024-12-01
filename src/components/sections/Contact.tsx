@@ -129,7 +129,6 @@ export function Contact() {
                                     <div>
                                         <h3 className="font-medium text-[#24292e] dark:text-[#c9d1d9]">Location</h3>
                                         <p className="text-[#586069] dark:text-[#8b949e]">
-                                            Bratovševa Ploščad 38<br />
                                             Ljubljana, 1000<br />
                                             Slovenia
                                         </p>
