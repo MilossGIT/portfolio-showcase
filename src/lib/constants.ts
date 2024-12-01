@@ -12,13 +12,11 @@ export const NAV_LINKS = [
     { name: 'About', href: '#about' },
     { name: 'Experience', href: '#experience' },
     {
-        name: 'GitHub',
-        href: SOCIAL_LINKS.github,
-        isExternal: true,
-        icon: Github
+        name: 'Projects',
+        href: '#projects',
     },
     { name: 'Contact', href: '#contact' },
-];
+] as const;
 
 export const SKILLS = [
     'React.js',
@@ -122,5 +120,29 @@ export const EXPERIENCE = [
             'Proficient in POS systems, server optimization, and virtualization',
         ],
         tags: ['Technical Support', 'POS Systems', 'Server Optimization', 'Virtualization'],
+    }
+];
+
+export const PROJECTS = [
+    {
+        title: 'Ticket Notifier',
+        description: 'A real-time notification system for ticket updates and availability tracking.',
+        tags: ['JavaScript', 'Node.js', 'APIs', 'Real-time Updates'],
+        github: 'https://github.com/MilossGIT/TicketNotifier',
+        readmeUrl: 'https://raw.githubusercontent.com/MilossGIT/TicketNotifier/main/README.md'
     },
+    {
+        title: 'Portfolio Illustration',
+        description: 'A creative portfolio showcase with custom illustrations and animations.',
+        tags: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
+        github: 'https://github.com/MilossGIT/PortfolioIllustration',
+        readmeUrl: 'https://raw.githubusercontent.com/MilossGIT/PortfolioIllustration/main/README.md'
+    },
+    {
+        title: 'Events7',
+        description: 'Event management and organization platform with intuitive user interface.',
+        tags: ['React', 'MongoDB', 'Express', 'Node.js'],
+        github: 'https://github.com/MilossGIT/Events7',
+        readmeUrl: 'https://raw.githubusercontent.com/MilossGIT/Events7/main/README.md'
+    }
 ];

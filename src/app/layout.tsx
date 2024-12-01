@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     description: 'Software Engineer specializing in frontend development and web technologies',
     images: [
       {
-        url: '/og-image.jpg', // Make sure to add this image to your public folder
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Miloš Minić - Software Engineer'
@@ -57,20 +57,13 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
-  },
+  }
 }
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#0d1117' }
-  ],
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 5,
-  userScalable: true,
-  viewportFit: 'cover',
-  colorScheme: 'dark light'
+  maximumScale: 5
 }
 
 export default function RootLayout({
