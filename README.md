@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Website
+
+A modern, responsive portfolio website built with Next.js 14, React, TypeScript, and Tailwind CSS. Features a clean design inspired by GitHub's aesthetic, with smooth animations and dark mode support.
+
+## Features
+
+- 🌓 Dark/Light mode
+- ⚡ Next.js 14 with App Router
+- 💨 Tailwind CSS for styling
+- 📱 Fully responsive design
+- 🎨 Custom animations using Framer Motion
+- 🎯 Interactive particle background
+- 📧 Contact form with EmailJS integration
+- 🔍 SEO optimized
+- 🎆 Smooth page transitions
+- ♿ Accessible UI components
+
+## Tech Stack
+
+- **Framework:** Next.js 14
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Animation:** Framer Motion
+- **Icons:** Lucide Icons
+- **Email:** EmailJS
+- **Deployment:** Vercel
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/portfolio-website.git
+cd portfolio-website
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Create a `.env.local` file in the root directory and add your EmailJS credentials:
+
+```env
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+4. Start the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+portfolio-website/
+├── src/
+│   ├── app/               # Next.js app router files
+│   ├── components/        # React components
+│   │   ├── animations/    # Animation components
+│   │   ├── layout/       # Layout components
+│   │   ├── sections/     # Page sections
+│   │   └── ui/           # Reusable UI components
+│   ├── lib/              # Utility functions
+│   └── types/            # TypeScript types
+├── public/               # Static files
+└── ...config files
+```
 
-## Learn More
+## Customization
 
-To learn more about Next.js, take a look at the following resources:
+1. **Personal Information**: Update `src/lib/constants.ts` with your information.
+2. **Colors**: Modify the color scheme in `tailwind.config.ts`.
+3. **Content**: Edit the section components in `src/components/sections/`.
+4. **Images**: Replace images in the `public/images/` directory.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The easiest way to deploy this portfolio is using Vercel:
 
-## Deploy on Vercel
+1. Push your code to GitHub
+2. Import your repository to Vercel
+3. Add your environment variables
+4. Deploy!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Performance Optimization
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Images are optimized for different screen sizes
+- Animations are optimized for performance
+- Code splitting and lazy loading implemented
+- Static generation used where possible
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## Contact
+
+Miloš Minić - minicm034@gmail.com
+
+Portfolio Link: [https://milosminic.dev](https://milosminic.dev)
+
+## Acknowledgments
+
+- Design inspired by GitHub's interface
+- Particle animation inspired by various open-source projects
+- Icons provided by Lucide Icons

@@ -3,19 +3,65 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* GitHub Light Theme Colors */
+  --background: 0 0% 100%;
+  --foreground: 215 13% 19%;
+
+  --primary: 216 89% 33%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 220 14% 96%;
+  --secondary-foreground: 215 13% 19%;
+
+  --muted: 220 14% 96%;
+  --muted-foreground: 215 13% 45%;
+
+  --accent: 212 92% 45%;
+  --accent-foreground: 0 0% 100%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 215 13% 19%;
+
+  --border: 216 11% 91%;
+  --input: 216 11% 91%;
+  --ring: 216 89% 33%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.dark {
+  /* GitHub Dark Theme Colors */
+  --background: 215 21% 11%;
+  --foreground: 210 18% 89%;
+
+  --primary: 212 92% 45%;
+  --primary-foreground: 210 18% 89%;
+
+  --secondary: 215 13% 19%;
+  --secondary-foreground: 210 18% 89%;
+
+  --muted: 215 13% 19%;
+  --muted-foreground: 215 13% 65%;
+
+  --accent: 212 92% 45%;
+  --accent-foreground: 210 18% 89%;
+
+  --card: 215 21% 13%;
+  --card-foreground: 210 18% 89%;
+
+  --border: 215 13% 22%;
+  --input: 215 13% 22%;
+  --ring: 212 92% 45%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+html {
+  scroll-behavior: smooth;
 }
