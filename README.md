@@ -119,7 +119,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 Miloš Minić - minicm034@gmail.com
 
-Portfolio Link: [https://milosminic.dev](https://milosminic.dev)
+Portfolio Link: [https://milosminic.dev](https://milosminic.net)
 
 ## Acknowledgments
 
