@@ -1,7 +1,7 @@
 import { Github } from 'lucide-react';
 
 export const CONTACT_EMAIL = 'minicm034@gmail.com';
-export const PHONE_NUMBER = '+38630368261';
+// export const PHONE_NUMBER = '+38630368261';
 
 export const SOCIAL_LINKS = {
     github: 'https://github.com/MilossGIT',

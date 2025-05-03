@@ -7,7 +7,7 @@ import emailjs from '@emailjs/browser'
 import { Container } from '../ui/Container'
 import { Button } from '../ui/Button'
 import { Card, CardContent } from '../ui/Card'
-import { CONTACT_EMAIL, PHONE_NUMBER } from '@/lib/constants'
+import { CONTACT_EMAIL } from '@/lib/constants' // IMOPRT PHONE_NUMBER when you need to use it
 import { emailConfig, validateEmailConfig } from '@/lib/email-config'
 
 type FormElements = {
@@ -104,7 +104,8 @@ export function Contact() {
                                 </CardContent>
                             </Card>
 
-                            <Card className="group hover:border-[#0366d6] dark:hover:border-[#58a6ff] transition-colors">
+                            {/* Uncomment this card when you need to use phone number */}
+                            {/* <Card className="group hover:border-[#0366d6] dark:hover:border-[#58a6ff] transition-colors">
                                 <CardContent className="flex items-center gap-4 p-6">
                                     <div className="p-3 rounded-lg bg-[#f1f8ff] dark:bg-[#1f6feb]/10 group-hover:bg-[#0366d6]/20 dark:group-hover:bg-[#1f6feb]/20 transition-colors">
                                         <Phone className="h-6 w-6 text-[#0366d6] dark:text-[#58a6ff]" />
@@ -119,7 +120,7 @@ export function Contact() {
                                         </a>
                                     </div>
                                 </CardContent>
-                            </Card>
+                            </Card> */}
 
                             <Card className="group hover:border-[#0366d6] dark:hover:border-[#58a6ff] transition-colors">
                                 <CardContent className="flex items-center gap-4 p-6">
