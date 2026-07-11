@@ -86,7 +86,7 @@ export function Navbar() {
                 isScrolled && 'bg-background/95 shadow-sm'
             )}
         >
-            <nav className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <nav className="container mx-auto w-full min-w-0 max-w-6xl">
                 <div className="flex h-16 items-center justify-between">
                     <Link
                         href="/"

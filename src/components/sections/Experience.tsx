@@ -7,7 +7,7 @@ import { FadeInView } from '../animations/FadeInView'
 
 export function Experience() {
     return (
-        <section className="relative py-24 sm:py-32">
+        <section className="relative py-16 sm:py-24 lg:py-32">
             <Container className="max-w-6xl">
                 <SectionHeader
                     badge="Career"
@@ -23,7 +23,7 @@ export function Experience() {
                             y={20}
                             className={index > 0 ? 'border-t border-border' : undefined}
                         >
-                            <div className="grid gap-6 py-12 sm:grid-cols-[160px_1fr] sm:gap-16">
+                            <div className="grid gap-4 py-8 sm:grid-cols-[160px_1fr] sm:gap-16 sm:py-12">
                                 <div className="text-sm text-muted-foreground shrink-0 leading-relaxed">
                                     {experience.date}
                                 </div>

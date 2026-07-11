@@ -10,8 +10,8 @@ export function Footer() {
     return (
         <footer className="border-t border-border">
             <FadeInView y={12} duration={0.45}>
-                <div className="container mx-auto max-w-6xl px-4 py-8">
-                    <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
+                <div className="container mx-auto w-full min-w-0 max-w-6xl px-4 py-8">
+                    <div className="flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
                         <div className="flex flex-col items-center gap-4 md:flex-row md:gap-8">
                             <p className="text-sm text-muted-foreground">
                                 © {currentYear} Miloš Minić. All rights reserved.
@@ -40,7 +40,7 @@ export function Footer() {
 
                         <a
                             href={`mailto:${CONTACT_EMAIL}`}
-                            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                            className="break-all text-sm text-muted-foreground transition-colors hover:text-foreground"
                         >
                             {CONTACT_EMAIL}
                         </a>

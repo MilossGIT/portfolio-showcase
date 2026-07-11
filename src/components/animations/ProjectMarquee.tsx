@@ -47,7 +47,7 @@ export function ProjectMarquee({ projects }: ProjectMarqueeProps) {
     const row = [...displayProjects, ...displayProjects]
 
     return (
-        <div className="relative py-10 overflow-x-hidden overflow-y-visible">
+        <div className="relative overflow-x-clip py-8 sm:py-10">
             <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 sm:w-24 bg-gradient-to-r from-background to-transparent" />
             <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 sm:w-24 bg-gradient-to-l from-background to-transparent" />
 

@@ -17,7 +17,7 @@ function WorkCard({
     const baseDelay = index * 0.12
 
     const cardClass = cn(
-        'surface-card rounded-lg p-8 space-y-5',
+        'surface-card rounded-lg p-5 space-y-4 sm:p-8 sm:space-y-5',
         'transition-colors duration-300',
         'hover:border-foreground/20 hover:shadow-lg'
     )
@@ -84,7 +84,7 @@ function WorkCard({
 
 export function WorkHighlights() {
     return (
-        <section className="relative py-24 sm:py-32">
+        <section className="relative py-16 sm:py-24 lg:py-32">
             <Container className="max-w-6xl">
                 <SectionHeader
                     badge="Professional Work"
@@ -92,7 +92,7 @@ export function WorkHighlights() {
                     subtitle="Selected projects and contributions from my professional career — the work I'm most proud of."
                 />
 
-                <div className="grid gap-12 md:grid-cols-2">
+                <div className="grid gap-8 md:grid-cols-2">
                     {WORK_HIGHLIGHTS.map((work, index) => (
                         <WorkCard key={work.title} work={work} index={index} />
                     ))}

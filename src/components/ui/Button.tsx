@@ -22,7 +22,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                         'hover:bg-muted text-foreground': variant === 'ghost',
                         'h-10 px-4 py-2': size === 'default',
                         'h-9 px-3 text-sm': size === 'sm',
-                        'h-11 px-8': size === 'lg',
+                        'h-11 px-5 text-sm sm:px-8 sm:text-base': size === 'lg',
                     },
                     className
                 )}

@@ -55,8 +55,8 @@ export function Projects({ initialProjects = [] }: ProjectsProps) {
     }, [initialProjects.length])
 
     return (
-        <section className="relative py-24 sm:py-32 overflow-x-hidden">
-            <Container className="max-w-6xl relative z-10">
+        <section className="relative overflow-x-clip py-16 sm:py-24 lg:py-32">
+            <Container className="max-w-6xl">
                 <SectionHeader
                     title="Open Source Projects"
                     subtitle={
@@ -78,7 +78,7 @@ export function Projects({ initialProjects = [] }: ProjectsProps) {
             </Container>
 
             {!loading && projects.length > 0 && (
-                <FadeInView delay={0.2} className="relative z-10 mt-16 border-t border-border pt-12 overflow-visible">
+                <FadeInView delay={0.2} className="relative z-10 mt-12 overflow-x-clip border-t border-border pt-10 sm:mt-16 sm:pt-12">
                     <ProjectMarquee projects={projects} />
                 </FadeInView>
             )}

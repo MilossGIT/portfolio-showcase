@@ -41,14 +41,14 @@ function SpotlightContent({
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -12 }}
                     transition={{ duration: 0.35, ease: 'easeInOut' }}
-                    className="surface-card overflow-hidden rounded-xl p-8"
+                    className="surface-card overflow-hidden rounded-xl p-5 sm:p-8"
                 >
                     <div className="mb-6 flex items-start justify-between gap-4">
                         <div>
                             <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
                                 Featured repository
                             </p>
-                            <h3 className="text-3xl font-semibold tracking-tight text-foreground">
+                            <h3 className="break-words text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
                                 {current.name}
                             </h3>
                             {current.language && (
@@ -156,7 +156,7 @@ function SpotlightFallback({ projects }: FeaturedProjectSpotlightProps) {
                 <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
                     Featured repository
                 </p>
-                <h3 className="text-3xl font-semibold tracking-tight text-foreground">
+                <h3 className="break-words text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
                     {current.name}
                 </h3>
                 <p className="mt-4 text-muted-foreground leading-relaxed">

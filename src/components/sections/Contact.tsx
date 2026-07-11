@@ -63,14 +63,14 @@ export function Contact() {
     }
 
     return (
-        <section className="relative py-24 sm:py-32">
+        <section className="relative py-16 sm:py-24 lg:py-32">
             <Container className="max-w-6xl">
                 <SectionHeader
                     title="Get in Touch"
                     subtitle="I'm always open to new opportunities and interesting projects. Feel free to reach out!"
                 />
 
-                <div className="grid gap-12 md:grid-cols-2 max-w-5xl">
+                <div className="grid max-w-5xl gap-8 md:grid-cols-2 md:gap-12">
                     <FadeInView delay={0.1} className="space-y-8">
                         <div className="flex items-start gap-4">
                             <Mail className="h-5 w-5 text-muted-foreground mt-0.5 shrink-0" />
@@ -78,7 +78,7 @@ export function Contact() {
                                 <h3 className="text-sm font-medium text-foreground">Email</h3>
                                 <a
                                     href={`mailto:${CONTACT_EMAIL}`}
-                                    className="text-sm text-muted-foreground hover:text-foreground transition-colors mt-1 inline-block"
+                                    className="mt-1 inline-block break-all text-sm text-muted-foreground transition-colors hover:text-foreground"
                                 >
                                     {CONTACT_EMAIL}
                                 </a>
@@ -99,7 +99,7 @@ export function Contact() {
                     </FadeInView>
 
                     <FadeInView delay={0.2}>
-                        <div className="surface-card rounded-lg p-6">
+                        <div className="surface-card rounded-lg p-4 sm:p-6">
                         {isSubmitted ? (
                             <div className="text-center py-8">
                                 <h3 className="text-lg font-medium text-foreground mb-2">

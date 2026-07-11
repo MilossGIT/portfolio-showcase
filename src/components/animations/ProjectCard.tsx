@@ -56,7 +56,7 @@ export function ProjectCard({
             onMouseLeave={handleLeave}
             className={cn(
                 'surface-card group relative flex flex-col rounded-lg transition-all duration-300',
-                isCompact ? 'w-80 shrink-0' : 'w-full',
+                isCompact ? 'w-[min(18rem,calc(100vw-2.5rem))] shrink-0 sm:w-72' : 'w-full min-w-0',
                 isHovered && isCompact && 'z-50 -translate-y-1 scale-[1.02] shadow-md',
                 className
             )}
