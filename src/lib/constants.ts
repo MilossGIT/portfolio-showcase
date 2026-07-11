@@ -11,12 +11,88 @@ export const SOCIAL_LINKS = {
 export const NAV_LINKS = [
     { name: 'About', href: '#about' },
     { name: 'Experience', href: '#experience' },
-    {
-        name: 'Projects',
-        href: '#projects',
-    },
+    { name: 'Work', href: '#work' },
+    { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' },
 ] as const;
+
+export const FEATURED_REPO_NAMES = [
+    'Portfolio-Illustration',
+    'Ticket-Notifier',
+    'Events7',
+    'portfolio-showcase',
+];
+
+export const WORK_HIGHLIGHTS = [
+    {
+        title: 'Real Estate Portal — Location-First Architecture',
+        company: 'Lokacija.net',
+        url: 'https://lokacija.net/',
+        description:
+            'A Django-based real estate platform where locations (cities, districts, streets) are first-class database entities with permanent, SEO-friendly URLs. The backend controls all routing, hierarchy validation, and SEO logic.',
+        tags: ['Django', 'Python', 'PostgreSQL', 'SEO', 'Real Estate'],
+        impact: 'Location-first architecture powering property search across Slovenia and the Adriatic region',
+    },
+    {
+        title: 'Cycling Readiness Coach',
+        company: 'Kind Cadence',
+        url: 'https://kindcadence.app/',
+        description:
+            'A cycling readiness coach that answers one question: "What is the best ride for me today?" Not another activity tracker — Kind Cadence interprets your data and provides calm, evidence-based guidance, like an experienced cycling coach who understands your habits.',
+        tags: ['Mobile App', 'Strava API', 'Health Data', 'Coaching', 'Recovery'],
+        impact: 'Readiness, pacing, and recovery guidance shaped around how you actually ride and rest',
+    },
+    {
+        title: 'Ormarich E-commerce',
+        company: 'Ormarich',
+        url: 'https://www.ormarich.hr/',
+        description:
+            'Production storefront for Ormarich with Stripe payments, inventory updates via webhooks, and admin product management backed by Vercel KV.',
+        tags: ['Next.js', 'Stripe', 'Vercel KV', 'E-Commerce', 'Webhooks'],
+        impact: 'Live kids concept shop with Stripe checkout and real-time inventory sync',
+    },
+    {
+        title: 'Multilingual Federation Site',
+        company: 'ZKH · Savez za kliničku hipnoterapiju',
+        url: 'https://www.standardi-hipnoterapije.org/sr',
+        description:
+            'Clinical hypnotherapy association website with Slovenian at / (no prefix), Croatian (/hr), and Serbian (/sr). Payload CMS 3 for institutional pages and blog posts, SEO helpers, and optional DeepL auto-translation when publishing content.',
+        tags: ['Next.js', 'Payload CMS', 'i18n', 'DeepL', 'SEO'],
+        impact: 'Trilingual institutional site with CMS-driven content and auto-translation workflow',
+    },
+    {
+        title: 'Sportradar Widget Products',
+        company: 'Sportradar',
+        description:
+            'Frontend-focused development of custom sports data widget products using React, TypeScript, and modern web technologies for real-time integration.',
+        tags: ['React', 'TypeScript', 'JavaScript', 'RESTful APIs', 'Widgets'],
+        impact: 'End-to-end integration of complex sports data systems for global clients',
+    },
+    {
+        title: 'Secure Payment Forms',
+        company: 'CCBill',
+        description:
+            'Development and deployment of secure, user-friendly payment forms with robust validation to reduce payment processing errors.',
+        tags: ['JavaScript', 'Frontend Development', 'Responsive Design', 'Validation'],
+        impact: 'Successfully deployed payment forms to production, reducing payment errors through robust validation',
+    },
+    {
+        title: 'Vintify E-Commerce Platform',
+        company: 'Cubes School of Programming',
+        description:
+            'A full-stack e-commerce web application connecting sellers with customers interested in purchasing second-hand pieces.',
+        tags: ['React', 'JavaScript', 'Full-Stack', 'E-Commerce'],
+        impact: 'Capstone project demonstrating full-stack development skills',
+    },
+    {
+        title: 'Responsive Web Experiences',
+        company: 'BG Wireless',
+        description:
+            'Website maintenance, content management, and responsive design implementation to improve user experience across devices.',
+        tags: ['HTML5', 'CSS', 'JavaScript', 'Responsive Design'],
+        impact: 'Created visually appealing, cohesive designs with improved cross-device experience',
+    },
+];
 
 export const SKILLS = [
     'React.js',

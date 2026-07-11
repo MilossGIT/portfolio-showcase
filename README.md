@@ -10,7 +10,7 @@ A modern, responsive portfolio website built with Next.js 14, React, TypeScript,
 - 📱 Fully responsive design
 - 🎨 Custom animations using Framer Motion
 - 🎯 Interactive particle background
-- 📧 Contact form with EmailJS integration
+- 📧 Contact form with FormSubmit email delivery
 - 🔍 SEO optimized
 - 🎆 Smooth page transitions
 - ♿ Accessible UI components
@@ -22,7 +22,7 @@ A modern, responsive portfolio website built with Next.js 14, React, TypeScript,
 - **Styling:** Tailwind CSS
 - **Animation:** Framer Motion
 - **Icons:** Lucide Icons
-- **Email:** EmailJS
+- **Email:** FormSubmit
 - **Deployment:** Vercel
 
 ## Getting Started
@@ -49,13 +49,7 @@ npm install
 yarn install
 ```
 
-3. Create a `.env.local` file in the root directory and add your EmailJS credentials:
-
-```env
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
-```
+3. No environment variables are required for the contact form. Messages are delivered to `minicm034@gmail.com` via FormSubmit. On the first submission, check that inbox for an activation email and confirm it.
 
 4. Start the development server:
 

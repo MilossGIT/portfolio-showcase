@@ -28,6 +28,29 @@ export interface Experience {
     tags: string[];
 }
 
+export interface GitHubProject {
+    name: string;
+    description: string | null;
+    htmlUrl: string;
+    language: string | null;
+    stars: number;
+    topics: string[];
+    updatedAt: string;
+    homepage: string | null;
+    previewImage: string;
+    featured?: boolean;
+}
+
+export interface WorkHighlight {
+    title: string;
+    company: string;
+    description: string;
+    tags: string[];
+    impact: string;
+    url?: string;
+    image?: string;
+}
+
 export type ContactFormElements = HTMLFormControlsCollection & {
     name: HTMLInputElement;
     email: HTMLInputElement;

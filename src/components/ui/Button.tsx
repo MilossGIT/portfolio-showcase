@@ -11,18 +11,18 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         return (
             <button
                 className={cn(
-                    'inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0366d6] disabled:pointer-events-none disabled:opacity-50',
+                    'inline-flex items-center justify-center rounded-lg font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50',
                     {
-                        'bg-[#2ea44f] text-white hover:bg-[#2c974b] border border-[#2ea44f]/10':
+                        'bg-primary text-primary-foreground hover:opacity-90 shadow-sm':
                             variant === 'primary',
-                        'bg-[#fafbfc] text-[#24292e] hover:bg-[#f3f4f6] border border-[#e1e4e8] dark:bg-[#21262d] dark:text-[#c9d1d9] dark:hover:bg-[#30363d] dark:border-[#30363d]':
+                        'bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border':
                             variant === 'default',
-                        'border border-[#e1e4e8] bg-transparent hover:bg-[#f3f4f6] dark:border-[#30363d] dark:hover:bg-[#30363d]':
+                        'border border-border bg-transparent hover:bg-muted text-foreground':
                             variant === 'outline',
-                        'hover:bg-[#f3f4f6] dark:hover:bg-[#30363d]': variant === 'ghost',
+                        'hover:bg-muted text-foreground': variant === 'ghost',
                         'h-10 px-4 py-2': size === 'default',
-                        'h-9 rounded-md px-3': size === 'sm',
-                        'h-11 rounded-md px-8': size === 'lg',
+                        'h-9 px-3 text-sm': size === 'sm',
+                        'h-11 px-8': size === 'lg',
                     },
                     className
                 )}

@@ -5,7 +5,11 @@ import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { Providers } from './providers'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-sans',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://milosminic.net'),
@@ -72,12 +76,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className="scroll-smooth"
-    >
-      <body className={`${inter.className} antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className} ${inter.variable} antialiased`} suppressHydrationWarning>
         <Providers>
           <div className="flex min-h-screen flex-col">
             <Navbar />

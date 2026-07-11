@@ -1,170 +1,101 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { ArrowDownIcon, Github, Linkedin } from 'lucide-react'
+import { Github, Linkedin } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { SOCIAL_LINKS } from '@/lib/constants'
-import ParticleBackground from '../animations/ParticleBackground'
-import TextReveal from '../animations/TextReveal'
+import { HeroBackground } from '../animations/HeroBackground'
+
+function scrollToSection(id: string) {
+    const element = document.getElementById(id)
+    if (element) {
+        const headerOffset = 80
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
+    }
+}
 
 export function Hero() {
     return (
-        <section className="relative min-h-screen pt-24 md:pt-32 pb-16 flex flex-col justify-center">
-            <ParticleBackground />
+        <section className="relative z-10 min-h-screen pt-28 md:pt-36 pb-20 flex flex-col justify-center">
+            <HeroBackground />
 
-            <div className="container px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="flex flex-col lg:flex-row items-center justify-center gap-12 mb-16">
-                    {/* Text content */}
-                    <div className="flex-1 text-center lg:text-left space-y-6">
-                        <div className="space-y-2">
-                            <div className="flex items-center gap-2 justify-center lg:justify-start">
-                                <TextReveal
-                                    text="Hi, I'm"
-                                    className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#24292e] dark:text-[#c9d1d9]"
-                                />
-                                <TextReveal
-                                    text="Miloš Minić"
-                                    delay={0.3}
-                                    className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#0366d6] dark:text-[#58a6ff]"
-                                />
-                            </div>
+            <div className="container px-4 sm:px-6 lg:px-8 relative z-10 max-w-6xl">
+                <div className="flex flex-col lg:flex-row items-start gap-16 lg:gap-24">
+                    <div className="flex-1 space-y-8 text-left">
+                        <div className="space-y-4">
+                            <p className="text-sm uppercase tracking-widest text-muted-foreground">
+                                Software Engineer
+                            </p>
+                            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-semibold tracking-tight text-foreground leading-[1.05]">
+                                Miloš Minić
+                            </h1>
+                            <p className="text-xl text-muted-foreground max-w-xl leading-relaxed mt-2">
+                                Shipping production-grade digital products at scale — from
+                                complex integrations to polished experiences people rely on
+                                every day.
+                            </p>
                         </div>
 
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.8 }}
-                            className="text-lg sm:text-xl text-[#586069] dark:text-[#8b949e] max-w-2xl mx-auto lg:mx-0"
-                        >
-                            A Software Engineer passionate about creating exceptional digital experiences
-                            and solving complex challenges with modern web technologies.
-                        </motion.p>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 1 }}
-                            className="flex flex-wrap gap-4 justify-center lg:justify-start"
-                        >
+                        <div className="flex flex-wrap gap-3">
                             <Button
-                                onClick={() => {
-                                    const element = document.getElementById('contact')
-                                    if (element) {
-                                        const headerOffset = 80
-                                        const elementPosition = element.getBoundingClientRect().top
-                                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-                                        window.scrollTo({
-                                            top: offsetPosition,
-                                            behavior: 'smooth'
-                                        })
-                                    }
-                                }}
+                                onClick={() => scrollToSection('contact')}
                                 variant="primary"
+                                size="lg"
                                 className="group"
                             >
                                 Get in touch
-                                <motion.span
-                                    animate={{ x: [0, 4, 0] }}
-                                    transition={{ repeat: Infinity, duration: 1.5 }}
-                                    className="inline-block ml-2"
-                                >
+                                <span className="inline-block ml-2 transition-transform group-hover:translate-x-0.5">
                                     →
-                                </motion.span>
+                                </span>
                             </Button>
 
                             <Button
                                 variant="outline"
-                                onClick={() => window.open(SOCIAL_LINKS.github, '_blank')}
-                                className="group"
+                                size="lg"
+                                onClick={() => scrollToSection('projects')}
                             >
-                                <Github className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
+                                <Github className="mr-2 h-4 w-4" />
                                 View Projects
                             </Button>
-                        </motion.div>
+                        </div>
 
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 1.2 }}
-                            className="flex gap-4 justify-center lg:justify-start"
-                        >
+                        <div className="flex gap-5 pt-2">
                             <a
                                 href={SOCIAL_LINKS.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-[#586069] hover:text-[#0366d6] dark:text-[#8b949e] dark:hover:text-[#58a6ff] transition-colors transform hover:scale-110"
+                                className="text-muted-foreground hover:text-foreground transition-colors"
+                                aria-label="GitHub"
                             >
-                                <Github className="h-6 w-6" />
+                                <Github className="h-5 w-5" />
                             </a>
                             <a
                                 href={SOCIAL_LINKS.linkedin}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-[#586069] hover:text-[#0366d6] dark:text-[#8b949e] dark:hover:text-[#58a6ff] transition-colors transform hover:scale-110"
+                                className="text-muted-foreground hover:text-foreground transition-colors"
+                                aria-label="LinkedIn"
                             >
-                                <Linkedin className="h-6 w-6" />
+                                <Linkedin className="h-5 w-5" />
                             </a>
-                        </motion.div>
+                        </div>
                     </div>
 
-                    {/* Profile Image */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
-                        animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                        transition={{
-                            type: "spring",
-                            stiffness: 100,
-                            delay: 0.5
-                        }}
-                        className="relative mt-8 lg:mt-0"
-                    >
-                        <div className="w-64 h-64 sm:w-72 sm:h-72 lg:w-96 lg:h-96 relative">
-                            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#0366d6] to-[#2ea44f] animate-pulse" />
+                    <div className="relative shrink-0">
+                        <div className="w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 relative">
                             <img
                                 src="/images/profile.jpg"
                                 alt="Miloš Minić"
-                                className="absolute inset-1 rounded-full object-cover border-2 border-white dark:border-[#30363d]"
+                                className="w-full h-full rounded-full object-cover ring-1 ring-border shadow-lg"
                                 onError={(e) => {
-                                    e.currentTarget.src = '/api/placeholder/400/400'
+                                    e.currentTarget.src =
+                                        'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect fill="%23374151" width="400" height="400"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="32" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EMM%3C/text%3E%3C/svg%3E'
                                 }}
                             />
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
-
-                {/* Scroll indicator */}
-                <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                        delay: 1.5,
-                        duration: 1,
-                        repeat: Infinity,
-                        repeatType: "reverse"
-                    }}
-                    className="hidden md:flex flex-col items-center justify-center mt-8"
-                >
-                    <a
-                        href="#about"
-                        onClick={(e) => {
-                            e.preventDefault()
-                            const element = document.getElementById('about')
-                            if (element) {
-                                const headerOffset = 80
-                                const elementPosition = element.getBoundingClientRect().top
-                                const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-                                window.scrollTo({
-                                    top: offsetPosition,
-                                    behavior: 'smooth'
-                                })
-                            }
-                        }}
-                        className="flex flex-col items-center gap-2 text-sm text-[#586069] dark:text-[#8b949e] hover:text-[#0366d6] dark:hover:text-[#58a6ff] transition-colors"
-                    >
-                        Scroll down
-                        <ArrowDownIcon className="h-4 w-4" />
-                    </a>
-                </motion.div>
             </div>
         </section>
     )

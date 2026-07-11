@@ -2,49 +2,51 @@
 
 import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
-import { motion } from 'framer-motion'
 import { Moon, Sun } from 'lucide-react'
+import { cn } from '@/lib/utils'
+
+const trackClass =
+    'flex h-8 w-14 shrink-0 items-center rounded-full border border-border bg-muted p-1 transition-colors hover:bg-muted/80'
 
 export function ThemeToggle() {
     const [mounted, setMounted] = useState(false)
-    const { theme, setTheme } = useTheme()
+    const { resolvedTheme, setTheme } = useTheme()
 
     useEffect(() => {
         setMounted(true)
     }, [])
 
-    if (!mounted) return null
+    const isDark = resolvedTheme === 'dark'
+
+    const toggleTheme = () => {
+        setTheme(isDark ? 'light' : 'dark')
+    }
+
+    if (!mounted) {
+        return <div className={trackClass} aria-hidden />
+    }
 
     return (
-        <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="relative h-8 w-14 rounded-full bg-gradient-to-r from-[#f1f8ff] to-[#e1e4e8] dark:from-[#21262d] dark:to-[#30363d] p-1 transition-colors"
-            aria-label="Toggle theme"
+        <button
+            type="button"
+            onClick={toggleTheme}
+            className={trackClass}
+            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
         >
-            <motion.div
-                className="relative h-6 w-6 rounded-full bg-gradient-to-r from-[#0366d6] to-[#2ea44f] dark:from-[#58a6ff] dark:to-[#238636]"
-                layout
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                animate={{ x: theme === 'dark' ? 24 : 0 }}
+            <span
+                className={cn(
+                    'flex h-6 w-6 shrink-0 items-center justify-center rounded-full',
+                    'bg-foreground text-background shadow-sm',
+                    'transition-all duration-200 ease-out',
+                    isDark && 'ml-auto'
+                )}
             >
-                {/* Sun Icon */}
-                <motion.div
-                    className="absolute inset-0 h-6 w-6 p-1 text-white"
-                    animate={{ opacity: theme === 'dark' ? 0 : 1, scale: theme === 'dark' ? 0.5 : 1 }}
-                >
-                    <Sun className="h-full w-full" />
-                </motion.div>
-
-                {/* Moon Icon */}
-                <motion.div
-                    className="absolute inset-0 h-6 w-6 p-1 text-white"
-                    animate={{ opacity: theme === 'dark' ? 1 : 0, scale: theme === 'dark' ? 1 : 0.5 }}
-                >
-                    <Moon className="h-full w-full" />
-                </motion.div>
-            </motion.div>
-        </motion.button>
+                {isDark ? (
+                    <Moon className="h-3 w-3" strokeWidth={2.5} />
+                ) : (
+                    <Sun className="h-3 w-3" strokeWidth={2.5} />
+                )}
+            </span>
+        </button>
     )
 }
