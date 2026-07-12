@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { Container } from '../ui/Container'
 import { SectionHeader } from '../ui/SectionHeader'
 import { FeaturedProjectSpotlight } from '../animations/FeaturedProjectSpotlight'
-import { ProjectMarquee } from '../animations/ProjectMarquee'
+import { ProjectPaginatedGrid } from '../animations/ProjectPaginatedGrid'
 import { FadeInView } from '../animations/FadeInView'
 import { PROJECTS } from '@/lib/constants'
 import { staticProjectsToGitHub } from '@/lib/github'
@@ -18,11 +18,11 @@ function ProjectSkeleton() {
     return (
         <div className="mx-auto max-w-3xl space-y-8">
             <div className="h-64 animate-pulse rounded-xl bg-muted shimmer" />
-            <div className="flex gap-6 overflow-hidden">
+            <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 md:gap-7">
                 {Array.from({ length: 4 }).map((_, i) => (
                     <div
                         key={i}
-                        className="h-52 w-80 shrink-0 animate-pulse rounded-lg bg-muted shimmer"
+                        className="h-48 animate-pulse rounded-lg bg-muted shimmer sm:h-56 md:h-60"
                     />
                 ))}
             </div>
@@ -78,8 +78,11 @@ export function Projects({ initialProjects = [] }: ProjectsProps) {
             </Container>
 
             {!loading && projects.length > 0 && (
-                <FadeInView delay={0.2} className="relative z-10 mt-16 overflow-x-clip overflow-y-visible border-t border-border pt-14 sm:mt-20 sm:pt-16 lg:mt-24 lg:pt-20">
-                    <ProjectMarquee projects={projects} />
+                <FadeInView
+                    delay={0.2}
+                    className="relative z-10 mt-16 overflow-x-clip overflow-y-visible border-t border-border pt-14 sm:mt-20 sm:pt-16 lg:mt-24 lg:pt-20"
+                >
+                    <ProjectPaginatedGrid projects={projects} />
                 </FadeInView>
             )}
         </section>

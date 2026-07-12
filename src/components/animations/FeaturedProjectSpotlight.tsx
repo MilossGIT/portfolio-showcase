@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import { ChevronLeft, ChevronRight, ExternalLink, Github, Star } from 'lucide-react'
 import { GitHubProject } from '@/types'
 import { ClientOnly } from '@/components/ui/ClientOnly'
+import { AutoScrollText } from '@/components/ui/AutoScrollText'
 import { cn } from '@/lib/utils'
 
 interface FeaturedProjectSpotlightProps {
@@ -31,31 +32,18 @@ function buildSpotlightPool(projects: GitHubProject[]): GitHubProject[] {
     return projects.slice(0, SPOTLIGHT_POOL_SIZE)
 }
 
-const spotlightCardClass = 'surface-card rounded-xl p-5 sm:p-8'
+const spotlightCardClass = 'surface-card rounded-xl'
 
-function SpotlightSlide({
-    project,
-    isActive,
-}: {
-    project: GitHubProject
-    isActive: boolean
-}) {
+function SpotlightSlideContent({ project }: { project: GitHubProject }) {
     return (
-        <div
-            className={cn(
-                'transition-opacity duration-300 ease-in-out',
-                isActive
-                    ? 'relative z-10 opacity-100'
-                    : 'pointer-events-none absolute inset-0 z-0 opacity-0'
-            )}
-            aria-hidden={!isActive}
-        >
-            <div className="mb-6 flex items-start justify-between gap-4">
-                <div>
-                    <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
+        <div className="spotlight-slide-panel flex flex-col">
+            <div className="relative mb-5 shrink-0 sm:mb-6">
+                <Github className="absolute right-0 top-0 h-5 w-5 shrink-0 text-muted-foreground" />
+                <div className="min-w-0 pr-8">
+                    <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
                         Featured repository
                     </p>
-                    <h3 className="break-words text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+                    <h3 className="break-words text-2xl font-semibold leading-tight tracking-tight text-foreground sm:text-3xl">
                         {project.name}
                     </h3>
                     {project.language && (
@@ -64,14 +52,14 @@ function SpotlightSlide({
                         </span>
                     )}
                 </div>
-                <Github className="h-5 w-5 shrink-0 text-muted-foreground" />
             </div>
 
-            <p className="mb-6 text-muted-foreground leading-relaxed">
-                {project.description ?? 'An open-source project from my GitHub.'}
-            </p>
+            <AutoScrollText
+                text={project.description ?? 'An open-source project from my GitHub.'}
+                className="mb-5 min-h-[5.5rem] shrink-0 sm:mb-6 sm:min-h-[6rem]"
+            />
 
-            <div className="mb-6 flex flex-wrap items-center gap-3">
+            <div className="mb-5 flex min-h-8 shrink-0 flex-wrap items-center gap-2 sm:mb-6 sm:gap-3">
                 {project.stars > 0 && (
                     <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
                         <Star className="h-4 w-4" />
@@ -81,14 +69,14 @@ function SpotlightSlide({
                 {project.topics.slice(0, 5).map((topic) => (
                     <span
                         key={topic}
-                        className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground"
+                        className="shrink-0 rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground"
                     >
                         {topic}
                     </span>
                 ))}
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="mt-auto flex shrink-0 flex-wrap items-center gap-3 pt-1 sm:gap-4">
                 <a
                     href={project.htmlUrl}
                     target="_blank"
@@ -98,7 +86,7 @@ function SpotlightSlide({
                     <Github className="h-4 w-4" />
                     View on GitHub
                 </a>
-                {project.homepage && (
+                {project.homepage ? (
                     <a
                         href={project.homepage}
                         target="_blank"
@@ -108,6 +96,10 @@ function SpotlightSlide({
                         <ExternalLink className="h-4 w-4 transition-all duration-300 group-hover/live:-translate-y-0.5 group-hover/live:translate-x-0.5 group-active/live:-translate-y-0.5 group-active/live:translate-x-0.5" />
                         Live Demo
                     </a>
+                ) : (
+                    <span className="invisible text-sm" aria-hidden>
+                        Live
+                    </span>
                 )}
             </div>
         </div>
@@ -118,65 +110,132 @@ function SpotlightContent({
     projects,
 }: FeaturedProjectSpotlightProps) {
     const pool = buildSpotlightPool(projects)
-
+    const scrollerRef = useRef<HTMLDivElement>(null)
+    const scrollRafRef = useRef<number>(0)
     const [currentIndex, setCurrentIndex] = useState(0)
 
-    const goNext = useCallback(() => {
-        setCurrentIndex((prev) => (prev + 1) % pool.length)
+    const syncIndexFromScroll = useCallback(() => {
+        const scroller = scrollerRef.current
+        if (!scroller || scroller.clientWidth === 0) return
+
+        const index = Math.round(scroller.scrollLeft / scroller.clientWidth)
+        setCurrentIndex(Math.max(0, Math.min(pool.length - 1, index)))
     }, [pool.length])
 
+    const scrollToIndex = useCallback(
+        (index: number) => {
+            const scroller = scrollerRef.current
+            if (!scroller) return
+
+            const clamped = Math.max(0, Math.min(pool.length - 1, index))
+            scroller.scrollTo({
+                left: scroller.clientWidth * clamped,
+                behavior: 'smooth',
+            })
+        },
+        [pool.length]
+    )
+
+    const goNext = useCallback(() => {
+        scrollToIndex((currentIndex + 1) % pool.length)
+    }, [currentIndex, pool.length, scrollToIndex])
+
     const goPrev = useCallback(() => {
-        setCurrentIndex((prev) => (prev - 1 + pool.length) % pool.length)
-    }, [pool.length])
+        scrollToIndex((currentIndex - 1 + pool.length) % pool.length)
+    }, [currentIndex, pool.length, scrollToIndex])
+
+    useEffect(() => {
+        const scroller = scrollerRef.current
+        if (!scroller || pool.length <= 1) return
+
+        const handleScroll = () => {
+            cancelAnimationFrame(scrollRafRef.current)
+            scrollRafRef.current = requestAnimationFrame(syncIndexFromScroll)
+        }
+
+        const handleScrollEnd = () => {
+            cancelAnimationFrame(scrollRafRef.current)
+            syncIndexFromScroll()
+        }
+
+        scroller.addEventListener('scroll', handleScroll, { passive: true })
+        scroller.addEventListener('scrollend', handleScrollEnd)
+
+        return () => {
+            scroller.removeEventListener('scroll', handleScroll)
+            scroller.removeEventListener('scrollend', handleScrollEnd)
+            cancelAnimationFrame(scrollRafRef.current)
+        }
+    }, [pool.length, syncIndexFromScroll])
 
     if (pool.length === 0) return null
 
+    if (pool.length === 1) {
+        return (
+            <div className="relative mx-auto max-w-3xl">
+                <div className={cn(spotlightCardClass, 'p-5 sm:p-8')}>
+                    <SpotlightSlideContent project={pool[0]} />
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className="relative mx-auto max-w-3xl">
-            <div className={cn(spotlightCardClass, 'relative min-h-[22rem] sm:min-h-[24rem]')}>
-                {pool.map((project, index) => (
-                    <SpotlightSlide
-                        key={project.name}
-                        project={project}
-                        isActive={index === currentIndex}
-                    />
-                ))}
+            <div className={cn(spotlightCardClass, 'overflow-x-clip')}>
+                <div
+                    ref={scrollerRef}
+                    className="spotlight-swipe-surface no-scrollbar flex snap-x snap-mandatory overflow-x-auto overflow-y-visible"
+                >
+                    {pool.map((project) => (
+                        <div
+                            key={project.name}
+                            className="w-full shrink-0 snap-start snap-always p-5 sm:p-8"
+                        >
+                            <SpotlightSlideContent project={project} />
+                        </div>
+                    ))}
+                </div>
             </div>
 
-            {pool.length > 1 && (
-                <div className="mt-6 flex items-center justify-center gap-4">
-                    <button
-                        onClick={goPrev}
-                        className="spotlight-nav-btn"
-                        aria-label="Previous project"
-                    >
-                        <ChevronLeft className="h-5 w-5" />
-                    </button>
+            <div className="mt-6 flex items-center justify-center gap-4">
+                <button
+                    type="button"
+                    onClick={goPrev}
+                    className="spotlight-nav-btn"
+                    aria-label="Previous project"
+                >
+                    <ChevronLeft className="h-5 w-5" />
+                </button>
 
-                    <div className="flex gap-2">
-                        {pool.map((project, index) => (
-                            <button
-                                key={project.name}
-                                onClick={() => setCurrentIndex(index)}
-                                className={
-                                    index === currentIndex
-                                        ? 'spotlight-dot-active'
-                                        : 'spotlight-dot'
-                                }
-                                aria-label={`Go to ${project.name}`}
-                            />
-                        ))}
-                    </div>
-
-                    <button
-                        onClick={goNext}
-                        className="spotlight-nav-btn"
-                        aria-label="Next project"
-                    >
-                        <ChevronRight className="h-5 w-5" />
-                    </button>
+                <div className="flex gap-2">
+                    {pool.map((project, index) => (
+                        <button
+                            key={project.name}
+                            type="button"
+                            onClick={() => scrollToIndex(index)}
+                            className={
+                                index === currentIndex
+                                    ? 'spotlight-dot-active'
+                                    : 'spotlight-dot'
+                            }
+                            aria-label={`Go to ${project.name}`}
+                            aria-current={
+                                index === currentIndex ? 'true' : undefined
+                            }
+                        />
+                    ))}
                 </div>
-            )}
+
+                <button
+                    type="button"
+                    onClick={goNext}
+                    className="spotlight-nav-btn"
+                    aria-label="Next project"
+                >
+                    <ChevronRight className="h-5 w-5" />
+                </button>
+            </div>
         </div>
     )
 }
@@ -188,16 +247,8 @@ function SpotlightFallback({ projects }: FeaturedProjectSpotlightProps) {
 
     return (
         <div className="relative mx-auto max-w-3xl">
-            <div className={spotlightCardClass}>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
-                    Featured repository
-                </p>
-                <h3 className="break-words text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                    {current.name}
-                </h3>
-                <p className="mt-4 text-muted-foreground leading-relaxed">
-                    {current.description ?? 'An open-source project from my GitHub.'}
-                </p>
+            <div className={cn(spotlightCardClass, 'p-5 sm:p-8')}>
+                <SpotlightSlideContent project={current} />
             </div>
         </div>
     )

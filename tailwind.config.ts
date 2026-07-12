@@ -73,10 +73,6 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: '0' },
         },
-        marquee: {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-50%)' },
-        },
         shimmer: {
           '0%': { backgroundPosition: '-200% 0' },
           '100%': { backgroundPosition: '200% 0' },
@@ -85,7 +81,6 @@ const config: Config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        marquee: "marquee 90s linear infinite",
         shimmer: "shimmer 2s linear infinite",
       },
     },

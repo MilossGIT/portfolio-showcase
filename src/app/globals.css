@@ -266,6 +266,139 @@
     box-shadow: 0 0 10px rgb(16 185 129 / 0.5);
   }
 
+  .project-grid-card {
+    height: 12.5rem;
+    min-height: 12.5rem;
+    max-height: 12.5rem;
+    isolation: isolate;
+  }
+
+  .project-grid-card.surface-card:hover,
+  .project-grid-card.surface-card:active {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (min-width: 640px) {
+    .project-grid-card {
+      height: 14rem;
+      min-height: 14rem;
+      max-height: 14rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .project-grid-card {
+      height: 15rem;
+      min-height: 15rem;
+      max-height: 15rem;
+    }
+  }
+
+  .project-strip-nav {
+    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-background text-foreground shadow-sm transition-all duration-300 sm:h-11 sm:w-11;
+  }
+
+  .project-strip-nav:hover:not(:disabled),
+  .project-strip-nav:active:not(:disabled) {
+    border-color: rgb(16 185 129 / 0.55);
+    color: rgb(5 150 105);
+    box-shadow: 0 4px 16px rgb(16 185 129 / 0.15);
+  }
+
+  .dark .project-strip-nav:hover:not(:disabled),
+  .dark .project-strip-nav:active:not(:disabled) {
+    border-color: rgb(52 211 153 / 0.6);
+    color: rgb(52 211 153);
+    box-shadow: 0 4px 18px rgb(52 211 153 / 0.2);
+  }
+
+  .project-strip-nav:disabled {
+    @apply pointer-events-none opacity-25;
+  }
+
+  .spotlight-swipe-surface {
+    touch-action: pan-x pan-y;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .spotlight-slide-panel {
+    width: 100%;
+    flex-shrink: 0;
+    min-width: 0;
+  }
+
+  .project-swipe-track {
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .auto-scroll-text-track {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .auto-scroll-text-track.is-scrolling {
+    animation: auto-scroll-text var(--scroll-duration, 14s) ease-in-out infinite;
+  }
+
+  @keyframes auto-scroll-text {
+    0%,
+    18% {
+      transform: translateY(0);
+    }
+
+    82%,
+    100% {
+      transform: translateY(var(--scroll-distance, 0));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .auto-scroll-text-track.is-scrolling {
+      animation: none;
+    }
+  }
+
+  .carousel-hint-nudge-left {
+    animation: carousel-hint-nudge-left 1.6s ease-in-out infinite;
+  }
+
+  .carousel-hint-nudge-right {
+    animation: carousel-hint-nudge-right 1.6s ease-in-out infinite;
+  }
+
+  @keyframes carousel-hint-nudge-left {
+    0%,
+    100% {
+      transform: translateX(0);
+      opacity: 0.45;
+    }
+
+    50% {
+      transform: translateX(-3px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes carousel-hint-nudge-right {
+    0%,
+    100% {
+      transform: translateX(0);
+      opacity: 0.45;
+    }
+
+    50% {
+      transform: translateX(3px);
+      opacity: 1;
+    }
+  }
+
   .dark .spotlight-dot-active {
     background-color: rgb(52 211 153);
     box-shadow: 0 0 12px rgb(52 211 153 / 0.55);
@@ -498,9 +631,5 @@
   .hero-spotlight-inner,
   .hero-spotlight-outer {
     display: none;
-  }
-
-  .animate-marquee {
-    animation: none !important;
   }
 }
