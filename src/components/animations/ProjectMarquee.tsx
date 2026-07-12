@@ -10,7 +10,8 @@ interface ProjectMarqueeProps {
 }
 
 const MIN_MARQUEE_ITEMS = 6
-const MOBILE_SIDE_SPACER = 'shrink-0 w-[calc(50%-9rem)]'
+const MOBILE_CARD_HALF = '10rem'
+const MOBILE_SIDE_SPACER = `shrink-0 w-[calc(50%-${MOBILE_CARD_HALF})]`
 const SCROLL_SETTLE_MS = 180
 
 export function ProjectMarquee({ projects }: ProjectMarqueeProps) {

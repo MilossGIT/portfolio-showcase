@@ -70,7 +70,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
                 className={cn(
                     'surface-card group relative flex origin-center flex-col rounded-lg transition-all duration-300',
                     isCompact &&
-                        'w-[min(18rem,calc(100vw-2.5rem))] shrink-0 snap-center sm:w-72',
+                        'w-[min(20rem,calc(100vw-2rem))] shrink-0 snap-center sm:w-80 md:w-[21rem]',
                     !isCompact && 'w-full min-w-0',
                     isCompact && (isHovered || isActive) && 'z-20',
                     isActive &&
@@ -80,16 +80,11 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
                     className
                 )}
             >
-                <div className={cn('flex flex-1 flex-col', isCompact ? 'p-5' : 'p-6')}>
+                <div className="flex flex-1 flex-col p-6">
                     <div className="mb-3 flex items-start gap-3">
                         <Github className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                         <div className="min-w-0 flex-1">
-                            <h3
-                                className={cn(
-                                    'line-clamp-1 font-medium text-foreground',
-                                    isCompact ? 'text-sm' : 'text-base'
-                                )}
-                            >
+                            <h3 className="line-clamp-1 text-base font-medium text-foreground">
                                 {project.name}
                             </h3>
                             <div className="mt-1 flex flex-wrap items-center gap-2">
@@ -111,7 +106,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
                     <p
                         className={cn(
                             'flex-1 text-muted-foreground',
-                            isCompact ? 'line-clamp-3 text-xs' : 'line-clamp-3 text-sm'
+                            isCompact ? 'line-clamp-4 text-sm' : 'line-clamp-3 text-sm'
                         )}
                     >
                         {project.description ?? 'Open-source project on GitHub.'}

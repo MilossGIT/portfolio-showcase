@@ -22,7 +22,7 @@ function ProjectSkeleton() {
                 {Array.from({ length: 4 }).map((_, i) => (
                     <div
                         key={i}
-                        className="h-48 w-72 shrink-0 animate-pulse rounded-lg bg-muted shimmer"
+                        className="h-52 w-80 shrink-0 animate-pulse rounded-lg bg-muted shimmer"
                     />
                 ))}
             </div>

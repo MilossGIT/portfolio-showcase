@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, ExternalLink, Github, Star } from 'lucide-react'
 import { GitHubProject } from '@/types'
 import { ClientOnly } from '@/components/ui/ClientOnly'
+import { cn } from '@/lib/utils'
 
 interface FeaturedProjectSpotlightProps {
     projects: GitHubProject[]
@@ -33,6 +33,87 @@ function buildSpotlightPool(projects: GitHubProject[]): GitHubProject[] {
 
 const spotlightCardClass = 'surface-card rounded-xl p-5 sm:p-8'
 
+function SpotlightSlide({
+    project,
+    isActive,
+}: {
+    project: GitHubProject
+    isActive: boolean
+}) {
+    return (
+        <div
+            className={cn(
+                'transition-opacity duration-300 ease-in-out',
+                isActive
+                    ? 'relative z-10 opacity-100'
+                    : 'pointer-events-none absolute inset-0 z-0 opacity-0'
+            )}
+            aria-hidden={!isActive}
+        >
+            <div className="mb-6 flex items-start justify-between gap-4">
+                <div>
+                    <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
+                        Featured repository
+                    </p>
+                    <h3 className="break-words text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+                        {project.name}
+                    </h3>
+                    {project.language && (
+                        <span className="mt-2 inline-block text-sm text-muted-foreground">
+                            {project.language}
+                        </span>
+                    )}
+                </div>
+                <Github className="h-5 w-5 shrink-0 text-muted-foreground" />
+            </div>
+
+            <p className="mb-6 text-muted-foreground leading-relaxed">
+                {project.description ?? 'An open-source project from my GitHub.'}
+            </p>
+
+            <div className="mb-6 flex flex-wrap items-center gap-3">
+                {project.stars > 0 && (
+                    <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                        <Star className="h-4 w-4" />
+                        {project.stars} stars
+                    </span>
+                )}
+                {project.topics.slice(0, 5).map((topic) => (
+                    <span
+                        key={topic}
+                        className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground"
+                    >
+                        {topic}
+                    </span>
+                ))}
+            </div>
+
+            <div className="flex items-center gap-4">
+                <a
+                    href={project.htmlUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                >
+                    <Github className="h-4 w-4" />
+                    View on GitHub
+                </a>
+                {project.homepage && (
+                    <a
+                        href={project.homepage}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="accent-hover-text group/live inline-flex items-center gap-2 text-sm text-muted-foreground"
+                    >
+                        <ExternalLink className="h-4 w-4 transition-all duration-300 group-hover/live:-translate-y-0.5 group-hover/live:translate-x-0.5 group-active/live:-translate-y-0.5 group-active/live:translate-x-0.5" />
+                        Live Demo
+                    </a>
+                )}
+            </div>
+        </div>
+    )
+}
+
 function SpotlightContent({
     projects,
 }: FeaturedProjectSpotlightProps) {
@@ -50,81 +131,17 @@ function SpotlightContent({
 
     if (pool.length === 0) return null
 
-    const current = pool[currentIndex]
-
     return (
-        <div className="relative mx-auto min-h-[22rem] max-w-3xl sm:min-h-[24rem]">
-            <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                    key={current.name}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.25, ease: 'easeInOut' }}
-                    className={spotlightCardClass}
-                >
-                    <div className="mb-6 flex items-start justify-between gap-4">
-                        <div>
-                            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
-                                Featured repository
-                            </p>
-                            <h3 className="break-words text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                                {current.name}
-                            </h3>
-                            {current.language && (
-                                <span className="mt-2 inline-block text-sm text-muted-foreground">
-                                    {current.language}
-                                </span>
-                            )}
-                        </div>
-                        <Github className="h-5 w-5 shrink-0 text-muted-foreground" />
-                    </div>
-
-                    <p className="mb-6 text-muted-foreground leading-relaxed">
-                        {current.description ?? 'An open-source project from my GitHub.'}
-                    </p>
-
-                    <div className="mb-6 flex flex-wrap items-center gap-3">
-                        {current.stars > 0 && (
-                            <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                                <Star className="h-4 w-4" />
-                                {current.stars} stars
-                            </span>
-                        )}
-                        {current.topics.slice(0, 5).map((topic) => (
-                            <span
-                                key={topic}
-                                className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground"
-                            >
-                                {topic}
-                            </span>
-                        ))}
-                    </div>
-
-                    <div className="flex items-center gap-4">
-                        <a
-                            href={current.htmlUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
-                        >
-                            <Github className="h-4 w-4" />
-                            View on GitHub
-                        </a>
-                        {current.homepage && (
-                            <a
-                                href={current.homepage}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="accent-hover-text group/live inline-flex items-center gap-2 text-sm text-muted-foreground"
-                            >
-                                <ExternalLink className="h-4 w-4 transition-all duration-300 group-hover/live:-translate-y-0.5 group-hover/live:translate-x-0.5 group-active/live:-translate-y-0.5 group-active/live:translate-x-0.5" />
-                                Live Demo
-                            </a>
-                        )}
-                    </div>
-                </motion.div>
-            </AnimatePresence>
+        <div className="relative mx-auto max-w-3xl">
+            <div className={cn(spotlightCardClass, 'relative min-h-[22rem] sm:min-h-[24rem]')}>
+                {pool.map((project, index) => (
+                    <SpotlightSlide
+                        key={project.name}
+                        project={project}
+                        isActive={index === currentIndex}
+                    />
+                ))}
+            </div>
 
             {pool.length > 1 && (
                 <div className="mt-6 flex items-center justify-center gap-4">
