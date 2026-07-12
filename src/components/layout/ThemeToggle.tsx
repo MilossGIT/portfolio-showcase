@@ -6,7 +6,7 @@ import { Moon, Sun } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const trackClass =
-    'flex h-8 w-14 shrink-0 items-center rounded-full border border-border bg-muted p-1 transition-colors hover:bg-muted/80'
+    'accent-hover-outline flex h-8 w-14 shrink-0 items-center rounded-full border border-border bg-muted p-1 transition-all duration-300 hover:!bg-muted'
 
 export function ThemeToggle() {
     const [mounted, setMounted] = useState(false)

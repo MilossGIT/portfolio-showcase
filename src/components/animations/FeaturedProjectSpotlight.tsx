@@ -4,7 +4,6 @@ import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, ExternalLink, Github, Star } from 'lucide-react'
 import { GitHubProject } from '@/types'
-import { cn } from '@/lib/utils'
 import { ClientOnly } from '@/components/ui/ClientOnly'
 
 interface FeaturedProjectSpotlightProps {
@@ -12,11 +11,32 @@ interface FeaturedProjectSpotlightProps {
     intervalMs?: number
 }
 
+const SPOTLIGHT_POOL_SIZE = 10
+
+function buildSpotlightPool(projects: GitHubProject[]): GitHubProject[] {
+    if (projects.length === 0) return []
+
+    const featured = projects.filter((p) => p.featured)
+    const rest = projects.filter((p) => !p.featured)
+
+    if (featured.length > 0) {
+        const merged = [...featured, ...rest]
+        const unique = merged.filter(
+            (project, index, list) =>
+                list.findIndex((p) => p.name === project.name) === index
+        )
+        return unique.slice(0, SPOTLIGHT_POOL_SIZE)
+    }
+
+    return projects.slice(0, SPOTLIGHT_POOL_SIZE)
+}
+
+const spotlightCardClass = 'surface-card overflow-hidden rounded-xl p-5 sm:p-8'
+
 function SpotlightContent({
     projects,
 }: FeaturedProjectSpotlightProps) {
-    const featured = projects.filter((p) => p.featured)
-    const pool = featured.length > 0 ? featured : projects.slice(0, 5)
+    const pool = buildSpotlightPool(projects)
 
     const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -41,7 +61,7 @@ function SpotlightContent({
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -12 }}
                     transition={{ duration: 0.35, ease: 'easeInOut' }}
-                    className="surface-card overflow-hidden rounded-xl p-5 sm:p-8"
+                    className={spotlightCardClass}
                 >
                     <div className="mb-6 flex items-start justify-between gap-4">
                         <div>
@@ -96,9 +116,9 @@ function SpotlightContent({
                                 href={current.homepage}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                                className="accent-hover-text group/live inline-flex items-center gap-2 text-sm text-muted-foreground"
                             >
-                                <ExternalLink className="h-4 w-4" />
+                                <ExternalLink className="h-4 w-4 transition-all duration-300 group-hover/live:-translate-y-0.5 group-hover/live:translate-x-0.5 group-active/live:-translate-y-0.5 group-active/live:translate-x-0.5" />
                                 Live Demo
                             </a>
                         )}
@@ -110,7 +130,7 @@ function SpotlightContent({
                 <div className="mt-6 flex items-center justify-center gap-4">
                     <button
                         onClick={goPrev}
-                        className="rounded-full p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                        className="spotlight-nav-btn"
                         aria-label="Previous project"
                     >
                         <ChevronLeft className="h-5 w-5" />
@@ -121,12 +141,11 @@ function SpotlightContent({
                             <button
                                 key={project.name}
                                 onClick={() => setCurrentIndex(index)}
-                                className={cn(
-                                    'h-1.5 rounded-full transition-all duration-300',
+                                className={
                                     index === currentIndex
-                                        ? 'w-6 bg-foreground'
-                                        : 'w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/50'
-                                )}
+                                        ? 'spotlight-dot-active'
+                                        : 'spotlight-dot'
+                                }
                                 aria-label={`Go to ${project.name}`}
                             />
                         ))}
@@ -134,7 +153,7 @@ function SpotlightContent({
 
                     <button
                         onClick={goNext}
-                        className="rounded-full p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                        className="spotlight-nav-btn"
                         aria-label="Next project"
                     >
                         <ChevronRight className="h-5 w-5" />
@@ -152,7 +171,7 @@ function SpotlightFallback({ projects }: FeaturedProjectSpotlightProps) {
 
     return (
         <div className="relative mx-auto max-w-3xl">
-            <div className="surface-card overflow-hidden rounded-xl p-8">
+            <div className={spotlightCardClass}>
                 <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
                     Featured repository
                 </p>

@@ -104,16 +104,14 @@ export function Navbar() {
                                     key={link.name}
                                     onClick={() => handleNavClick(link.href)}
                                     className={cn(
-                                        'relative px-3 py-2 text-sm transition-colors',
+                                        'accent-hover-text relative px-3 py-2 text-sm',
                                         isActive
-                                            ? 'text-foreground'
-                                            : 'text-muted-foreground hover:text-foreground'
+                                            ? 'nav-link-active'
+                                            : 'text-muted-foreground'
                                     )}
                                 >
                                     {link.name}
-                                    {isActive && (
-                                        <span className="absolute bottom-1 left-3 right-3 h-px bg-foreground" />
-                                    )}
+                                    {isActive && <span className="nav-link-underline" />}
                                 </button>
                             )
                         })}
@@ -144,15 +142,24 @@ export function Navbar() {
                             className="md:hidden border-t border-border/60"
                         >
                             <div className="py-3 px-4 space-y-1">
-                                {NAV_LINKS.map((link) => (
-                                    <button
-                                        key={link.name}
-                                        onClick={() => handleNavClick(link.href)}
-                                        className="flex w-full px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors text-sm"
-                                    >
-                                        {link.name}
-                                    </button>
-                                ))}
+                                {NAV_LINKS.map((link) => {
+                                    const sectionId = link.href.replace('#', '')
+                                    const isActive = activeSection === sectionId
+                                    return (
+                                        <button
+                                            key={link.name}
+                                            onClick={() => handleNavClick(link.href)}
+                                            className={cn(
+                                                'accent-hover-text flex w-full px-3 py-2 rounded-md text-sm hover:bg-muted',
+                                                isActive
+                                                    ? 'nav-link-active'
+                                                    : 'text-muted-foreground'
+                                            )}
+                                        >
+                                            {link.name}
+                                        </button>
+                                    )
+                                })}
                             </div>
                         </motion.div>
                     )}

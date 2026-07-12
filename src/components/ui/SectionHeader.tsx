@@ -20,7 +20,7 @@ export function SectionHeader({
     className,
 }: SectionHeaderProps) {
     return (
-        <FadeInView className={cn('mb-10 text-left sm:mb-16', className)}>
+        <FadeInView className={cn('mb-12 text-left sm:mb-16 lg:mb-20', className)}>
             {badge && (
                 <p className="mb-3 flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground sm:mb-4">
                     {BadgeIcon && <BadgeIcon className="h-3.5 w-3.5" />}

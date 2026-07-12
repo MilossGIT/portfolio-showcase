@@ -17,17 +17,17 @@ function scrollToSection(id: string) {
 
 export function Hero() {
     return (
-        <section className="relative z-10 flex flex-col justify-center pt-24 pb-10 sm:pt-28 sm:pb-16 md:pt-36 lg:min-h-screen lg:pb-20">
+        <section className="relative z-10 flex flex-col justify-center pt-24 pb-20 sm:pt-28 sm:pb-28 md:pt-36 lg:min-h-screen lg:pb-36">
             <HeroBackground />
 
             <div className="container relative z-10 mx-auto w-full min-w-0 max-w-6xl">
                 <div className="flex flex-col items-center gap-8 text-center sm:gap-10 lg:flex-row lg:items-center lg:gap-20 lg:text-left xl:gap-24">
                     <div className="relative order-1 shrink-0 lg:order-2">
-                        <div className="relative h-36 w-36 sm:h-48 sm:w-48 md:h-56 md:w-56 lg:h-64 lg:w-64 xl:h-72 xl:w-72">
+                        <div className="touch-accent-group relative h-36 w-36 sm:h-48 sm:w-48 md:h-56 md:w-56 lg:h-64 lg:w-64 xl:h-72 xl:w-72">
                             <img
                                 src="/images/profile.jpg"
                                 alt="Miloš Minić"
-                                className="h-full w-full rounded-full object-cover ring-1 ring-border shadow-lg"
+                                className="profile-photo"
                                 onError={(e) => {
                                     e.currentTarget.src =
                                         'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect fill="%23374151" width="400" height="400"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="32" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EMM%3C/text%3E%3C/svg%3E'
@@ -37,8 +37,8 @@ export function Hero() {
                     </div>
 
                     <div className="order-2 w-full min-w-0 flex-1 space-y-6 sm:space-y-8 lg:order-1">
-                        <div className="space-y-3 sm:space-y-4">
-                            <p className="text-xs uppercase tracking-widest text-muted-foreground sm:text-sm">
+                        <div className="group touch-accent-group space-y-3 sm:space-y-4">
+                            <p className="accent-text-hover text-xs uppercase tracking-widest text-muted-foreground sm:text-sm">
                                 Software Engineer
                             </p>
                             <h1 className="text-4xl font-semibold tracking-tight text-foreground leading-[1.05] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
@@ -68,7 +68,7 @@ export function Hero() {
                                 variant="outline"
                                 size="lg"
                                 onClick={() => scrollToSection('projects')}
-                                className="w-full sm:w-auto"
+                                className="accent-hover-outline w-full hover:!bg-transparent sm:w-auto"
                             >
                                 <Github className="mr-2 h-4 w-4" />
                                 View Projects
@@ -80,7 +80,7 @@ export function Hero() {
                                 href={SOCIAL_LINKS.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-muted-foreground hover:text-foreground transition-colors"
+                                className="accent-hover-icon"
                                 aria-label="GitHub"
                             >
                                 <Github className="h-5 w-5" />
@@ -89,7 +89,7 @@ export function Hero() {
                                 href={SOCIAL_LINKS.linkedin}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-muted-foreground hover:text-foreground transition-colors"
+                                className="accent-hover-icon"
                                 aria-label="LinkedIn"
                             >
                                 <Linkedin className="h-5 w-5" />

@@ -10,7 +10,7 @@ export function Footer() {
     return (
         <footer className="border-t border-border">
             <FadeInView y={12} duration={0.45}>
-                <div className="container mx-auto w-full min-w-0 max-w-6xl px-4 py-8">
+                <div className="container mx-auto w-full min-w-0 max-w-6xl px-4 py-10 sm:py-12">
                     <div className="flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
                         <div className="flex flex-col items-center gap-4 md:flex-row md:gap-8">
                             <p className="text-sm text-muted-foreground">
@@ -21,7 +21,7 @@ export function Footer() {
                                     href={SOCIAL_LINKS.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-muted-foreground hover:text-foreground transition-colors"
+                                    className="accent-hover-icon"
                                     aria-label="GitHub"
                                 >
                                     <Github className="h-4 w-4" />
@@ -30,7 +30,7 @@ export function Footer() {
                                     href={SOCIAL_LINKS.linkedin}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-muted-foreground hover:text-foreground transition-colors"
+                                    className="accent-hover-icon"
                                     aria-label="LinkedIn"
                                 >
                                     <Linkedin className="h-4 w-4" />
@@ -40,7 +40,7 @@ export function Footer() {
 
                         <a
                             href={`mailto:${CONTACT_EMAIL}`}
-                            className="break-all text-sm text-muted-foreground transition-colors hover:text-foreground"
+                            className="accent-hover-text break-all text-sm text-muted-foreground"
                         >
                             {CONTACT_EMAIL}
                         </a>

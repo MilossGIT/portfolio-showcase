@@ -17,9 +17,7 @@ function WorkCard({
     const baseDelay = index * 0.12
 
     const cardClass = cn(
-        'surface-card rounded-lg p-5 space-y-4 sm:p-8 sm:space-y-5',
-        'transition-colors duration-300',
-        'hover:border-foreground/20 hover:shadow-lg'
+        'surface-card rounded-lg p-5 space-y-4 sm:p-8 sm:space-y-5'
     )
 
     return (
@@ -32,7 +30,6 @@ function WorkCard({
                 delay: baseDelay,
                 ease: [0.22, 1, 0.36, 1],
             }}
-            whileHover={{ y: -5 }}
             className={cardClass}
         >
             <div>
@@ -72,9 +69,9 @@ function WorkCard({
                     href={work.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-1.5 text-sm text-foreground transition-opacity hover:opacity-70"
+                    className="accent-hover-text group/live inline-flex items-center gap-1.5 text-sm text-foreground"
                 >
-                    <ExternalLink className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    <ExternalLink className="h-3.5 w-3.5 transition-all duration-300 group-hover/live:-translate-y-0.5 group-hover/live:translate-x-0.5 group-active/live:-translate-y-0.5 group-active/live:translate-x-0.5" />
                     Visit live site
                 </a>
             )}
@@ -84,7 +81,7 @@ function WorkCard({
 
 export function WorkHighlights() {
     return (
-        <section className="relative py-16 sm:py-24 lg:py-32">
+        <section className="relative section-spacing">
             <Container className="max-w-6xl">
                 <SectionHeader
                     badge="Professional Work"
@@ -92,7 +89,7 @@ export function WorkHighlights() {
                     subtitle="Selected projects and contributions from my professional career — the work I'm most proud of."
                 />
 
-                <div className="grid gap-8 md:grid-cols-2">
+                <div className="grid gap-10 md:grid-cols-2 lg:gap-12">
                     {WORK_HIGHLIGHTS.map((work, index) => (
                         <WorkCard key={work.title} work={work} index={index} />
                     ))}

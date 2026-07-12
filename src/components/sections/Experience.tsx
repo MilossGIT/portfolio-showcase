@@ -7,7 +7,7 @@ import { FadeInView } from '../animations/FadeInView'
 
 export function Experience() {
     return (
-        <section className="relative py-16 sm:py-24 lg:py-32">
+        <section className="relative section-spacing">
             <Container className="max-w-6xl">
                 <SectionHeader
                     badge="Career"
@@ -23,15 +23,15 @@ export function Experience() {
                             y={20}
                             className={index > 0 ? 'border-t border-border' : undefined}
                         >
-                            <div className="grid gap-4 py-8 sm:grid-cols-[160px_1fr] sm:gap-16 sm:py-12">
-                                <div className="text-sm text-muted-foreground shrink-0 leading-relaxed">
+                            <div className="group touch-accent-group grid gap-4 py-10 sm:grid-cols-[160px_1fr] sm:gap-16 sm:py-14">
+                                <div className="experience-date">
                                     {experience.date}
                                 </div>
                                 <div>
                                     <h3 className="text-lg font-medium text-foreground leading-snug">
                                         {experience.title}
                                     </h3>
-                                    <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                                    <p className="experience-company">
                                         {experience.company} · {experience.location}
                                     </p>
                                     <ul className="mt-5 space-y-3">
@@ -46,10 +46,7 @@ export function Experience() {
                                     </ul>
                                     <div className="flex flex-wrap gap-2 mt-6">
                                         {experience.tags.map((tag) => (
-                                            <span
-                                                key={tag}
-                                                className="rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground"
-                                            >
+                                            <span key={tag} className="skill-tag">
                                                 {tag}
                                             </span>
                                         ))}
