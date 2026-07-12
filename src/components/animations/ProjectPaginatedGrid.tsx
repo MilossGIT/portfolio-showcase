@@ -17,24 +17,23 @@ type GridBreakpoint = 'mobile' | 'tablet' | 'desktop'
 interface GridConfig {
     breakpoint: GridBreakpoint
     pageSize: number
-    columns: 2 | 3
 }
 
 function getGridConfig(width: number): GridConfig {
     if (width >= 768) {
-        return { breakpoint: 'desktop', pageSize: 6, columns: 3 }
+        return { breakpoint: 'desktop', pageSize: 6 }
     }
-    if (width >= 480) {
-        return { breakpoint: 'tablet', pageSize: 4, columns: 2 }
+    if (width >= 640) {
+        return { breakpoint: 'tablet', pageSize: 4 }
     }
-    return { breakpoint: 'mobile', pageSize: 4, columns: 2 }
+    return { breakpoint: 'mobile', pageSize: 3 }
 }
 
 function useGridConfig(): GridConfig {
     const [config, setConfig] = useState<GridConfig>(() =>
         typeof window !== 'undefined'
             ? getGridConfig(window.innerWidth)
-            : { breakpoint: 'desktop', pageSize: 6, columns: 3 }
+            : { breakpoint: 'desktop', pageSize: 6 }
     )
 
     useEffect(() => {
@@ -65,7 +64,7 @@ function chunkProjects(
 
 export function ProjectPaginatedGrid({ projects }: ProjectPaginatedGridProps) {
     const items = getDisplayProjects(projects)
-    const { pageSize, columns, breakpoint } = useGridConfig()
+    const { pageSize, breakpoint } = useGridConfig()
     const pages = useMemo(
         () => chunkProjects(items, pageSize),
         [items, pageSize]
@@ -185,18 +184,11 @@ export function ProjectPaginatedGrid({ projects }: ProjectPaginatedGridProps) {
                             className="w-full shrink-0 snap-start"
                             aria-hidden={pageIndex !== page}
                         >
-                            <div
-                                className={cn(
-                                    'grid gap-3 sm:gap-5 md:gap-7',
-                                    columns === 3
-                                        ? 'grid-cols-2 md:grid-cols-3'
-                                        : 'grid-cols-2'
-                                )}
-                            >
+                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 md:gap-7">
                                 {pageItems.map((project) => (
                                     <div
                                         key={project.name}
-                                        className="min-w-0 p-0.5 sm:p-1"
+                                        className="min-w-0"
                                     >
                                         <CarouselProjectTile project={project} />
                                     </div>

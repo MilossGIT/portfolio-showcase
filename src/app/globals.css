@@ -267,9 +267,9 @@
   }
 
   .project-grid-card {
-    height: 12.5rem;
-    min-height: 12.5rem;
-    max-height: 12.5rem;
+    height: 16rem;
+    min-height: 16rem;
+    max-height: 16rem;
     isolation: isolate;
   }
 
@@ -281,17 +281,17 @@
 
   @media (min-width: 640px) {
     .project-grid-card {
-      height: 14rem;
-      min-height: 14rem;
-      max-height: 14rem;
+      height: 16.5rem;
+      min-height: 16.5rem;
+      max-height: 16.5rem;
     }
   }
 
   @media (min-width: 768px) {
     .project-grid-card {
-      height: 15rem;
-      min-height: 15rem;
-      max-height: 15rem;
+      height: 17rem;
+      min-height: 17rem;
+      max-height: 17rem;
     }
   }
 
@@ -321,6 +321,7 @@
     touch-action: pan-x pan-y;
     overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
+    scroll-snap-stop: always;
   }
 
   .spotlight-slide-panel {

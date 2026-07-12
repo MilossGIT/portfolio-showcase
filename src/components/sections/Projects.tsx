@@ -18,11 +18,11 @@ function ProjectSkeleton() {
     return (
         <div className="mx-auto max-w-3xl space-y-8">
             <div className="h-64 animate-pulse rounded-xl bg-muted shimmer" />
-            <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 md:gap-7">
-                {Array.from({ length: 4 }).map((_, i) => (
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-7">
+                {Array.from({ length: 3 }).map((_, i) => (
                     <div
                         key={i}
-                        className="h-48 animate-pulse rounded-lg bg-muted shimmer sm:h-56 md:h-60"
+                        className="h-64 animate-pulse rounded-lg bg-muted shimmer md:h-[17rem]"
                     />
                 ))}
             </div>

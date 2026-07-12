@@ -37,8 +37,7 @@ const spotlightCardClass = 'surface-card rounded-xl'
 function SpotlightSlideContent({ project }: { project: GitHubProject }) {
     return (
         <div className="spotlight-slide-panel flex flex-col">
-            <div className="relative mb-5 shrink-0 sm:mb-6">
-                <Github className="absolute right-0 top-0 h-5 w-5 shrink-0 text-muted-foreground" />
+            <div className="mb-5 shrink-0 sm:mb-6">
                 <div className="min-w-0 pr-8">
                     <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
                         Featured repository
@@ -113,6 +112,7 @@ function SpotlightContent({
     const scrollerRef = useRef<HTMLDivElement>(null)
     const scrollRafRef = useRef<number>(0)
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [isScrolling, setIsScrolling] = useState(false)
 
     const syncIndexFromScroll = useCallback(() => {
         const scroller = scrollerRef.current
@@ -128,6 +128,7 @@ function SpotlightContent({
             if (!scroller) return
 
             const clamped = Math.max(0, Math.min(pool.length - 1, index))
+            setIsScrolling(true)
             scroller.scrollTo({
                 left: scroller.clientWidth * clamped,
                 behavior: 'smooth',
@@ -149,6 +150,7 @@ function SpotlightContent({
         if (!scroller || pool.length <= 1) return
 
         const handleScroll = () => {
+            setIsScrolling(true)
             cancelAnimationFrame(scrollRafRef.current)
             scrollRafRef.current = requestAnimationFrame(syncIndexFromScroll)
         }
@@ -156,6 +158,7 @@ function SpotlightContent({
         const handleScrollEnd = () => {
             cancelAnimationFrame(scrollRafRef.current)
             syncIndexFromScroll()
+            setIsScrolling(false)
         }
 
         scroller.addEventListener('scroll', handleScroll, { passive: true })
@@ -173,7 +176,11 @@ function SpotlightContent({
     if (pool.length === 1) {
         return (
             <div className="relative mx-auto max-w-3xl">
-                <div className={cn(spotlightCardClass, 'p-5 sm:p-8')}>
+                <div className={cn(spotlightCardClass, 'relative p-5 sm:p-8')}>
+                    <Github
+                        className="pointer-events-none absolute right-5 top-5 h-5 w-5 text-muted-foreground sm:right-8 sm:top-8"
+                        aria-hidden
+                    />
                     <SpotlightSlideContent project={pool[0]} />
                 </div>
             </div>
@@ -182,7 +189,14 @@ function SpotlightContent({
 
     return (
         <div className="relative mx-auto max-w-3xl">
-            <div className={cn(spotlightCardClass, 'overflow-x-clip')}>
+            <div className={cn(spotlightCardClass, 'relative overflow-x-clip')}>
+                <Github
+                    className={cn(
+                        'pointer-events-none absolute right-5 top-5 z-10 h-5 w-5 text-muted-foreground transition-opacity duration-200 sm:right-8 sm:top-8',
+                        isScrolling ? 'opacity-0' : 'opacity-100'
+                    )}
+                    aria-hidden
+                />
                 <div
                     ref={scrollerRef}
                     className="spotlight-swipe-surface no-scrollbar flex snap-x snap-mandatory overflow-x-auto overflow-y-visible"
@@ -247,7 +261,11 @@ function SpotlightFallback({ projects }: FeaturedProjectSpotlightProps) {
 
     return (
         <div className="relative mx-auto max-w-3xl">
-            <div className={cn(spotlightCardClass, 'p-5 sm:p-8')}>
+            <div className={cn(spotlightCardClass, 'relative p-5 sm:p-8')}>
+                <Github
+                    className="pointer-events-none absolute right-5 top-5 h-5 w-5 text-muted-foreground sm:right-8 sm:top-8"
+                    aria-hidden
+                />
                 <SpotlightSlideContent project={current} />
             </div>
         </div>

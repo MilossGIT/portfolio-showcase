@@ -40,22 +40,22 @@ export const CarouselProjectTile = forwardRef<
                 className
             )}
         >
-            <div className="flex h-full min-h-0 flex-col gap-1.5 p-3.5 sm:gap-2 sm:p-4">
-                <div className="flex shrink-0 items-start gap-2">
-                    <Github className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-                    <h3 className="min-w-0 flex-1 truncate text-sm font-medium text-foreground">
+            <div className="flex h-full min-h-0 flex-col gap-2 p-4 sm:gap-2.5 sm:p-5">
+                <div className="flex shrink-0 items-start gap-2.5">
+                    <Github className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground sm:h-5 sm:w-5" />
+                    <h3 className="min-w-0 flex-1 truncate text-base font-semibold text-foreground">
                         {project.name}
                     </h3>
                 </div>
 
-                <p className="min-h-[2.75rem] shrink-0 line-clamp-2 text-xs leading-5 text-muted-foreground">
+                <p className="min-h-[3rem] shrink-0 line-clamp-2 text-sm leading-6 text-muted-foreground">
                     {project.description?.trim() ||
                         'An open-source project from my GitHub.'}
                 </p>
 
                 <div className="flex shrink-0 items-center gap-2">
                     {project.language ? (
-                        <span className={cn('shrink-0 text-xs', langClass)}>
+                        <span className={cn('shrink-0 text-sm', langClass)}>
                             {project.language}
                         </span>
                     ) : (
@@ -64,8 +64,8 @@ export const CarouselProjectTile = forwardRef<
                         </span>
                     )}
                     {project.stars > 0 ? (
-                        <span className="flex shrink-0 items-center gap-1 text-xs text-muted-foreground">
-                            <Star className="h-3 w-3" />
+                        <span className="flex shrink-0 items-center gap-1 text-sm text-muted-foreground">
+                            <Star className="h-3.5 w-3.5" />
                             {project.stars}
                         </span>
                     ) : (
