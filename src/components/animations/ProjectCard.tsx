@@ -68,14 +68,14 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
                 onMouseLeave={handleLeave}
                 onClick={handleActivate}
                 className={cn(
-                    'surface-card group relative flex flex-col rounded-lg transition-all duration-300',
+                    'surface-card group relative flex origin-center flex-col rounded-lg transition-all duration-300',
                     isCompact &&
                         'w-[min(18rem,calc(100vw-2.5rem))] shrink-0 snap-center sm:w-72',
                     !isCompact && 'w-full min-w-0',
                     isCompact && (isHovered || isActive) && 'z-20',
                     isActive &&
                         isCompact &&
-                        'scale-[1.05] shadow-[0_12px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.35)]',
+                        'scale-[1.03] shadow-[0_12px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.35)]',
                     isHovered && isCompact && !isActive && 'z-10',
                     className
                 )}

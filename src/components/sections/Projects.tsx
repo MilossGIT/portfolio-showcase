@@ -78,7 +78,7 @@ export function Projects({ initialProjects = [] }: ProjectsProps) {
             </Container>
 
             {!loading && projects.length > 0 && (
-                <FadeInView delay={0.2} className="relative z-10 mt-16 overflow-x-clip border-t border-border pt-14 sm:mt-20 sm:pt-16 lg:mt-24 lg:pt-20">
+                <FadeInView delay={0.2} className="relative z-10 mt-16 overflow-x-clip overflow-y-visible border-t border-border pt-14 sm:mt-20 sm:pt-16 lg:mt-24 lg:pt-20">
                     <ProjectMarquee projects={projects} />
                 </FadeInView>
             )}

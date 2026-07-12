@@ -31,7 +31,7 @@ function buildSpotlightPool(projects: GitHubProject[]): GitHubProject[] {
     return projects.slice(0, SPOTLIGHT_POOL_SIZE)
 }
 
-const spotlightCardClass = 'surface-card overflow-hidden rounded-xl p-5 sm:p-8'
+const spotlightCardClass = 'surface-card rounded-xl p-5 sm:p-8'
 
 function SpotlightContent({
     projects,
@@ -53,14 +53,14 @@ function SpotlightContent({
     const current = pool[currentIndex]
 
     return (
-        <div className="relative mx-auto max-w-3xl">
-            <AnimatePresence mode="wait">
+        <div className="relative mx-auto min-h-[22rem] max-w-3xl sm:min-h-[24rem]">
+            <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                     key={current.name}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -12 }}
-                    transition={{ duration: 0.35, ease: 'easeInOut' }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.25, ease: 'easeInOut' }}
                     className={spotlightCardClass}
                 >
                     <div className="mb-6 flex items-start justify-between gap-4">
