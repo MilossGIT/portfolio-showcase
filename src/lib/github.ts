@@ -1,4 +1,5 @@
 import { GitHubProject } from '@/types'
+import { HIDDEN_REPO_NAMES, REPO_DESCRIPTIONS } from '@/lib/constants'
 
 const GITHUB_USERNAME = 'MilossGIT'
 
@@ -18,7 +19,7 @@ interface GitHubApiRepo {
 function toGitHubProject(repo: GitHubApiRepo, featured = false): GitHubProject {
     return {
         name: repo.name,
-        description: repo.description,
+        description: repo.description || REPO_DESCRIPTIONS[repo.name] || null,
         htmlUrl: repo.html_url,
         language: repo.language,
         stars: repo.stargazers_count,
@@ -55,13 +56,14 @@ export async function fetchGitHubRepos(featuredNames: string[] = []): Promise<Gi
     const repos: GitHubApiRepo[] = await response.json()
 
     return repos
-        .filter((repo) => !repo.archived)
+        .filter((repo) => !repo.archived && !repo.fork && !HIDDEN_REPO_NAMES.includes(repo.name))
         .map((repo) =>
             toGitHubProject(repo, featuredNames.includes(repo.name))
         )
         .sort((a, b) => {
-            if (a.featured && !b.featured) return -1
-            if (!a.featured && b.featured) return 1
+            if (a.featured && b.featured) return featuredNames.indexOf(a.name) - featuredNames.indexOf(b.name)
+            if (a.featured) return -1
+            if (b.featured) return 1
             return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
         })
 }

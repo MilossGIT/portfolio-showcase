@@ -12,7 +12,7 @@ export function Experience() {
                 <SectionHeader
                     badge="Career"
                     title="Work Experience"
-                    subtitle="A journey through frontend engineering, integrations, and building products that scale."
+                    subtitle="From frontend engineering and client integrations to building AI-powered internal tools."
                 />
 
                 <div>

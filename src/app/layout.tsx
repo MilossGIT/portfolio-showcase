@@ -14,18 +14,21 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://milosminic.net'),
   title: {
-    default: 'Miloš Minić - Software Engineer',
+    default: 'Miloš Minić - Product-minded engineer · AI-powered tools',
     template: '%s | Miloš Minić'
   },
-  description: 'Software Engineer specializing in frontend development and web technologies',
+  description: 'Product-minded engineer building AI-powered tools, automation and production web products with TypeScript, React, Next.js and LLM APIs.',
   keywords: [
+    'Miloš Minić',
     'Software Engineer',
-    'Web Development',
-    'Frontend Developer',
-    'React Developer',
+    'AI Product Engineer',
+    'LLM',
+    'AI Tools',
+    'Automation',
     'TypeScript',
+    'React',
     'Next.js',
-    'Miloš Minić'
+    'Ljubljana'
   ],
   authors: [{ name: 'Miloš Minić' }],
   creator: 'Miloš Minić',
@@ -34,21 +37,21 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://milosminic.net',
     siteName: 'Miloš Minić - Portfolio',
-    title: 'Miloš Minić - Software Engineer',
-    description: 'Software Engineer specializing in frontend development and web technologies',
+    title: 'Miloš Minić - Product-minded engineer · AI-powered tools',
+    description: 'Product-minded engineer building AI-powered tools, automation and production web products with TypeScript, React, Next.js and LLM APIs.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Miloš Minić - Software Engineer'
+        alt: 'Miloš Minić - Product-minded engineer · AI-powered tools'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Miloš Minić - Software Engineer',
-    description: 'Software Engineer specializing in frontend development and web technologies',
+    title: 'Miloš Minić - Product-minded engineer · AI-powered tools',
+    description: 'Product-minded engineer building AI-powered tools, automation and production web products with TypeScript, React, Next.js and LLM APIs.',
     images: ['/og-image.jpg'],
   },
   robots: {

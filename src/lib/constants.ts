@@ -17,13 +17,63 @@ export const NAV_LINKS = [
 ] as const;
 
 export const FEATURED_REPO_NAMES = [
-    'Portfolio-Illustration',
+    'AI-Powered-Email-Response-Generator',
+    'unidep',
+    'relay-http',
     'Ticket-Notifier',
-    'Events7',
     'portfolio-showcase',
 ];
 
+// Early learning exercises and the profile README: kept on GitHub, not featured here.
+export const HIDDEN_REPO_NAMES = [
+    'MilossGIT',
+    'contribute',
+    'Password-Generator',
+    'Web-Calculator-JS',
+    'Modal-Popup-JS',
+    'Tic-Tac-Toe-JS-Game',
+    'ProjectDrivers.html',
+    'Project_LandingPage',
+    'Project_OnboardingForm',
+    'UserAuthLoginForm',
+    'SearchBarWithFiltering',
+    'price-comparison-table',
+    'React-Currency-Converter',
+];
+
+// Shown when a repository has no description on GitHub.
+export const REPO_DESCRIPTIONS: Record<string, string> = {
+    'AI-Powered-Email-Response-Generator':
+        'Chrome extension that uses an LLM to draft contextual Gmail replies in a chosen tone.',
+    'portfolio-showcase':
+        'This site: Next.js 14, TypeScript and Tailwind CSS, with live GitHub data and dark mode.',
+    'Portfolio-Illustration':
+        'Portfolio site for an illustrator with an interactive gallery, animations and contact form.',
+    'Events7':
+        'Analytics dashboard for tracking app events, with location-based permissions for ad events.',
+    'Crypto-wallet':
+        'React crypto wallet dashboard with real-time prices, portfolio tracking and transactions.',
+    'modern-cv-generator':
+        'React app for building a professional CV in a form-based editor and exporting it to PDF.',
+};
+
 export const WORK_HIGHLIGHTS = [
+    {
+        title: 'AI Knowledge Assistant & Workflow Hub',
+        company: 'Sportradar · internal tool',
+        description:
+            'Recurring setup and integration questions in team Slack channels, turned into a self-serve hub: 35 interactive workflow diagrams and an AI assistant built on curated team answers and the public documentation. It always cites its source, declines below a confidence threshold, and escalates to a company AI agent through a least-privilege service token.',
+        tags: ['LLM', 'Retrieval', 'LLM Evaluation', 'Node.js', 'Kubernetes', 'Playwright'],
+        impact: 'Shipped as a production service with SSO, a built-in CMS for non-developers, and CI running a 51-question answer evaluation',
+    },
+    {
+        title: 'Client Activation Automation',
+        company: 'Sportradar · internal tool',
+        description:
+            'A five-step manual client activation runbook spanning an admin system, two GitHub repositories, Slack and Jira, automated end to end with batch runs, dry-run and live modes, and human approval gates. A companion tool generates client onboarding packs, using an LLM to draft client-specific guide text.',
+        tags: ['TypeScript', 'React', 'Jira', 'GitHub', 'Slack', 'Anthropic API'],
+        impact: '100+ client activations in its first two months: 101 orders, 31 infrastructure pull requests and 99 Jira handovers',
+    },
     {
         title: 'Real Estate Portal — Location-First Architecture',
         company: 'Lokacija.net',
@@ -56,57 +106,31 @@ export const WORK_HIGHLIGHTS = [
         company: 'ZKH · Savez za kliničku hipnoterapiju',
         url: 'https://www.standardi-hipnoterapije.org/sr',
         description:
-            'Clinical hypnotherapy association website with Slovenian at / (no prefix), Croatian (/hr), and Serbian (/sr). Payload CMS 3 for institutional pages and blog posts, SEO helpers, and optional DeepL auto-translation when publishing content.',
+            'Clinical hypnotherapy association website in Slovenian, Croatian and Serbian. Payload CMS 3 for institutional pages and blog posts, SEO helpers, and optional DeepL auto-translation on publish.',
         tags: ['Next.js', 'Payload CMS', 'i18n', 'DeepL', 'SEO'],
         impact: 'Trilingual institutional site with CMS-driven content and auto-translation workflow',
-    },
-    {
-        title: 'Sportradar Widget Products',
-        company: 'Sportradar',
-        description:
-            'Frontend-focused development of custom sports data widget products using React, TypeScript, and modern web technologies for real-time integration.',
-        tags: ['React', 'TypeScript', 'JavaScript', 'RESTful APIs', 'Widgets'],
-        impact: 'End-to-end integration of complex sports data systems for global clients',
-    },
-    {
-        title: 'Secure Payment Forms',
-        company: 'CCBill',
-        description:
-            'Development and deployment of secure, user-friendly payment forms with robust validation to reduce payment processing errors.',
-        tags: ['JavaScript', 'Frontend Development', 'Responsive Design', 'Validation'],
-        impact: 'Successfully deployed payment forms to production, reducing payment errors through robust validation',
-    },
-    {
-        title: 'Vintify E-Commerce Platform',
-        company: 'Cubes School of Programming',
-        description:
-            'A full-stack e-commerce web application connecting sellers with customers interested in purchasing second-hand pieces.',
-        tags: ['React', 'JavaScript', 'Full-Stack', 'E-Commerce'],
-        impact: 'Capstone project demonstrating full-stack development skills',
-    },
-    {
-        title: 'Responsive Web Experiences',
-        company: 'BG Wireless',
-        description:
-            'Website maintenance, content management, and responsive design implementation to improve user experience across devices.',
-        tags: ['HTML5', 'CSS', 'JavaScript', 'Responsive Design'],
-        impact: 'Created visually appealing, cohesive designs with improved cross-device experience',
     },
 ];
 
 export const SKILLS = [
-    'React.js',
-    'Next.js',
+    'LLM APIs (Anthropic, OpenAI)',
+    'Agentic coding (Claude Code, Cursor)',
+    'Retrieval-grounded assistants',
+    'LLM evaluation',
+    'MCP',
     'TypeScript',
     'JavaScript',
+    'React',
+    'Next.js',
     'Node.js',
+    'Python / Django',
+    'PostgreSQL',
     'Tailwind CSS',
     'CSS/SCSS',
-    'HTML5',
-    'RESTful APIs',
-    'Git',
-    'Responsive Design',
-    'Agile',
+    'Playwright',
+    'Docker / Kubernetes',
+    'GitLab CI/CD',
+    'REST APIs',
 ];
 
 export const EDUCATION = [
@@ -136,13 +160,14 @@ export const EXPERIENCE = [
         location: 'Ljubljana',
         date: 'April 2022 - Present',
         description: [
-            'Develop and maintain production-ready React and TypeScript widgets for enterprise clients.',
-            'Build and integrate frontend solutions with REST APIs and complex backend systems.',
-            'Design and integrate AI-powered solutions to automate internal processes and improve team efficiency.',
-            'Collaborate with product, QA, and engineering teams to deliver reliable customer-facing features.',
-            'Troubleshoot and resolve integration issues while supporting successful product releases.',
+            'Deliver end-to-end client integrations of widget products for betting and media clients: requirements analysis, configuration and technical communication with clients and product teams.',
+            'Develop frontends in JavaScript, TypeScript, React and Sass/SCSS and integrate them with REST APIs and complex backends, working with product, QA and engineering teams around releases.',
+            'Identified recurring setup and integration questions in team Slack channels and built a self-serve hub with an AI assistant that cites its sources and declines below a confidence threshold, plus a built-in CMS for non-developers.',
+            'Mapped a five-step manual client activation runbook across an admin system, GitHub, Slack and Jira and automated it end to end; it handled 100+ activations in its first two months.',
+            'Built LLM-generated client onboarding packs, plus Playwright and Chrome-extension diagnostics tooling for client integrations.',
+            'Use agentic AI coding tools (e.g. Claude Code, Cursor) in an engineer-led workflow, and share AI tooling and practices with the team.',
         ],
-        tags: ['React.js', 'TypeScript', 'JavaScript', 'RESTful APIs', 'Git', 'Agile'],
+        tags: ['TypeScript', 'React', 'LLM APIs', 'Node.js', 'Playwright', 'Kubernetes'],
     },
     {
         title: 'MSE Tier 2',
@@ -150,13 +175,11 @@ export const EXPERIENCE = [
         location: 'Belgrade',
         date: 'Sept 2017 - April 2022',
         description: [
-            'Frontend development of secure and user-friendly payment forms',
-            'Successfully deployed payment forms to production environment',
-            'Identifying issues and responding to payment processing errors promptly',
-            'Reducing payment errors through robust validation',
-            'Conducted detailed discussions with clients to understand business needs',
+            'Built secure, user-friendly payment forms and deployed them to production.',
+            'Resolved payment processing errors and reduced their incidence through robust validation.',
+            'Worked with clients to understand their business needs.',
         ],
-        tags: ['Frontend Development', 'JavaScript', 'Responsive Design', 'Technical Support'],
+        tags: ['JavaScript', 'Payments', 'Validation', 'Client Communication'],
     },
     {
         title: 'Web Developer',
@@ -164,10 +187,8 @@ export const EXPERIENCE = [
         location: 'Belgrade',
         date: 'June 2016 - Sept 2017',
         description: [
-            'Maintaining website and content management',
-            'Implementation of responsive design and improving user experience',
-            'Created visually appealing and cohesive designs',
-            'Managing network wireless infrastructure',
+            'Website maintenance, responsive design and UX improvements.',
+            'Managed wireless network infrastructure.',
         ],
         tags: ['HTML5', 'CSS', 'JavaScript', 'Responsive Design'],
     },
@@ -177,10 +198,7 @@ export const EXPERIENCE = [
         location: 'Belgrade',
         date: 'June 2015 - Dec 2016',
         description: [
-            'Coded responsive and visually appealing banner layouts using HTML and CSS',
-            'Ensuring cross-browser compatibility',
-            'Increasing click-through rates for client advertising campaigns',
-            'Received positive client feedback for attention to detail',
+            'Coded responsive, cross-browser banner layouts in HTML and CSS that helped raise click-through rates for client campaigns.',
         ],
         tags: ['HTML', 'CSS', 'Responsive Design'],
     },
@@ -190,34 +208,36 @@ export const EXPERIENCE = [
         location: 'Belgrade',
         date: 'Oct 2014 - June 2015',
         description: [
-            'Second-level technical support for customers with complex technical issues and escalations',
-            'Supported retail software systems (POS, ESB, SCOM)',
-            'Proficient in POS systems, server optimization, and virtualization',
+            'Second-level support for complex issues and escalations on retail systems (POS, ESB, SCOM), server optimization and virtualization.',
         ],
-        tags: ['Technical Support', 'POS Systems', 'Server Optimization', 'Virtualization'],
+        tags: ['Technical Support', 'POS Systems', 'Virtualization'],
     }
 ];
 
+// Fallback when the GitHub API is unavailable.
 export const PROJECTS = [
     {
+        title: 'AI Email Response Generator',
+        description: 'Chrome extension that uses an LLM to draft contextual Gmail replies in a chosen tone.',
+        tags: ['TypeScript', 'LLM', 'Chrome Extension'],
+        github: 'https://github.com/MilossGIT/AI-Powered-Email-Response-Generator',
+    },
+    {
+        title: 'unidep',
+        description: 'One command to detect and install dependencies across Python, Node.js, Rust and system package managers.',
+        tags: ['Python', 'CLI', 'Automation'],
+        github: 'https://github.com/MilossGIT/unidep',
+    },
+    {
+        title: 'relay-http',
+        description: 'Send HTTP requests from your terminal or browser with clear, structured output.',
+        tags: ['JavaScript', 'CLI', 'HTTP'],
+        github: 'https://github.com/MilossGIT/relay-http',
+    },
+    {
         title: 'Ticket Notifier',
-        description: 'A real-time notification system for ticket updates and availability tracking.',
-        tags: ['JavaScript', 'Node.js', 'APIs', 'Real-time Updates'],
-        github: 'https://github.com/MilossGIT/TicketNotifier',
-        readmeUrl: 'https://raw.githubusercontent.com/MilossGIT/TicketNotifier/main/README.md'
+        description: 'Monitors theatre ticket availability and sends email alerts when it changes.',
+        tags: ['JavaScript', 'Node.js', 'Automation'],
+        github: 'https://github.com/MilossGIT/Ticket-Notifier',
     },
-    {
-        title: 'Portfolio Illustration',
-        description: 'A creative portfolio showcase with custom illustrations and animations.',
-        tags: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
-        github: 'https://github.com/MilossGIT/PortfolioIllustration',
-        readmeUrl: 'https://raw.githubusercontent.com/MilossGIT/PortfolioIllustration/main/README.md'
-    },
-    {
-        title: 'Events7',
-        description: 'Event management and organization platform with intuitive user interface.',
-        tags: ['React', 'MongoDB', 'Express', 'Node.js'],
-        github: 'https://github.com/MilossGIT/Events7',
-        readmeUrl: 'https://raw.githubusercontent.com/MilossGIT/Events7/main/README.md'
-    }
 ];

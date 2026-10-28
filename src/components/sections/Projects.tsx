@@ -63,8 +63,8 @@ export function Projects({ initialProjects = [] }: ProjectsProps) {
                         loading
                             ? 'Loading repositories from GitHub...'
                             : error
-                              ? 'Showing curated projects'
-                              : `${projects.length} public repositories — continuously updated from GitHub`
+                              ? 'Selected open-source projects'
+                              : `${projects.length} selected repositories, updated live from GitHub`
                     }
                 />
 

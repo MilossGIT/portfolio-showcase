@@ -11,7 +11,7 @@ export function About() {
             <Container className="max-w-6xl">
                 <SectionHeader
                     title="About Me"
-                    subtitle="A Software Engineer passionate about crafting exceptional web experiences. I specialize in React, TypeScript, and Next.js — combining technical precision with seamless user experiences."
+                    subtitle="I'm a product-minded engineer with 10+ years in web development, based in Ljubljana. At Sportradar I integrate widget products for betting and media clients, identify repetitive manual work in team processes and build AI-powered tools to automate it. I build with LLM APIs and agentic tools such as Claude Code, and own the design, review and delivery of what I ship."
                 />
 
                 <div className="max-w-3xl space-y-14 sm:space-y-20">

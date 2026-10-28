@@ -86,7 +86,7 @@ export function WorkHighlights() {
                 <SectionHeader
                     badge="Professional Work"
                     title="Work & Highlights"
-                    subtitle="Selected projects and contributions from my professional career — the work I'm most proud of."
+                    subtitle="AI tooling I've built at Sportradar and products I've shipped on my own."
                 />
 
                 <div className="grid gap-10 md:grid-cols-2 lg:gap-12">

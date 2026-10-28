@@ -67,7 +67,7 @@ export function Contact() {
             <Container className="max-w-6xl">
                 <SectionHeader
                     title="Get in Touch"
-                    subtitle="I'm always open to new opportunities and interesting projects. Feel free to reach out!"
+                    subtitle="Open to conversations about AI product engineering, integrations and interesting projects."
                 />
 
                 <div className="grid max-w-5xl gap-10 md:grid-cols-2 md:gap-14 lg:gap-16">

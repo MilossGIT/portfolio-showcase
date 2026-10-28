@@ -39,15 +39,14 @@ export function Hero() {
                     <div className="order-2 w-full min-w-0 flex-1 space-y-6 sm:space-y-8 lg:order-1">
                         <div className="group touch-accent-group space-y-3 sm:space-y-4">
                             <p className="accent-text-hover text-xs uppercase tracking-widest text-muted-foreground sm:text-sm">
-                                Software Engineer
+                                Product-minded engineer · AI-powered tools
                             </p>
                             <h1 className="text-4xl font-semibold tracking-tight text-foreground leading-[1.05] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
                                 Miloš Minić
                             </h1>
                             <p className="mx-auto max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg lg:mx-0 lg:text-xl">
-                                Shipping production-grade digital products at scale — from
-                                complex integrations to polished experiences people rely on
-                                every day.
+                                Building AI-powered tools and the web products around them,
+                                from idea to production.
                             </p>
                         </div>
 
