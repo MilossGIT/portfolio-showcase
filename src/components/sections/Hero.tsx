@@ -23,7 +23,7 @@ export function Hero() {
             <div className="container relative z-10 mx-auto w-full min-w-0 max-w-6xl">
                 <div className="flex flex-col items-center gap-8 text-center sm:gap-10 lg:flex-row lg:items-center lg:gap-20 lg:text-left xl:gap-24">
                     <div className="relative order-1 shrink-0 lg:order-2">
-                        <div className="touch-accent-group relative h-36 w-36 sm:h-48 sm:w-48 md:h-56 md:w-56 lg:h-64 lg:w-64 xl:h-72 xl:w-72">
+                        <div className="touch-accent-group relative h-36 w-36 sm:h-48 sm:w-48 md:h-56 md:w-56 lg:h-72 lg:w-72 xl:h-80 xl:w-80">
                             <img
                                 src="/images/profile.jpg"
                                 alt="Miloš Minić"
