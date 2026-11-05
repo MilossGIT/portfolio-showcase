@@ -24,6 +24,39 @@ export const FEATURED_REPO_NAMES = [
     'portfolio-showcase',
 ];
 
+// Early learning exercises and the profile README: kept on GitHub, not featured here.
+export const HIDDEN_REPO_NAMES = [
+    'MilossGIT',
+    'contribute',
+    'Password-Generator',
+    'Web-Calculator-JS',
+    'Modal-Popup-JS',
+    'Tic-Tac-Toe-JS-Game',
+    'ProjectDrivers.html',
+    'Project_LandingPage',
+    'Project_OnboardingForm',
+    'UserAuthLoginForm',
+    'SearchBarWithFiltering',
+    'price-comparison-table',
+    'React-Currency-Converter',
+];
+
+// Shown when a repository has no description on GitHub.
+export const REPO_DESCRIPTIONS: Record<string, string> = {
+    'AI-Powered-Email-Response-Generator':
+        'Chrome extension that uses an LLM to draft contextual Gmail replies in a chosen tone.',
+    'portfolio-showcase':
+        'This site: Next.js 14, TypeScript and Tailwind CSS, with live GitHub data and dark mode.',
+    'Portfolio-Illustration':
+        'Portfolio site for an illustrator with an interactive gallery, animations and contact form.',
+    'Events7':
+        'Analytics dashboard for tracking app events, with location-based permissions for ad events.',
+    'Crypto-wallet':
+        'React crypto wallet dashboard with real-time prices, portfolio tracking and transactions.',
+    'modern-cv-generator':
+        'React app for building a professional CV in a form-based editor and exporting it to PDF.',
+};
+
 export const WORK_HIGHLIGHTS = [
     {
         title: 'Kind Cadence',
