@@ -1,47 +1,8 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { motion, useSpring, useTransform } from 'framer-motion'
 import { ClientOnly } from '@/components/ui/ClientOnly'
-
-function SpotlightLayers() {
-    const spotlightX = useSpring(50, { stiffness: 60, damping: 20 })
-    const spotlightY = useSpring(50, { stiffness: 60, damping: 20 })
-    const outerX = useSpring(50, { stiffness: 40, damping: 25 })
-    const outerY = useSpring(50, { stiffness: 40, damping: 25 })
-
-    const innerLeft = useTransform(spotlightX, (v) => `${v}%`)
-    const innerTop = useTransform(spotlightY, (v) => `${v}%`)
-    const outerLeft = useTransform(outerX, (v) => `${v}%`)
-    const outerTop = useTransform(outerY, (v) => `${v}%`)
-
-    useEffect(() => {
-        const handleMove = (e: MouseEvent) => {
-            const x = (e.clientX / window.innerWidth) * 100
-            const y = (e.clientY / window.innerHeight) * 100
-            spotlightX.set(x)
-            spotlightY.set(y)
-            outerX.set(x)
-            outerY.set(y)
-        }
-
-        window.addEventListener('mousemove', handleMove, { passive: true })
-        return () => window.removeEventListener('mousemove', handleMove)
-    }, [spotlightX, spotlightY, outerX, outerY])
-
-    return (
-        <>
-            <motion.div
-                className="hero-spotlight-outer"
-                style={{ left: outerLeft, top: outerTop }}
-            />
-            <motion.div
-                className="hero-spotlight-inner"
-                style={{ left: innerLeft, top: innerTop }}
-            />
-        </>
-    )
-}
+import { StarfieldWarp } from './StarfieldWarp'
 
 function HeroLightFade({ children }: { children: React.ReactNode }) {
     const layerRef = useRef<HTMLDivElement>(null)
@@ -97,7 +58,7 @@ export function HeroBackground() {
                 <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/80" />
 
                 <ClientOnly>
-                    <SpotlightLayers />
+                    <StarfieldWarp />
                 </ClientOnly>
 
                 <div className="hero-noise absolute inset-0 opacity-[0.01] dark:opacity-[0.02]" />

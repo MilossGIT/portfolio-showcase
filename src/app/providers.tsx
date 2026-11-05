@@ -8,8 +8,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <MotionConfig reducedMotion="user">
             <ThemeProvider
                 attribute="class"
-                defaultTheme="system"
-                enableSystem
+                defaultTheme="dark"
+                forcedTheme="dark"
+                enableSystem={false}
                 disableTransitionOnChange
                 storageKey="portfolio-theme"
             >

@@ -6,7 +6,7 @@ import { Container } from '../ui/Container'
 import { Button } from '../ui/Button'
 import { SectionHeader } from '../ui/SectionHeader'
 import { FadeInView } from '../animations/FadeInView'
-import { CONTACT_EMAIL } from '@/lib/constants'
+import { CONTACT_EMAIL, LOCATION_ADDRESS, SOCIAL_LINKS } from '@/lib/constants'
 
 type FormElements = {
     name: HTMLInputElement
@@ -71,7 +71,17 @@ export function Contact() {
                 />
 
                 <div className="grid max-w-5xl gap-10 md:grid-cols-2 md:gap-14 lg:gap-16">
-                    <FadeInView delay={0.1} className="space-y-10">
+                    <FadeInView delay={0.1} className="space-y-6 sm:space-y-8">
+                        <div className="group touch-accent-group flex items-start gap-4">
+                            <MapPin className="h-5 w-5 text-muted-foreground mt-0.5 shrink-0" />
+                            <div>
+                                <h3 className="text-sm font-medium text-foreground">Location</h3>
+                                <p className="accent-text-hover mt-1 text-sm text-muted-foreground">
+                                    {LOCATION_ADDRESS}
+                                </p>
+                            </div>
+                        </div>
+
                         <div className="group touch-accent-group flex items-start gap-4">
                             <Mail className="h-5 w-5 text-muted-foreground mt-0.5 shrink-0" />
                             <div>
@@ -86,108 +96,126 @@ export function Contact() {
                         </div>
 
                         <div className="group touch-accent-group flex items-start gap-4">
-                            <MapPin className="h-5 w-5 text-muted-foreground mt-0.5 shrink-0" />
+                            <span className="mt-0.5 text-sm text-muted-foreground">in</span>
                             <div>
-                                <h3 className="text-sm font-medium text-foreground">Location</h3>
-                                <p className="accent-text-hover text-sm text-muted-foreground mt-1">
-                                    Ljubljana, 1000
-                                    <br />
-                                    Slovenia
-                                </p>
+                                <h3 className="text-sm font-medium text-foreground">LinkedIn</h3>
+                                <a
+                                    href={SOCIAL_LINKS.linkedin}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="accent-hover-text mt-1 inline-block text-sm text-muted-foreground"
+                                >
+                                    {SOCIAL_LINKS.linkedin}
+                                </a>
+                            </div>
+                        </div>
+
+                        <div className="group touch-accent-group flex items-start gap-4">
+                            <span className="mt-0.5 text-sm text-muted-foreground">Git</span>
+                            <div>
+                                <h3 className="text-sm font-medium text-foreground">GitHub</h3>
+                                <a
+                                    href={SOCIAL_LINKS.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="accent-hover-text mt-1 inline-block text-sm text-muted-foreground"
+                                >
+                                    {SOCIAL_LINKS.github}
+                                </a>
                             </div>
                         </div>
                     </FadeInView>
 
                     <FadeInView delay={0.2}>
                         <div className="surface-card rounded-lg p-4 sm:p-6">
-                        {isSubmitted ? (
-                            <div className="text-center py-8">
-                                <h3 className="text-lg font-medium text-foreground mb-2">
-                                    Thanks for reaching out!
-                                </h3>
-                                <p className="text-muted-foreground mb-8 text-sm">
-                                    I&apos;ll get back to you as soon as possible.
-                                </p>
-                                <Button onClick={() => setIsSubmitted(false)} variant="primary">
-                                    Send another message
-                                </Button>
-                            </div>
-                        ) : (
-                            <form onSubmit={handleSubmit} ref={formRef} className="space-y-5">
-                                <div>
-                                    <label
-                                        htmlFor="name"
-                                        className="block text-sm font-medium text-foreground mb-2"
-                                    >
-                                        Name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        id="name"
-                                        required
-                                        className={inputClass}
-                                        placeholder="John Doe"
-                                    />
+                            {isSubmitted ? (
+                                <div className="text-center py-8">
+                                    <h3 className="text-lg font-medium text-foreground mb-2">
+                                        Thanks for reaching out!
+                                    </h3>
+                                    <p className="text-muted-foreground mb-8 text-sm">
+                                        I&apos;ll get back to you as soon as possible.
+                                    </p>
+                                    <Button onClick={() => setIsSubmitted(false)} variant="primary">
+                                        Send another message
+                                    </Button>
                                 </div>
-                                <div>
-                                    <label
-                                        htmlFor="email"
-                                        className="block text-sm font-medium text-foreground mb-2"
-                                    >
-                                        Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        id="email"
-                                        required
-                                        className={inputClass}
-                                        placeholder="john@example.com"
-                                    />
-                                </div>
-                                <div>
-                                    <label
-                                        htmlFor="message"
-                                        className="block text-sm font-medium text-foreground mb-2"
-                                    >
-                                        Message
-                                    </label>
-                                    <textarea
-                                        name="message"
-                                        id="message"
-                                        required
-                                        rows={5}
-                                        className={inputClass}
-                                        placeholder="Your message here..."
-                                    />
-                                </div>
-                                {error && (
-                                    <div className="rounded-lg bg-destructive/10 border border-destructive/20 p-4 flex items-start gap-3">
-                                        <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
-                                        <p className="text-sm text-destructive">{error}</p>
+                            ) : (
+                                <form onSubmit={handleSubmit} ref={formRef} className="space-y-5">
+                                    <div>
+                                        <label
+                                            htmlFor="name"
+                                            className="block text-sm font-medium text-foreground mb-2"
+                                        >
+                                            Name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            id="name"
+                                            required
+                                            className={inputClass}
+                                            placeholder="John Doe"
+                                        />
                                     </div>
-                                )}
-                                <Button
-                                    type="submit"
-                                    variant="primary"
-                                    className="w-full"
-                                    disabled={isSubmitting}
-                                >
-                                    {isSubmitting ? (
-                                        <>
-                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                            Sending...
-                                        </>
-                                    ) : (
-                                        <>
-                                            Send Message
-                                            <Send className="ml-2 h-4 w-4" />
-                                        </>
+                                    <div>
+                                        <label
+                                            htmlFor="email"
+                                            className="block text-sm font-medium text-foreground mb-2"
+                                        >
+                                            Email
+                                        </label>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            id="email"
+                                            required
+                                            className={inputClass}
+                                            placeholder="john@example.com"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label
+                                            htmlFor="message"
+                                            className="block text-sm font-medium text-foreground mb-2"
+                                        >
+                                            Message
+                                        </label>
+                                        <textarea
+                                            name="message"
+                                            id="message"
+                                            required
+                                            rows={5}
+                                            className={inputClass}
+                                            placeholder="Your message here..."
+                                        />
+                                    </div>
+                                    {error && (
+                                        <div className="rounded-lg bg-destructive/10 border border-destructive/20 p-4 flex items-start gap-3">
+                                            <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
+                                            <p className="text-sm text-destructive">{error}</p>
+                                        </div>
                                     )}
-                                </Button>
-                            </form>
-                        )}
+                                    <Button
+                                        type="submit"
+                                        variant="primary"
+                                        className="w-full"
+                                        disabled={isSubmitting}
+                                    >
+                                        {isSubmitting ? (
+                                            <>
+                                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                                Sending...
+                                            </>
+                                        ) : (
+                                            <>
+                                                Send Message
+                                                <Send className="ml-2 h-4 w-4" />
+                                            </>
+                                        )}
+                                    </Button>
+                                </form>
+                            )}
                         </div>
                     </FadeInView>
                 </div>

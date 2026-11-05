@@ -10,8 +10,8 @@ export function About() {
         <section className="relative section-spacing">
             <Container className="max-w-6xl">
                 <SectionHeader
-                    title="About Me"
-                    subtitle="I'm a product-minded engineer with 10+ years in web development, based in Ljubljana. At Sportradar I integrate widget products for betting and media clients, identify repetitive manual work in team processes and build AI-powered tools to automate it. I build with LLM APIs and agentic tools such as Claude Code, and own the design, review and delivery of what I ship."
+                    title="Profile"
+                    subtitle="Product-minded engineer with 10+ years in web development. I focus on building intuitive frontend experiences and AI-powered tools that automate complex workflows. My work includes retrieval-grounded knowledge assistants with source citations, automated multi-system runbooks across GitHub, Slack, and Jira (100+ automated runs), and agentic engineering workflows using Claude Code and Cursor. I build with LLM APIs, modern React/Next.js frameworks, and take products from idea to production."
                 />
 
                 <div className="max-w-3xl space-y-14 sm:space-y-20">

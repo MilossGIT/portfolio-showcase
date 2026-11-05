@@ -17,40 +17,49 @@ function scrollToSection(id: string) {
 
 export function Hero() {
     return (
-        <section className="relative z-10 flex flex-col justify-center pt-24 pb-20 sm:pt-28 sm:pb-28 md:pt-36 lg:min-h-screen lg:pb-36">
+        <section className="relative z-10 flex flex-col justify-center pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 lg:min-h-screen lg:pb-24">
             <HeroBackground />
 
             <div className="container relative z-10 mx-auto w-full min-w-0 max-w-6xl">
-                <div className="flex flex-col items-center gap-8 text-center sm:gap-10 lg:flex-row lg:items-center lg:gap-20 lg:text-left xl:gap-24">
+                <div className="flex flex-col items-center gap-10 text-center lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:text-left xl:gap-20">
                     <div className="relative order-1 shrink-0 lg:order-2">
-                        <div className="touch-accent-group relative h-36 w-36 sm:h-48 sm:w-48 md:h-56 md:w-56 lg:h-72 lg:w-72 xl:h-80 xl:w-80">
-                            <img
-                                src="/images/profile.jpg"
-                                alt="Miloš Minić"
-                                className="profile-photo"
-                                onError={(e) => {
-                                    e.currentTarget.src =
-                                        'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect fill="%23374151" width="400" height="400"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="32" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EMM%3C/text%3E%3C/svg%3E'
-                                }}
-                            />
+                        <div className="relative h-44 w-44 sm:h-56 sm:w-56 md:h-64 md:w-64 lg:h-72 lg:w-72 xl:h-80 xl:w-80 flex items-center justify-center">
+                            <div className="absolute -inset-[3px] rounded-full ring-beam opacity-80" />
+                            <div className="relative z-10 w-full h-full rounded-full overflow-hidden border-4 border-background shadow-2xl">
+                                <img
+                                    src="/images/profile.jpg"
+                                    alt="Miloš Minić"
+                                    className="profile-photo-inner w-full h-full object-cover scale-110 translate-y-3 sm:translate-y-4"
+                                    style={{ objectPosition: '50% 18%' }}
+                                    onError={(e) => {
+                                        e.currentTarget.src =
+                                            'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect fill="%23374151" width="400" height="400"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="32" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EMM%3C/text%3E%3C/svg%3E'
+                                    }}
+                                />
+                            </div>
                         </div>
                     </div>
 
-                    <div className="order-2 w-full min-w-0 flex-1 space-y-6 sm:space-y-8 lg:order-1">
-                        <div className="group touch-accent-group space-y-3 sm:space-y-4">
-                            <p className="accent-text-hover text-xs uppercase tracking-widest text-muted-foreground sm:text-sm">
-                                Product-minded engineer · AI-powered tools
-                            </p>
-                            <h1 className="text-4xl font-semibold tracking-tight text-foreground leading-[1.05] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
+                    <div className="order-2 w-full min-w-0 flex-1 space-y-6 lg:order-1 max-w-2xl">
+                        <div className="group touch-accent-group space-y-3.5">
+                            <div className="flex flex-wrap items-center gap-2">
+                                <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-mono text-emerald-600 dark:text-emerald-400">
+                                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                                    Product-Minded Engineer
+                                </span>
+                                <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/40 px-2.5 py-1 text-xs font-mono text-muted-foreground">
+                                    🤖 AI-Powered Tools &amp; Automation
+                                </span>
+                            </div>
+                            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1]">
                                 Miloš Minić
                             </h1>
-                            <p className="mx-auto max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg lg:mx-0 lg:text-xl">
-                                Building AI-powered tools and the web products around them,
-                                from idea to production.
+                            <p className="mx-auto max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg lg:mx-0">
+                                Building AI-powered tools, modern web applications, and streamlined digital products with TypeScript, React, Next.js, and LLM APIs.
                             </p>
                         </div>
 
-                        <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start">
+                        <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start pt-1">
                             <Button
                                 onClick={() => scrollToSection('contact')}
                                 variant="primary"

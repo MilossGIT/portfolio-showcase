@@ -484,7 +484,7 @@
   }
 
   .section-spacing {
-    @apply py-20 sm:py-28 lg:py-36;
+    @apply py-12 sm:py-16 lg:py-20;
   }
 
   .touch-accent-group {
@@ -523,57 +523,21 @@
     pointer-events: none;
   }
 
-  .hero-spotlight-inner {
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    margin-left: -200px;
-    margin-top: -200px;
-    border-radius: 50%;
-    pointer-events: none;
-    will-change: transform;
-    background: radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.2) 0%,
-      rgba(59, 130, 246, 0.1) 25%,
-      transparent 70%
-    );
+  @keyframes beam-rotate {
+    to {
+      transform: rotate(360deg);
+    }
   }
 
-  .hero-spotlight-outer {
-    position: absolute;
-    width: 800px;
-    height: 800px;
-    margin-left: -400px;
-    margin-top: -400px;
-    border-radius: 50%;
-    pointer-events: none;
-    will-change: transform;
-    filter: blur(40px);
-    mix-blend-mode: soft-light;
-    background: radial-gradient(
-      circle,
-      rgba(59, 130, 246, 0.06) 0%,
-      transparent 70%
+  .ring-beam {
+    background: conic-gradient(
+      from 0deg,
+      transparent 0 50%,
+      rgb(52 211 153 / 0.8) 75%,
+      rgb(96 165 250 / 0.9) 90%,
+      transparent
     );
-  }
-
-  .dark .hero-spotlight-inner {
-    background: radial-gradient(
-      circle,
-      rgba(96, 165, 250, 0.12) 0%,
-      rgba(59, 130, 246, 0.06) 30%,
-      transparent 70%
-    );
-  }
-
-  .dark .hero-spotlight-outer {
-    mix-blend-mode: screen;
-    background: radial-gradient(
-      circle,
-      rgba(59, 130, 246, 0.08) 0%,
-      transparent 70%
-    );
+    animation: beam-rotate 5s linear infinite;
   }
 
   .hero-noise {
@@ -638,8 +602,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-spotlight-inner,
-  .hero-spotlight-outer {
-    display: none;
+  .ring-beam {
+    animation: none;
   }
 }

@@ -11,8 +11,8 @@ export function Experience() {
             <Container className="max-w-6xl">
                 <SectionHeader
                     badge="Career"
-                    title="Work Experience"
-                    subtitle="From frontend engineering and client integrations to building AI-powered internal tools."
+                    title="Experience"
+                    subtitle="A career spanning frontend engineering, enterprise integrations, AI automation, and customer-facing product delivery."
                 />
 
                 <div>
