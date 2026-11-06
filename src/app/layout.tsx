@@ -75,7 +75,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 5
+  maximumScale: 5,
+  colorScheme: 'dark',
 }
 
 export default function RootLayout({
@@ -84,8 +85,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} ${inter.variable} antialiased`} suppressHydrationWarning>
+    <html lang="en" className="dark">
+      <body className={`${inter.className} ${inter.variable} antialiased`}>
         <Providers>
           <div className="flex min-h-screen flex-col">
             <Navbar />
