@@ -42,7 +42,7 @@ export function Hero() {
 
                     <div className="order-2 w-full min-w-0 flex-1 space-y-6 lg:order-1 max-w-2xl">
                         <div className="group touch-accent-group space-y-3.5">
-                            <div className="flex flex-wrap items-center gap-2">
+                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
                                 <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-mono text-emerald-600 dark:text-emerald-400">
                                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
                                     Product-Minded Engineer
