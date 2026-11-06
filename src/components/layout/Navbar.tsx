@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Menu, X, ArrowUpRight } from 'lucide-react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { NAV_LINKS } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 
@@ -145,7 +145,7 @@ export function Navbar() {
                 {/* Mobile Dropdown: Expands naturally within the solid header with zero overlapping */}
                 <AnimatePresence>
                     {isOpen && (
-                        <motion.div
+                        <m.div
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
@@ -176,7 +176,7 @@ export function Navbar() {
                                     )
                                 })}
                             </div>
-                        </motion.div>
+                        </m.div>
                     )}
                 </AnimatePresence>
             </nav>

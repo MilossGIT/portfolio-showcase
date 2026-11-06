@@ -1,5 +1,3 @@
-'use client'
-
 import { Container } from '../ui/Container'
 import { SectionHeader } from '../ui/SectionHeader'
 import { EXPERIENCE } from '@/lib/constants'

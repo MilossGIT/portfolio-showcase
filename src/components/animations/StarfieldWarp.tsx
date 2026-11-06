@@ -23,7 +23,7 @@ export function StarfieldWarp() {
         let H = 0
         const DPR = Math.min(window.devicePixelRatio || 1, 2)
         const speed = 0.75
-        const intensity = 1.45
+        const intensity = 1.35
 
         const mouse = {
             x: 0,
@@ -33,7 +33,9 @@ export function StarfieldWarp() {
             moved: false,
         }
 
-        const starCount = 380
+        const isSmallScreen = window.innerWidth < 768
+        // Cap stars to <150 on mobile, 240 on desktop
+        const starCount = isSmallScreen ? 110 : 240
         const stars: Star[] = []
         for (let i = 0; i < starCount; i++) {
             stars.push({
@@ -74,10 +76,9 @@ export function StarfieldWarp() {
 
             ctx.clearRect(0, 0, W, H)
 
-            const isDark = document.documentElement.classList.contains('dark')
-            // Theme colors: emerald and blue
-            const colEmerald = isDark ? '52, 211, 153' : '5, 150, 105'
-            const colBlue = isDark ? '96, 165, 250' : '37, 99, 235'
+            // Dark-mode optimized theme colors: emerald and blue
+            const colEmerald = '52, 211, 153'
+            const colBlue = '96, 165, 250'
 
             // Vanishing point leans smoothly with cursor
             const cx = W / 2 + (mouse.sx - W / 2) * 0.18
@@ -104,7 +105,7 @@ export function StarfieldWarp() {
 
                 const color = s.x > 0 ? colBlue : colEmerald
                 const alpha = Math.min(1, Math.max(0.08, (1 - s.z) * 0.85 * intensity))
-                const width = Math.min(2.8, Math.max(0.6, (1 - s.z) * 2.2))
+                const width = Math.min(2.5, Math.max(0.6, (1 - s.z) * 2))
 
                 ctx.strokeStyle = `rgba(${color}, ${alpha})`
                 ctx.lineWidth = width
@@ -114,16 +115,19 @@ export function StarfieldWarp() {
                 ctx.stroke()
             }
 
-            if (!prefersReducedMotion) {
+            // Only schedule next frame if motion is enabled
+            if (!prefersReducedMotion && isVisible) {
                 animId = requestAnimationFrame(render)
             }
         }
 
         handleResize()
         window.addEventListener('resize', handleResize)
-        window.addEventListener('mousemove', handleMouseMove, { passive: true })
+        if (!prefersReducedMotion) {
+            window.addEventListener('mousemove', handleMouseMove, { passive: true })
+        }
 
-        // Auto pause when off-screen to save 100% CPU
+        // Auto pause when off-screen
         const observer = new IntersectionObserver(([entry]) => {
             isVisible = entry.isIntersecting
             if (isVisible && !prefersReducedMotion) {
@@ -133,6 +137,7 @@ export function StarfieldWarp() {
         })
         observer.observe(canvas)
 
+        // Pause completely when tab is hidden
         const handleVisibilityChange = () => {
             isVisible = !document.hidden
             if (isVisible && !prefersReducedMotion) {
@@ -142,7 +147,8 @@ export function StarfieldWarp() {
         }
         document.addEventListener('visibilitychange', handleVisibilityChange)
 
-        animId = requestAnimationFrame(render)
+        // Render initial frame (static for reduced-motion, starting loop for normal)
+        render()
 
         return () => {
             cancelAnimationFrame(animId)

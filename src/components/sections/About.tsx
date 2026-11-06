@@ -1,5 +1,3 @@
-'use client'
-
 import { SKILLS, EDUCATION } from '@/lib/constants'
 import { Container } from '../ui/Container'
 import { SectionHeader } from '../ui/SectionHeader'

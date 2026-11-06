@@ -1,19 +1,7 @@
-'use client'
-
+import Image from 'next/image'
 import { Github, Linkedin } from 'lucide-react'
-import { Button } from '../ui/Button'
 import { SOCIAL_LINKS } from '@/lib/constants'
 import { HeroBackground } from '../animations/HeroBackground'
-
-function scrollToSection(id: string) {
-    const element = document.getElementById(id)
-    if (element) {
-        const headerOffset = 80
-        const elementPosition = element.getBoundingClientRect().top
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
-    }
-}
 
 export function Hero() {
     return (
@@ -26,15 +14,15 @@ export function Hero() {
                         <div className="relative h-44 w-44 sm:h-56 sm:w-56 md:h-64 md:w-64 lg:h-72 lg:w-72 xl:h-80 xl:w-80 flex items-center justify-center">
                             <div className="absolute -inset-[3px] rounded-full ring-beam opacity-80" />
                             <div className="relative z-10 w-full h-full rounded-full overflow-hidden border-4 border-background shadow-2xl">
-                                <img
+                                <Image
                                     src="/images/profile.jpg"
                                     alt="Miloš Minić"
+                                    width={400}
+                                    height={400}
+                                    priority
+                                    sizes="(max-width: 640px) 176px, (max-width: 768px) 224px, 288px"
                                     className="profile-photo-inner w-full h-full object-cover scale-110 translate-y-3 sm:translate-y-4"
                                     style={{ objectPosition: '50% 18%' }}
-                                    onError={(e) => {
-                                        e.currentTarget.src =
-                                            'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect fill="%23374151" width="400" height="400"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="32" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EMM%3C/text%3E%3C/svg%3E'
-                                    }}
                                 />
                             </div>
                         </div>
@@ -60,27 +48,23 @@ export function Hero() {
                         </div>
 
                         <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start pt-1">
-                            <Button
-                                onClick={() => scrollToSection('contact')}
-                                variant="primary"
-                                size="lg"
-                                className="group w-full sm:w-auto"
+                            <a
+                                href="#contact"
+                                className="inline-flex items-center justify-center rounded-lg font-medium transition-all h-11 px-5 text-sm sm:px-8 sm:text-base bg-primary text-primary-foreground hover:opacity-90 shadow-sm group w-full sm:w-auto"
                             >
                                 Get in touch
                                 <span className="inline-block ml-2 transition-transform group-hover:translate-x-0.5">
                                     →
                                 </span>
-                            </Button>
+                            </a>
 
-                            <Button
-                                variant="outline"
-                                size="lg"
-                                onClick={() => scrollToSection('projects')}
-                                className="accent-hover-outline w-full hover:!bg-transparent sm:w-auto"
+                            <a
+                                href="#projects"
+                                className="accent-hover-outline inline-flex items-center justify-center rounded-lg font-medium transition-all h-11 px-5 text-sm sm:px-8 sm:text-base border border-border bg-transparent hover:!bg-transparent text-foreground w-full sm:w-auto"
                             >
                                 <Github className="mr-2 h-4 w-4" />
                                 View Projects
-                            </Button>
+                            </a>
                         </div>
 
                         <div className="flex justify-center gap-5 lg:justify-start">

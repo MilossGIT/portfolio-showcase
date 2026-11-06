@@ -1,5 +1,3 @@
-'use client'
-
 import { Github, Linkedin } from 'lucide-react'
 import { SOCIAL_LINKS, CONTACT_EMAIL } from '@/lib/constants'
 import { FadeInView } from '../animations/FadeInView'

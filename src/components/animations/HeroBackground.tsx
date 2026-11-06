@@ -1,8 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { ClientOnly } from '@/components/ui/ClientOnly'
-import { StarfieldWarp } from './StarfieldWarp'
+import { StarfieldClientWrapper } from './StarfieldClientWrapper'
 
 function HeroLightFade({ children }: { children: React.ReactNode }) {
     const layerRef = useRef<HTMLDivElement>(null)
@@ -57,9 +56,7 @@ export function HeroBackground() {
                 <div className="hero-radial-glow" />
                 <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/80" />
 
-                <ClientOnly>
-                    <StarfieldWarp />
-                </ClientOnly>
+                <StarfieldClientWrapper />
 
                 <div className="hero-noise absolute inset-0 opacity-[0.01] dark:opacity-[0.02]" />
             </div>
