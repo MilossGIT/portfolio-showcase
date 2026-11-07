@@ -54,23 +54,15 @@ export const CarouselProjectTile = forwardRef<
                 </p>
 
                 <div className="flex shrink-0 items-center gap-2">
-                    {project.language ? (
+                    {project.language && (
                         <span className={cn('shrink-0 text-sm', langClass)}>
                             {project.language}
                         </span>
-                    ) : (
-                        <span className="invisible text-xs" aria-hidden>
-                            —
-                        </span>
                     )}
-                    {project.stars > 0 ? (
+                    {project.stars > 0 && (
                         <span className="flex shrink-0 items-center gap-1 text-sm text-muted-foreground">
                             <Star className="h-3.5 w-3.5" />
                             {project.stars}
-                        </span>
-                    ) : (
-                        <span className="invisible text-xs" aria-hidden>
-                            —
                         </span>
                     )}
                 </div>

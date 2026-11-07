@@ -6,7 +6,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Providers } from './providers'
 
 const inter = Inter({
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   display: 'swap',
   variable: '--font-sans',
 })
@@ -14,10 +14,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://milosminic.net'),
   title: {
-    default: 'Miloš Minić - Product-minded engineer · AI-powered tools',
+    default: 'Miloš Minić - Product engineer · AI-powered tools',
     template: '%s | Miloš Minić'
   },
-  description: 'Product-minded engineer building AI-powered tools, automation and production web products with TypeScript, React, Next.js and LLM APIs.',
+  description: 'Product engineer building AI-powered tools, automation and production web products with TypeScript, React, Next.js and LLM APIs.',
   keywords: [
     'Miloš Minić',
     'Software Engineer',
@@ -37,21 +37,21 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://milosminic.net',
     siteName: 'Miloš Minić - Portfolio',
-    title: 'Miloš Minić - Product-minded engineer · AI-powered tools',
-    description: 'Product-minded engineer building AI-powered tools, automation and production web products with TypeScript, React, Next.js and LLM APIs.',
+    title: 'Miloš Minić - Product engineer · AI-powered tools',
+    description: 'Product engineer building AI-powered tools, automation and production web products with TypeScript, React, Next.js and LLM APIs.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Miloš Minić - Product-minded engineer · AI-powered tools'
+        alt: 'Miloš Minić - Product engineer · AI-powered tools'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Miloš Minić - Product-minded engineer · AI-powered tools',
-    description: 'Product-minded engineer building AI-powered tools, automation and production web products with TypeScript, React, Next.js and LLM APIs.',
+    title: 'Miloš Minić - Product engineer · AI-powered tools',
+    description: 'Product engineer building AI-powered tools, automation and production web products with TypeScript, React, Next.js and LLM APIs.',
     images: ['/og-image.jpg'],
   },
   robots: {

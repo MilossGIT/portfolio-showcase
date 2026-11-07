@@ -9,7 +9,7 @@ export function About() {
             <Container className="max-w-6xl">
                 <SectionHeader
                     title="Profile"
-                    subtitle="Product-minded engineer with 10+ years in web development. I focus on building intuitive frontend experiences and AI-powered tools that automate complex workflows. My work includes retrieval-grounded knowledge assistants with source citations, automated multi-system runbooks across GitHub, Slack, and Jira (100+ automated runs), and agentic engineering workflows using Claude Code and Cursor. I build with LLM APIs, modern React/Next.js frameworks, and take products from idea to production."
+                    subtitle="Product engineer with 10+ years in web development. I focus on building intuitive frontend experiences and AI-powered tools that automate complex workflows. My work includes retrieval-grounded knowledge assistants with source citations, automated multi-system runbooks across GitHub, Slack, and Jira (100+ automated runs), and agentic engineering workflows using Claude Code and Cursor. I build with LLM APIs, modern React/Next.js frameworks, and take products from idea to production."
                 />
 
                 <div className="max-w-3xl space-y-14 sm:space-y-20">

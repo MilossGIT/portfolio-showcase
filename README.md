@@ -1,122 +1,103 @@
-# Portfolio Website
+# Miloš Minić - Portfolio
 
-A modern, responsive portfolio website built with Next.js 14, React, TypeScript, and Tailwind CSS. Features a clean design inspired by GitHub's aesthetic, with smooth animations and dark mode support.
+A high-performance portfolio website built with Next.js 14 App Router, React, TypeScript, and Tailwind CSS.
+Positioning: **Product Engineer** building AI-powered tools and modern web applications.
+
+Live at: [https://www.milosminic.net](https://www.milosminic.net)
+
+---
 
 ## Features
 
-- 🌓 Dark/Light mode
-- ⚡ Next.js 14 with App Router
-- 💨 Tailwind CSS for styling
-- 📱 Fully responsive design
-- 🎨 Custom animations using Framer Motion
-- 🎯 Interactive particle background
-- 📧 Contact form with FormSubmit email delivery
-- 🔍 SEO optimized
-- 🎆 Smooth page transitions
-- ♿ Accessible UI components
+- 🌓 **Pure Dark Design:** Engineered with accessible high-contrast dark tokens (~5:1 contrast) and print media stylesheet.
+- ⚡ **Next.js 14 App Router:** Server Component architecture with selective client boundaries.
+- 🎨 **Framer Motion LazyMotion:** Strict `m.*` components using `domAnimation` bundle to keep First Load JS ~112 kB.
+- 🌌 **Adaptive Canvas Starfield:** Lazy loaded dynamically on the client, capped to 110 stars on mobile, paused on tab blur, and renders a static frame on `prefers-reduced-motion`.
+- 🐙 **Curated GitHub Integration:** Server-side ISR (1h) fetching 6 featured repositories with automatic static fallback snapshot.
+- 📧 **Hardened Contact Pipeline:**
+  - Server-side email delivery via **Resend** with input HTML-escaping and header injection defense.
+  - Server-side schema validation via **Zod** (zero client bundle overhead).
+  - Multi-tier spam protection: hidden honeypot field (`b_website`) returning silent 200 OK.
+  - In-memory token bucket rate limiting (5 req / 10 min per IP) with 429 status code.
+  - Accessible error and success states with `aria-live="polite"`.
+
+---
 
 ## Tech Stack
 
-- **Framework:** Next.js 14
+- **Framework:** Next.js 14 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
-- **Animation:** Framer Motion
-- **Icons:** Lucide Icons
-- **Email:** FormSubmit
+- **Animation:** Framer Motion (LazyMotion)
+- **Icons:** Lucide React
+- **Email Delivery:** Resend
+- **Validation:** Zod (Server-side)
 - **Deployment:** Vercel
+
+---
+
+## Environment Variables
+
+Copy `.env.local.example` to `.env.local` and populate:
+
+```bash
+cp .env.local.example .env.local
+```
+
+| Variable | Required | Description | Default |
+| :--- | :--- | :--- | :--- |
+| `RESEND_API_KEY` | Optional in dev / Required in prod | API key from [Resend](https://resend.com/api-keys). In dev without this key, submissions are simulated and logged. | - |
+| `RESEND_FROM_EMAIL` | Optional | Sender address configured in Resend. | `Portfolio Contact <onboarding@resend.dev>` |
+| `CONTACT_NOTIFICATION_EMAIL` | Optional | Destination inbox where contact form submissions are delivered. | `minicm034@gmail.com` |
+| `GITHUB_TOKEN` | Optional | GitHub personal access token to raise API rate limits to 5,000 req/hr. | - |
+
+---
+
+## Vercel WAF Rate Limiting Setup
+
+In addition to the code-level IP rate limiter, edge-level rate limiting can be configured on Vercel:
+
+### Plan Requirements
+- **Vercel Pro / Enterprise:** Includes Vercel Firewall / WAF with up to 10 custom Rate Limiting rules.
+- **Vercel Hobby:** Includes automated DDoS mitigation and Attack Challenge Mode. Custom per-path rules are not available on Hobby, so the built-in in-memory token bucket in `src/app/api/contact/route.ts` provides the primary protection.
+
+### Steps to Configure (Vercel Pro / Enterprise)
+1. Go to your project in the **Vercel Dashboard**.
+2. Navigate to **Security** > **Firewall** (or **WAF**).
+3. Under **Custom Rules**, click **Add Rule**.
+4. Configure rule parameters:
+   - **Name:** `Contact Form Rate Limit`
+   - **Path:** Equals `/api/contact`
+   - **Method:** Equals `POST`
+   - **Action:** `Rate Limit`
+   - **Rate Limit Window:** 10 requests per 10 minutes per IP
+   - **Response:** 429 (Too Many Requests)
+5. Save and deploy the rule to edge regions.
+
+---
 
 ## Getting Started
 
-### Prerequisites
-
-- Node.js (v18+ recommended)
-- npm or yarn
-
 ### Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/portfolio-website.git
-cd portfolio-website
-```
-
-2. Install dependencies:
 
 ```bash
 npm install
-# or
-yarn install
 ```
 
-3. No environment variables are required for the contact form. Messages are delivered to `minicm034@gmail.com` via FormSubmit. On the first submission, check that inbox for an activation email and confirm it.
-
-4. Start the development server:
+### Running Locally
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Project Structure
+### Building & Benchmarking
 
+```bash
+# Build production bundle
+npm run build
+
+# Start production server
+npm run start
 ```
-portfolio-website/
-├── src/
-│   ├── app/               # Next.js app router files
-│   ├── components/        # React components
-│   │   ├── animations/    # Animation components
-│   │   ├── layout/       # Layout components
-│   │   ├── sections/     # Page sections
-│   │   └── ui/           # Reusable UI components
-│   ├── lib/              # Utility functions
-│   └── types/            # TypeScript types
-├── public/               # Static files
-└── ...config files
-```
-
-## Customization
-
-1. **Personal Information**: Update `src/lib/constants.ts` with your information.
-2. **Colors**: Modify the color scheme in `tailwind.config.ts`.
-3. **Content**: Edit the section components in `src/components/sections/`.
-4. **Images**: Replace images in the `public/images/` directory.
-
-## Deployment
-
-The easiest way to deploy this portfolio is using Vercel:
-
-1. Push your code to GitHub
-2. Import your repository to Vercel
-3. Add your environment variables
-4. Deploy!
-
-## Performance Optimization
-
-- Images are optimized for different screen sizes
-- Animations are optimized for performance
-- Code splitting and lazy loading implemented
-- Static generation used where possible
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## Contact
-
-Miloš Minić - minicm034@gmail.com
-
-Portfolio Link: [https://milosminic.dev](https://milosminic.net)
-
-## Acknowledgments
-
-- Design inspired by GitHub's interface
-- Particle animation inspired by various open-source projects
-- Icons provided by Lucide Icons

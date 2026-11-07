@@ -4,6 +4,8 @@ import { FeaturedProjectSpotlight } from '../animations/FeaturedProjectSpotlight
 import { ProjectPaginatedGrid } from '../animations/ProjectPaginatedGrid'
 import { FadeInView } from '../animations/FadeInView'
 import { GitHubProject } from '@/types'
+import { Github } from 'lucide-react'
+import { SOCIAL_LINKS } from '@/lib/constants'
 
 interface ProjectsProps {
     initialProjects?: GitHubProject[]
@@ -31,6 +33,19 @@ export function Projects({ initialProjects = [] }: ProjectsProps) {
                     <ProjectPaginatedGrid projects={initialProjects} />
                 </FadeInView>
             )}
+
+            <div className="container mx-auto mt-12 flex justify-center px-4 sm:mt-16">
+                <a
+                    href={SOCIAL_LINKS.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg border border-border bg-card/50 px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                    <Github className="h-4 w-4" />
+                    View all on GitHub
+                    <span aria-hidden="true" className="text-muted-foreground">↗</span>
+                </a>
+            </div>
         </section>
     )
 }
