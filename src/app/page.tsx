@@ -24,27 +24,27 @@ export default async function Home() {
         <div className="relative flex min-h-screen flex-col bg-background">
             <Hero />
 
-            <div id="about" className="relative z-10 bg-background section-divider scroll-mt-16">
+            <div className="relative z-10 bg-background section-divider">
                 <About />
             </div>
 
-            <div id="experience" className="relative z-10 bg-background section-divider scroll-mt-16">
+            <div className="relative z-10 bg-background section-divider">
                 <Experience />
             </div>
 
-            <div id="work" className="relative z-10 bg-background section-divider scroll-mt-16">
+            <div className="relative z-10 bg-background section-divider">
                 <WorkHighlights />
             </div>
 
-            <div id="case-studies" className="relative z-10 bg-background section-divider scroll-mt-16">
+            <div className="relative z-10 bg-background section-divider">
                 <CaseStudies />
             </div>
 
-            <div id="projects" className="relative z-10 bg-background section-divider scroll-mt-16">
+            <div className="relative z-10 bg-background section-divider">
                 <Projects initialProjects={initialProjects} />
             </div>
 
-            <div id="contact" className="relative z-10 bg-background section-divider scroll-mt-16">
+            <div className="relative z-10 bg-background section-divider">
                 <Contact />
             </div>
         </div>

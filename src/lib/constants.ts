@@ -24,7 +24,7 @@ export const FEATURED_REPO_NAMES = [
     'AI-Powered-Email-Response-Generator',
     'PDF-Helper',
     'macOS-Window-Position-Utility',
-    'Portfolio-Illustration',
+    'Claude-Usage-Monitor',
 ];
 
 // Early learning exercises and the profile README: kept on GitHub, not featured here.
@@ -58,7 +58,7 @@ export const REPO_DESCRIPTIONS: Record<string, string> = {
         'Lightweight macOS utility to manage and snap window positions with keyboard shortcuts.',
     'portfolio-showcase':
         'This site: Next.js 14, TypeScript and Tailwind CSS, with live GitHub data and dark mode.',
-    'Portfolio-Illustration':
+    'Claude-Usage-Monitor':
         'Portfolio site for an illustrator with an interactive gallery, animations and contact form.',
     'Events7':
         'Analytics dashboard for tracking app events, with location-based permissions for ad events.',
@@ -124,6 +124,9 @@ export interface CaseStudyItem {
     title: string
     context: string
     claim: string
+    problem?: string
+    approach?: string
+    result?: string
     stack?: string[]
     inProduction?: string
     metrics?: { label: string; value: string }[]
@@ -132,19 +135,37 @@ export interface CaseStudyItem {
 export const CASE_STUDIES: CaseStudyItem[] = [
     {
         id: 'knowledge-assistant',
-        title: 'Knowledge Assistant',
+        title: 'Knowledge Assistant & Workflow Hub',
         context: 'Sportradar · Internal AI Tooling',
-        claim: 'Retrieval-grounded knowledge assistant with source citations.',
+        claim: 'Retrieval-grounded knowledge assistant with source citations and 35 interactive workflow diagrams.',
+        problem: 'Recurring setup and integration questions kept appearing in team Slack channels.',
+        approach:
+            'A self-serve hub with 35 interactive workflow diagrams and an AI assistant built on 77 curated Q&A entries plus public documentation. It cites its sources, declines below a confidence threshold, and escalates to a company AI agent otherwise.',
         inProduction:
-            'Node.js services behind SSO on Kubernetes, covered by Playwright tests and LLM evaluation checks in CI.',
+            'Node.js service behind company SSO on Kubernetes; CI runs Playwright suites, a 51-question LLM answer evaluation and credential scanning.',
+        stack: ['Node.js', 'Kubernetes', 'SSO', 'Playwright', 'LLM Eval'],
+        metrics: [
+            { label: 'Interactive diagrams', value: '35' },
+            { label: 'Curated Q&A entries', value: '77' },
+        ],
     },
     {
-        id: 'runbook-automation',
-        title: 'Multi-System Runbook Automation',
+        id: 'client-activation',
+        title: 'Client Activation Automation',
         context: 'Sportradar · Workflow Automation',
-        claim: 'Multi-system runbook automation across GitHub, Slack, and Jira.',
-        stack: ['GitHub', 'Slack', 'Jira integrations'],
-        inProduction: '100+ automated runs.',
+        claim: 'End-to-end multi-system runbook automation across admin systems, GitHub, Slack, and Jira.',
+        problem:
+            'A five-step manual activation runbook spanning an admin system, two GitHub repositories, Slack and Jira.',
+        approach:
+            'Automated end to end, with batch runs, dry-run and live modes, and human approval gates.',
+        result:
+            '100+ activations in the first two months: 101 orders, 31 infrastructure pull requests and 99 Jira handovers.',
+        inProduction: '100+ client activations in the first two months.',
+        stack: ['GitHub API', 'Slack API', 'Jira API', 'Node.js'],
+        metrics: [
+            { label: 'Client activations', value: '100+' },
+            { label: 'Orders automated', value: '101' },
+        ],
     },
 ];
 
@@ -214,7 +235,7 @@ export const EDUCATION = [
 
 export const EXPERIENCE = [
     {
-        title: 'Software Engineer',
+        title: 'Software Integration Engineer',
         company: 'Sportradar',
         location: 'Ljubljana',
         date: 'April 2022 - Present',
@@ -315,7 +336,7 @@ export const PROJECTS = [
         readmeUrl: 'https://raw.githubusercontent.com/MilossGIT/macOS-Window-Position-Utility/main/README.md'
     },
     {
-        title: 'Portfolio-Illustration',
+        title: 'Claude-Usage-Monitor',
         description: 'Portfolio site for an illustrator with an interactive gallery, animations and contact form.',
         tags: ['React', 'Next.js', 'Tailwind CSS'],
         github: 'https://github.com/MilossGIT/Portfolio-Illustration',

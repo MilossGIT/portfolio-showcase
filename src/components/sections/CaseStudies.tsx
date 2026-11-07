@@ -5,16 +5,17 @@ import { CASE_STUDIES } from '@/lib/constants'
 
 export function CaseStudies() {
     return (
-        <section className="relative section-spacing">
+        <section id="case-studies" aria-labelledby="case-studies-heading" className="relative section-spacing scroll-mt-16">
             <Container className="max-w-6xl">
                 <SectionHeader
+                    id="case-studies-heading"
                     badge="AI Systems"
                     title="Case Studies"
                     subtitle="Internal AI tooling and automation systems built at Sportradar."
                 />
 
                 <div className="mb-8 text-xs font-mono text-muted-foreground">
-                    ℹ️ Internal systems and details are anonymized.
+                    <span aria-hidden="true">ℹ️ </span>Internal systems and details are anonymized.
                 </div>
 
                 <div className="grid gap-8 md:grid-cols-2 lg:gap-10">

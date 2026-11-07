@@ -9,7 +9,10 @@ export function Hero() {
     const hasCv = fs.existsSync(path.join(process.cwd(), 'public/cv.pdf'))
 
     return (
-        <section className="relative z-10 flex flex-col justify-center pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 lg:min-h-screen lg:pb-24">
+        <section
+            aria-label="Introduction"
+            className="relative z-10 flex flex-col justify-center pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 lg:min-h-screen lg:pb-24"
+        >
             <HeroBackground />
 
             <div className="container relative z-10 mx-auto w-full min-w-0 max-w-6xl">
@@ -20,7 +23,7 @@ export function Hero() {
                             <div className="relative z-10 w-full h-full rounded-full overflow-hidden border-4 border-background shadow-2xl">
                                 <Image
                                     src="/images/profile.jpg"
-                                    alt="Miloš Minić"
+                                    alt="Miloš Minić - Product Engineer"
                                     width={400}
                                     height={400}
                                     priority
@@ -36,7 +39,7 @@ export function Hero() {
                         <div className="group touch-accent-group space-y-3.5">
                             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
                                 <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-mono text-emerald-600 dark:text-emerald-400">
-                                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
                                     Product Engineer
                                 </span>
                                 <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/40 px-2.5 py-1 text-xs font-mono text-muted-foreground">
@@ -57,7 +60,7 @@ export function Hero() {
                                 className="inline-flex items-center justify-center rounded-lg font-medium transition-all h-11 px-5 text-sm sm:px-8 sm:text-base bg-primary text-primary-foreground hover:opacity-90 shadow-sm group w-full sm:w-auto"
                             >
                                 Get in touch
-                                <span className="inline-block ml-2 transition-transform group-hover:translate-x-0.5">
+                                <span className="inline-block ml-2 transition-transform group-hover:translate-x-0.5" aria-hidden="true">
                                     →
                                 </span>
                             </a>
@@ -66,7 +69,7 @@ export function Hero() {
                                 href="#projects"
                                 className="accent-hover-outline inline-flex items-center justify-center rounded-lg font-medium transition-all h-11 px-5 text-sm sm:px-8 sm:text-base border border-border bg-transparent hover:!bg-transparent text-foreground w-full sm:w-auto"
                             >
-                                <Github className="mr-2 h-4 w-4" />
+                                <Github className="mr-2 h-4 w-4" aria-hidden="true" />
                                 View Projects
                             </a>
 
@@ -77,7 +80,7 @@ export function Hero() {
                                     className="accent-hover-outline inline-flex items-center justify-center rounded-lg font-medium transition-all h-11 px-5 text-sm sm:px-8 sm:text-base border border-border bg-transparent hover:!bg-transparent text-foreground w-full sm:w-auto"
                                     aria-label="Download CV"
                                 >
-                                    <FileText className="mr-2 h-4 w-4" />
+                                    <FileText className="mr-2 h-4 w-4" aria-hidden="true" />
                                     Download CV
                                 </a>
                             )}
@@ -89,18 +92,18 @@ export function Hero() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="accent-hover-icon"
-                                aria-label="GitHub"
+                                aria-label="GitHub profile"
                             >
-                                <Github className="h-5 w-5" />
+                                <Github className="h-5 w-5" aria-hidden="true" />
                             </a>
                             <a
                                 href={SOCIAL_LINKS.linkedin}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="accent-hover-icon"
-                                aria-label="LinkedIn"
+                                aria-label="LinkedIn profile"
                             >
-                                <Linkedin className="h-5 w-5" />
+                                <Linkedin className="h-5 w-5" aria-hidden="true" />
                             </a>
                         </div>
                     </div>

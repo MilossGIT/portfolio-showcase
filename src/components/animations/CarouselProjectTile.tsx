@@ -42,7 +42,7 @@ export const CarouselProjectTile = forwardRef<
         >
             <div className="flex h-full min-h-0 flex-col gap-2 p-4 sm:gap-2.5 sm:p-5">
                 <div className="flex shrink-0 items-start gap-2.5">
-                    <Github className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground sm:h-5 sm:w-5" />
+                    <Github className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground sm:h-5 sm:w-5" aria-hidden="true" />
                     <h3 className="min-w-0 flex-1 truncate text-base font-semibold text-foreground">
                         {project.name}
                     </h3>
@@ -61,7 +61,7 @@ export const CarouselProjectTile = forwardRef<
                     )}
                     {project.stars > 0 && (
                         <span className="flex shrink-0 items-center gap-1 text-sm text-muted-foreground">
-                            <Star className="h-3.5 w-3.5" />
+                            <Star className="h-3.5 w-3.5" aria-hidden="true" />
                             {project.stars}
                         </span>
                     )}
@@ -92,7 +92,7 @@ export const CarouselProjectTile = forwardRef<
                         className="accent-hover-icon flex h-8 w-8 shrink-0 items-center justify-center rounded-md"
                         aria-label={`View ${project.name} on GitHub`}
                     >
-                        <Github className="h-4 w-4" />
+                        <Github className="h-4 w-4" aria-hidden="true" />
                     </a>
                     {project.homepage ? (
                         <a
@@ -102,7 +102,7 @@ export const CarouselProjectTile = forwardRef<
                             className="accent-hover-icon flex h-8 w-8 shrink-0 items-center justify-center rounded-md"
                             aria-label={`Visit ${project.name} live demo`}
                         >
-                            <ExternalLink className="h-4 w-4" />
+                            <ExternalLink className="h-4 w-4" aria-hidden="true" />
                         </a>
                     ) : (
                         <span

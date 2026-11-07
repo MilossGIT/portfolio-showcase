@@ -12,7 +12,10 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://milosminic.net'),
+  metadataBase: new URL('https://www.milosminic.net'),
+  alternates: {
+    canonical: 'https://www.milosminic.net',
+  },
   title: {
     default: 'Miloš Minić - Product engineer · AI-powered tools',
     template: '%s | Miloš Minić'
@@ -35,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://milosminic.net',
+    url: 'https://www.milosminic.net',
     siteName: 'Miloš Minić - Portfolio',
     title: 'Miloš Minić - Product engineer · AI-powered tools',
     description: 'Product engineer building AI-powered tools, automation and production web products with TypeScript, React, Next.js and LLM APIs.',
@@ -79,6 +82,18 @@ export const viewport: Viewport = {
   colorScheme: 'dark',
 }
 
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Miloš Minić',
+  jobTitle: 'Product Engineer',
+  url: 'https://www.milosminic.net',
+  sameAs: [
+    'https://github.com/MilossGIT',
+    'https://www.linkedin.com/in/milos-minic-0302b96b/',
+  ],
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -86,11 +101,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+      </head>
       <body className={`${inter.className} ${inter.variable} antialiased`}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-emerald-400 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-black focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white"
+        >
+          Skip to content
+        </a>
         <Providers>
           <div className="flex min-h-screen flex-col">
             <Navbar />
-            <main className="flex-grow">
+            <main id="main-content" tabIndex={-1} className="flex-grow outline-none">
               {children}
             </main>
             <Footer />
