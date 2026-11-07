@@ -18,10 +18,12 @@ export const NAV_LINKS = [
 ] as const;
 
 export const FEATURED_REPO_NAMES = [
+    'unidep',
+    'relay-http',
+    'AI-Powered-Email-Response-Generator',
+    'PDF-Helper',
+    'macOS-Window-Position-Utility',
     'Portfolio-Illustration',
-    'Ticket-Notifier',
-    'Events7',
-    'portfolio-showcase',
 ];
 
 // Early learning exercises and the profile README: kept on GitHub, not featured here.
@@ -43,8 +45,16 @@ export const HIDDEN_REPO_NAMES = [
 
 // Shown when a repository has no description on GitHub.
 export const REPO_DESCRIPTIONS: Record<string, string> = {
+    'unidep':
+        'Cross-language dependency installer designed to simplify environment setup and tooling consistency.',
+    'relay-http':
+        'HTTP client for terminal and browser workflows built for quick local testing and debugging.',
     'AI-Powered-Email-Response-Generator':
         'Chrome extension that uses an LLM to draft contextual Gmail replies in a chosen tone.',
+    'PDF-Helper':
+        'Utility tool for manipulating, extracting, and processing PDF files efficiently.',
+    'macOS-Window-Position-Utility':
+        'Lightweight macOS utility to manage and snap window positions with keyboard shortcuts.',
     'portfolio-showcase':
         'This site: Next.js 14, TypeScript and Tailwind CSS, with live GitHub data and dark mode.',
     'Portfolio-Illustration':
@@ -220,27 +230,6 @@ export const EXPERIENCE = [
 
 export const PROJECTS = [
     {
-        title: 'Claude Usage Monitor',
-        description: 'A Chrome MV3 extension that tracks Claude session and weekly usage and alerts at thresholds.',
-        tags: ['Chrome Extension', 'Usage Tracking', 'AI Tools'],
-        github: 'https://github.com/MilossGIT',
-        readmeUrl: 'https://raw.githubusercontent.com/MilossGIT'
-    },
-    {
-        title: 'AI Email Response Generator',
-        description: 'A lightweight AI-assisted email drafting tool designed for faster, more consistent communication.',
-        tags: ['AI', 'Automation', 'Productivity'],
-        github: 'https://github.com/MilossGIT',
-        readmeUrl: 'https://raw.githubusercontent.com/MilossGIT'
-    },
-    {
-        title: 'chatgpt-api',
-        description: 'An OpenAI CLI and developer utility for streamlined AI interactions from the terminal.',
-        tags: ['OpenAI', 'CLI', 'Developer Tools'],
-        github: 'https://github.com/MilossGIT/chatgpt-api',
-        readmeUrl: 'https://raw.githubusercontent.com/MilossGIT/chatgpt-api/main/README.md'
-    },
-    {
         title: 'unidep',
         description: 'A cross-language dependency installer designed to simplify environment setup and tooling consistency.',
         tags: ['CLI', 'Dependencies', 'Tooling'],
@@ -253,5 +242,33 @@ export const PROJECTS = [
         tags: ['HTTP', 'Developer Tools', 'Testing'],
         github: 'https://github.com/MilossGIT/relay-http',
         readmeUrl: 'https://raw.githubusercontent.com/MilossGIT/relay-http/main/README.md'
+    },
+    {
+        title: 'AI-Powered-Email-Response-Generator',
+        description: 'Chrome extension that uses an LLM to draft contextual Gmail replies in a chosen tone.',
+        tags: ['Chrome Extension', 'AI Tools', 'Automation'],
+        github: 'https://github.com/MilossGIT/AI-Powered-Email-Response-Generator',
+        readmeUrl: 'https://raw.githubusercontent.com/MilossGIT/AI-Powered-Email-Response-Generator/main/README.md'
+    },
+    {
+        title: 'PDF-Helper',
+        description: 'Utility tool for manipulating, extracting, and processing PDF files efficiently.',
+        tags: ['Utility', 'Automation', 'TypeScript'],
+        github: 'https://github.com/MilossGIT/PDF-Helper',
+        readmeUrl: 'https://raw.githubusercontent.com/MilossGIT/PDF-Helper/main/README.md'
+    },
+    {
+        title: 'macOS-Window-Position-Utility',
+        description: 'Lightweight macOS utility to manage and snap window positions with keyboard shortcuts.',
+        tags: ['macOS', 'Swift', 'Productivity'],
+        github: 'https://github.com/MilossGIT/macOS-Window-Position-Utility',
+        readmeUrl: 'https://raw.githubusercontent.com/MilossGIT/macOS-Window-Position-Utility/main/README.md'
+    },
+    {
+        title: 'Portfolio-Illustration',
+        description: 'Portfolio site for an illustrator with an interactive gallery, animations and contact form.',
+        tags: ['React', 'Next.js', 'Tailwind CSS'],
+        github: 'https://github.com/MilossGIT/Portfolio-Illustration',
+        readmeUrl: 'https://raw.githubusercontent.com/MilossGIT/Portfolio-Illustration/main/README.md'
     }
 ];

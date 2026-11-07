@@ -3,11 +3,13 @@
 import { useState, useRef } from 'react'
 import { Send, Loader2, AlertCircle } from 'lucide-react'
 import { Button } from '../ui/Button'
+import { CONTACT_EMAIL } from '@/lib/constants'
 
 type FormElements = {
     name: HTMLInputElement
     email: HTMLInputElement
     message: HTMLTextAreaElement
+    b_website: HTMLInputElement
 }
 
 const inputClass =
@@ -35,10 +37,11 @@ export function ContactForm() {
                     name: elements.name.value,
                     email: elements.email.value,
                     message: elements.message.value,
+                    b_website: elements.b_website.value,
                 }),
             })
 
-            const data = await response.json()
+            const data = await response.json().catch(() => ({}))
 
             if (!response.ok) {
                 throw new Error(data.error ?? 'Failed to send message.')
@@ -47,7 +50,7 @@ export function ContactForm() {
             setIsSubmitted(true)
             form.reset()
         } catch (err: unknown) {
-            console.error('Error sending email:', err)
+            console.error('Error sending message:', err)
             setError(
                 err instanceof Error
                     ? err.message
@@ -60,7 +63,11 @@ export function ContactForm() {
 
     if (isSubmitted) {
         return (
-            <div className="surface-card rounded-lg p-6 sm:p-8 text-center py-10">
+            <div
+                className="surface-card rounded-lg p-6 sm:p-8 text-center py-10"
+                role="status"
+                aria-live="polite"
+            >
                 <h3 className="text-lg font-medium text-foreground mb-2">
                     Thanks for reaching out!
                 </h3>
@@ -77,6 +84,22 @@ export function ContactForm() {
     return (
         <div className="surface-card rounded-lg p-5 sm:p-7">
             <form onSubmit={handleSubmit} ref={formRef} className="space-y-4 sm:space-y-5">
+                {/* Honeypot field - visually hidden, excluded from tab order & assistive technology */}
+                <div
+                    aria-hidden="true"
+                    tabIndex={-1}
+                    className="absolute -left-[9999px] -top-[9999px] opacity-0 pointer-events-none select-none h-0 w-0 overflow-hidden"
+                >
+                    <label htmlFor="b_website">Leave this field blank</label>
+                    <input
+                        type="text"
+                        id="b_website"
+                        name="b_website"
+                        tabIndex={-1}
+                        autoComplete="off"
+                    />
+                </div>
+
                 <div>
                     <label
                         htmlFor="name"
@@ -89,6 +112,8 @@ export function ContactForm() {
                         id="name"
                         name="name"
                         required
+                        maxLength={100}
+                        autoComplete="name"
                         className={inputClass}
                         placeholder="Your name"
                         disabled={isSubmitting}
@@ -107,6 +132,8 @@ export function ContactForm() {
                         id="email"
                         name="email"
                         required
+                        maxLength={120}
+                        autoComplete="email"
                         className={inputClass}
                         placeholder="you@example.com"
                         disabled={isSubmitting}
@@ -124,6 +151,8 @@ export function ContactForm() {
                         id="message"
                         name="message"
                         required
+                        minLength={5}
+                        maxLength={2000}
                         rows={5}
                         className={inputClass}
                         placeholder="How can I help you?"
@@ -132,9 +161,25 @@ export function ContactForm() {
                 </div>
 
                 {error && (
-                    <div className="flex items-center gap-2 text-destructive text-sm" role="alert">
-                        <AlertCircle className="h-4 w-4 shrink-0" />
-                        <span>{error}</span>
+                    <div
+                        className="flex items-start gap-2.5 rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-red-400 text-sm"
+                        role="alert"
+                        aria-live="polite"
+                    >
+                        <AlertCircle className="h-4 w-4 shrink-0 mt-0.5 text-red-400" />
+                        <div className="flex-1">
+                            <p>{error}</p>
+                            <p className="mt-1 text-xs text-muted-foreground">
+                                You can also email me directly at{' '}
+                                <a
+                                    href={`mailto:${CONTACT_EMAIL}`}
+                                    className="text-foreground underline underline-offset-2 hover:text-emerald-400 transition-colors"
+                                >
+                                    {CONTACT_EMAIL}
+                                </a>
+                                .
+                            </p>
+                        </div>
                     </div>
                 )}
 

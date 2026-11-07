@@ -33,10 +33,10 @@ export function Hero() {
                             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
                                 <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-mono text-emerald-600 dark:text-emerald-400">
                                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                                    Product-Minded Engineer
+                                    Product Engineer
                                 </span>
                                 <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/40 px-2.5 py-1 text-xs font-mono text-muted-foreground">
-                                    🤖 AI-Powered Tools &amp; Automation
+                                    AI-Powered Tools &amp; Automation
                                 </span>
                             </div>
                             <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1]">

@@ -1,5 +1,5 @@
 import { GitHubProject } from '@/types'
-import { HIDDEN_REPO_NAMES, REPO_DESCRIPTIONS } from '@/lib/constants'
+import { HIDDEN_REPO_NAMES, REPO_DESCRIPTIONS, PROJECTS } from '@/lib/constants'
 
 const GITHUB_USERNAME = 'MilossGIT'
 
@@ -41,31 +41,37 @@ export async function fetchGitHubRepos(featuredNames: string[] = []): Promise<Gi
         headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`
     }
 
-    const response = await fetch(
-        `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`,
-        {
-            headers,
-            next: { revalidate: 3600 },
-        }
-    )
-
-    if (!response.ok) {
-        throw new Error(`GitHub API error: ${response.status}`)
-    }
-
-    const repos: GitHubApiRepo[] = await response.json()
-
-    return repos
-        .filter((repo) => !repo.archived && !repo.fork && !HIDDEN_REPO_NAMES.includes(repo.name))
-        .map((repo) =>
-            toGitHubProject(repo, featuredNames.includes(repo.name))
+    try {
+        const response = await fetch(
+            `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`,
+            {
+                headers,
+                next: { revalidate: 3600 },
+            }
         )
-        .sort((a, b) => {
-            if (a.featured && b.featured) return featuredNames.indexOf(a.name) - featuredNames.indexOf(b.name)
-            if (a.featured) return -1
-            if (b.featured) return 1
-            return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-        })
+
+        if (!response.ok) {
+            console.warn(`GitHub API returned ${response.status}, falling back to static snapshot`)
+            return staticProjectsToGitHub(PROJECTS)
+        }
+
+        const repos: GitHubApiRepo[] = await response.json()
+
+        return repos
+            .filter((repo) => !repo.archived && !repo.fork && !HIDDEN_REPO_NAMES.includes(repo.name))
+            .map((repo) =>
+                toGitHubProject(repo, featuredNames.includes(repo.name))
+            )
+            .sort((a, b) => {
+                if (a.featured && b.featured) return featuredNames.indexOf(a.name) - featuredNames.indexOf(b.name)
+                if (a.featured) return -1
+                if (b.featured) return 1
+                return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+            })
+    } catch (error) {
+        console.warn('Failed to fetch GitHub repos, using static fallback:', error)
+        return staticProjectsToGitHub(PROJECTS)
+    }
 }
 
 export function staticProjectsToGitHub(
