@@ -68,9 +68,23 @@ export const REPO_DESCRIPTIONS: Record<string, string> = {
         'React app for building a professional CV in a form-based editor and exporting it to PDF.',
 };
 
-// Commit public/cv.pdf and set this to true in the same commit.
+/**
+ * CV Availability Flag:
+ * Controls the visibility of the "View CV" link in the Hero section.
+ * Explicit boolean configuration avoids runtime filesystem probing (e.g. fs.existsSync)
+ * which can fail during Vercel serverless ISR revalidations (revalidate = 3600).
+ *
+ * Instructions:
+ * Commit public/cv.pdf and set this to true in the same commit.
+ */
 export const HAS_CV = false;
 
+/**
+ * Featured Professional Work & Client Projects:
+ * - image: Path relative to public/ (e.g. '/images/work/kind-cadence.jpg'). Kept undefined until file is committed.
+ * - imageAlt: Descriptive screen reader text detailing interface contents. Falls back to "<card title> homepage".
+ * - role / outcome: Project role & achievement lines. Kept undefined to cleanly omit containers with zero layout gaps.
+ */
 export const WORK_HIGHLIGHTS = [
     {
         title: 'Kind Cadence',

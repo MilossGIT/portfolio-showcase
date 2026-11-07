@@ -69,9 +69,12 @@ export function Navbar() {
         const element = document.getElementById(id)
 
         setIsOpen(false)
+
+        // Immediately activate clicked tab for instant 0ms visual feedback
         setActiveSection(id)
 
         if (element) {
+            // Lock activeSection from scroll-listener override while smooth scrolling to target
             isManualScrollRef.current = true
             if (manualScrollTimerRef.current) {
                 clearTimeout(manualScrollTimerRef.current)
@@ -80,6 +83,7 @@ export function Navbar() {
                 isManualScrollRef.current = false
             }, 800)
 
+            // Trigger smooth scrolling instantly without artificial delay
             const headerHeight = 64
             const elementPosition = element.getBoundingClientRect().top
             const offsetPosition = elementPosition + window.pageYOffset - headerHeight
