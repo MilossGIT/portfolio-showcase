@@ -1,4 +1,5 @@
 import { About } from '@/components/sections/About'
+import { CaseStudies } from '@/components/sections/CaseStudies'
 import { Contact } from '@/components/sections/Contact'
 import { Experience } from '@/components/sections/Experience'
 import { Hero } from '@/components/sections/Hero'
@@ -33,6 +34,10 @@ export default async function Home() {
 
             <div id="work" className="relative z-10 bg-background section-divider scroll-mt-16">
                 <WorkHighlights />
+            </div>
+
+            <div id="case-studies" className="relative z-10 bg-background section-divider scroll-mt-16">
+                <CaseStudies />
             </div>
 
             <div id="projects" className="relative z-10 bg-background section-divider scroll-mt-16">

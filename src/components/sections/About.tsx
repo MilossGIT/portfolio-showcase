@@ -1,4 +1,4 @@
-import { SKILLS, EDUCATION } from '@/lib/constants'
+import { SKILL_CATEGORIES, EDUCATION } from '@/lib/constants'
 import { Container } from '../ui/Container'
 import { SectionHeader } from '../ui/SectionHeader'
 import { FadeInView } from '../animations/FadeInView'
@@ -9,26 +9,58 @@ export function About() {
             <Container className="max-w-6xl">
                 <SectionHeader
                     title="Profile"
-                    subtitle="Product engineer with 10+ years in web development. I focus on building intuitive frontend experiences and AI-powered tools that automate complex workflows. My work includes retrieval-grounded knowledge assistants with source citations, automated multi-system runbooks across GitHub, Slack, and Jira (100+ automated runs), and agentic engineering workflows using Claude Code and Cursor. I build with LLM APIs, modern React/Next.js frameworks, and take products from idea to production."
+                    subtitle="Product engineer with 10+ years in web development, building frontend products and AI tools that automate engineering workflows."
                 />
+
+                <FadeInView delay={0.05} className="mb-14 max-w-3xl">
+                    <ul className="space-y-3.5 text-sm sm:text-base text-muted-foreground leading-relaxed">
+                        <li className="flex items-start gap-3">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+                            <span>
+                                <strong className="font-medium text-foreground">AI &amp; workflow automation:</strong> A retrieval-grounded knowledge assistant with source citations, and runbook automation across GitHub, Slack and Jira (100+ automated runs).
+                            </span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+                            <span>
+                                <strong className="font-medium text-foreground">Production systems:</strong> Node.js services on Kubernetes behind company SSO, covered by Playwright tests and LLM evaluation checks in CI.
+                            </span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+                            <span>
+                                <strong className="font-medium text-foreground">Idea to production:</strong> Products taken from architecture to launch with TypeScript, React and Next.js, including four live products.
+                            </span>
+                        </li>
+                    </ul>
+                </FadeInView>
 
                 <div className="max-w-3xl space-y-14 sm:space-y-20">
                     <FadeInView delay={0.1}>
-                        <h3 className="text-sm uppercase tracking-widest text-muted-foreground mb-5">
-                            Skills & Technologies
+                        <h3 className="text-sm uppercase tracking-widest text-muted-foreground mb-6">
+                            Skills &amp; Technologies
                         </h3>
-                        <div className="flex flex-wrap gap-2.5">
-                            {SKILLS.map((skill) => (
-                                <span key={skill} className="skill-tag text-sm px-3.5 py-1.5 text-foreground">
-                                    {skill}
-                                </span>
+                        <div className="space-y-6">
+                            {Object.entries(SKILL_CATEGORIES).map(([category, skills]) => (
+                                <div key={category} className="space-y-2.5">
+                                    <h4 className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+                                        {category}
+                                    </h4>
+                                    <div className="flex flex-wrap gap-2">
+                                        {skills.map((skill) => (
+                                            <span key={skill} className="skill-tag text-xs sm:text-sm px-3 py-1 text-foreground">
+                                                {skill}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
                             ))}
                         </div>
                     </FadeInView>
 
                     <FadeInView delay={0.15}>
                         <h3 className="text-sm uppercase tracking-widest text-muted-foreground mb-6">
-                            Education & Certifications
+                            Education &amp; Certifications
                         </h3>
                         <div className="education-timeline">
                             {EDUCATION.map((edu, index) => (

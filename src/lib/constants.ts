@@ -13,6 +13,7 @@ export const NAV_LINKS = [
     { name: 'About', href: '#about' },
     { name: 'Experience', href: '#experience' },
     { name: 'Work', href: '#work' },
+    { name: 'Case Studies', href: '#case-studies' },
     { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' },
 ] as const;
@@ -76,6 +77,9 @@ export const WORK_HIGHLIGHTS = [
             'A cycling readiness coach that recommends rides from Strava and health data, focusing on pacing and recovery.',
         tags: ['Mobile App', 'Strava API', 'Health Data', 'Coaching', 'Recovery'],
         impact: 'Calm, evidence-based guidance that helps riders recover better and ride more intelligently.',
+        role: 'Product Engineer (Solo)',
+        outcome: 'Deployed mobile app recommending rides based on Strava and biometric data.',
+        image: undefined as string | undefined,
     },
     {
         title: 'Lokacija.net',
@@ -85,6 +89,9 @@ export const WORK_HIGHLIGHTS = [
             'A Django/PostgreSQL real-estate portal for Slovenia and the Adriatic region with location-first, SEO-friendly URLs.',
         tags: ['Django', 'Python', 'PostgreSQL', 'SEO', 'Real Estate'],
         impact: 'Location-first architecture powering property search across Slovenia and the Adriatic region.',
+        role: 'Full-Stack Engineer',
+        outcome: 'Production Django/PostgreSQL real-estate search portal for Slovenia and the Adriatic region.',
+        image: undefined as string | undefined,
     },
     {
         title: 'Ormarich',
@@ -94,53 +101,95 @@ export const WORK_HIGHLIGHTS = [
             'A live Next.js storefront with Stripe checkout, webhook-driven inventory updates, and admin product management.',
         tags: ['Next.js', 'Stripe', 'Vercel KV', 'E-Commerce', 'Webhooks'],
         impact: 'Production store delivering a polished shopping experience with reliable inventory sync.',
+        role: 'Frontend & Integration Engineer',
+        outcome: 'Production Next.js storefront with Stripe checkout and webhook inventory synchronization.',
+        image: undefined as string | undefined,
     },
     {
-        title: 'ZKH',
-        company: 'Multilingual Association Site',
+        title: 'Savez za kliničku hipnoterapiju (ZKH)',
+        company: 'Multilingual Association Platform',
         url: 'https://www.standardi-hipnoterapije.org/sr',
         description:
             'A trilingual association site on Next.js and Payload CMS 3, with DeepL translation workflows for blog content and institutional pages.',
         tags: ['Next.js', 'Payload CMS', 'i18n', 'DeepL', 'SEO'],
         impact: 'A multilingual experience that keeps content management simple while maintaining SEO and editorial quality.',
+        role: 'Frontend Engineer',
+        outcome: 'Trilingual association platform on Next.js and Payload CMS with DeepL automated translation workflow.',
+        image: undefined as string | undefined,
     },
 ];
 
-export const SKILLS = [
-    'AI & LLM',
-    'Agentic Coding Tools',
-    'Prompt Engineering',
-    'LLM APIs',
-    'MCP Integrations',
-    'Workflow Automation',
-    'JavaScript',
-    'TypeScript',
-    'Python',
-    'HTML5',
-    'CSS/SCSS',
-    'React',
-    'Next.js',
-    'Vue.js',
-    'Tailwind CSS',
-    'Node.js',
-    'Express.js',
-    'Django',
-    'PHP',
-    'PostgreSQL',
-    'MySQL',
-    'MongoDB',
-    'SQLite',
-    'REST APIs',
-    'Playwright',
-    'Jest',
-    'Git',
-    'GitLab CI/CD',
-    'Docker',
-    'Kubernetes',
-    'SSO Integration',
-    'Responsive Design',
-    'Agile',
+export interface CaseStudyItem {
+    id: string
+    title: string
+    context: string
+    claim: string
+    stack?: string[]
+    inProduction: string
+    metrics?: { label: string; value: string }[]
+}
+
+export const CASE_STUDIES: CaseStudyItem[] = [
+    {
+        id: 'knowledge-assistant',
+        title: 'Knowledge Assistant',
+        context: 'Sportradar · Internal AI Tooling',
+        claim: 'Retrieval-grounded knowledge assistant with source citations.',
+        inProduction:
+            'Node.js services behind SSO on Kubernetes, covered by Playwright tests and LLM evaluation checks in CI.',
+    },
+    {
+        id: 'runbook-automation',
+        title: 'Multi-System Runbook Automation',
+        context: 'Sportradar · Workflow Automation',
+        claim: 'Multi-system runbook automation across GitHub, Slack, and Jira.',
+        stack: ['GitHub', 'Slack', 'Jira integrations'],
+        inProduction: '100+ automated runs.',
+    },
 ];
+
+export const SKILL_CATEGORIES = {
+    'AI / LLM': [
+        'LLM APIs',
+        'RAG',
+        'Agentic Coding Tools',
+        'MCP Integrations',
+        'Prompt Engineering',
+        'Workflow Automation',
+    ],
+    'Frontend': [
+        'TypeScript',
+        'JavaScript',
+        'React',
+        'Next.js',
+        'Tailwind CSS',
+        'Vue.js',
+        'CSS/SCSS',
+    ],
+    'Backend': [
+        'Node.js',
+        'Python',
+        'REST APIs',
+        'Express.js',
+        'Django',
+        'SSO Integration',
+    ],
+    'Data': [
+        'PostgreSQL',
+        'SQLite',
+        'MongoDB',
+    ],
+    'DevOps & Testing': [
+        'Playwright',
+        'Jest',
+        'Docker',
+        'Kubernetes',
+        'GitLab CI/CD',
+        'Git',
+    ],
+} as const;
+
+export const SKILLS = Object.values(SKILL_CATEGORIES).flat();
 
 export const EDUCATION = [
     {

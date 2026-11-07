@@ -115,7 +115,7 @@ export function Navbar() {
                             onClick={() => handleNavClick('#contact')}
                             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-500 text-black text-xs font-semibold hover:bg-emerald-400 transition-colors shadow-sm shadow-emerald-500/20"
                         >
-                            Get in touch
+                            Contact
                             <ArrowUpRight className="h-3.5 w-3.5" />
                         </button>
                     </div>
@@ -127,7 +127,7 @@ export function Navbar() {
                             onClick={() => handleNavClick('#contact')}
                             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-500 text-black text-xs font-semibold hover:bg-emerald-400 transition-colors shadow-sm shadow-emerald-500/20"
                         >
-                            Get in touch
+                            Contact
                             <ArrowUpRight className="h-3.5 w-3.5" />
                         </button>
 
