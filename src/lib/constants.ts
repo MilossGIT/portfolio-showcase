@@ -123,12 +123,12 @@ export interface CaseStudyItem {
     id: string
     title: string
     context: string
-    claim: string
+    claim?: string
     problem?: string
     approach?: string
+    inProduction?: string
     result?: string
     stack?: string[]
-    inProduction?: string
     metrics?: { label: string; value: string }[]
 }
 
@@ -136,36 +136,23 @@ export const CASE_STUDIES: CaseStudyItem[] = [
     {
         id: 'knowledge-assistant',
         title: 'Knowledge Assistant & Workflow Hub',
-        context: 'Sportradar · Internal AI Tooling',
-        claim: 'Retrieval-grounded knowledge assistant with source citations and 35 interactive workflow diagrams.',
+        context: 'Sportradar, internal AI tooling',
         problem: 'Recurring setup and integration questions kept appearing in team Slack channels.',
         approach:
             'A self-serve hub with 35 interactive workflow diagrams and an AI assistant built on 77 curated Q&A entries plus public documentation. It cites its sources, declines below a confidence threshold, and escalates to a company AI agent otherwise.',
         inProduction:
             'Node.js service behind company SSO on Kubernetes; CI runs Playwright suites, a 51-question LLM answer evaluation and credential scanning.',
-        stack: ['Node.js', 'Kubernetes', 'SSO', 'Playwright', 'LLM Eval'],
-        metrics: [
-            { label: 'Interactive diagrams', value: '35' },
-            { label: 'Curated Q&A entries', value: '77' },
-        ],
     },
     {
         id: 'client-activation',
         title: 'Client Activation Automation',
-        context: 'Sportradar · Workflow Automation',
-        claim: 'End-to-end multi-system runbook automation across admin systems, GitHub, Slack, and Jira.',
+        context: 'Sportradar, workflow automation',
         problem:
             'A five-step manual activation runbook spanning an admin system, two GitHub repositories, Slack and Jira.',
         approach:
             'Automated end to end, with batch runs, dry-run and live modes, and human approval gates.',
         result:
-            '100+ activations in the first two months: 101 orders, 31 infrastructure pull requests and 99 Jira handovers.',
-        inProduction: '100+ client activations in the first two months.',
-        stack: ['GitHub API', 'Slack API', 'Jira API', 'Node.js'],
-        metrics: [
-            { label: 'Client activations', value: '100+' },
-            { label: 'Orders automated', value: '101' },
-        ],
+            '100+ activations in the first two months: 101 orders, 31 infrastructure pull requests, 99 Jira handovers.',
     },
 ];
 
