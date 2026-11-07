@@ -5,9 +5,10 @@ import { FadeInView } from '../animations/FadeInView'
 
 export function About() {
     return (
-        <section className="relative section-spacing">
+        <section id="about" aria-labelledby="about-heading" className="relative section-spacing scroll-mt-16">
             <Container className="max-w-6xl">
                 <SectionHeader
+                    id="about-heading"
                     title="Profile"
                     subtitle="Product engineer with 10+ years in web development, building frontend products and AI tools that automate engineering workflows."
                 />

@@ -3,6 +3,7 @@ import { LucideIcon } from 'lucide-react'
 import { FadeInView } from '../animations/FadeInView'
 
 interface SectionHeaderProps {
+    id?: string
     badge?: string
     badgeIcon?: LucideIcon
     title: string
@@ -11,6 +12,7 @@ interface SectionHeaderProps {
 }
 
 export function SectionHeader({
+    id,
     badge,
     badgeIcon: BadgeIcon,
     title,
@@ -25,7 +27,7 @@ export function SectionHeader({
                     {badge}
                 </p>
             )}
-            <h2 className="mb-4 text-3xl font-semibold tracking-tight text-foreground leading-tight sm:mb-5 sm:text-4xl lg:text-5xl">
+            <h2 id={id} className="mb-4 text-3xl font-semibold tracking-tight text-foreground leading-tight sm:mb-5 sm:text-4xl lg:text-5xl">
                 {title}
             </h2>
             {subtitle && (

@@ -20,18 +20,18 @@ export function Footer() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="accent-hover-icon"
-                                    aria-label="GitHub"
+                                    aria-label="GitHub profile"
                                 >
-                                    <Github className="h-4 w-4" />
+                                    <Github className="h-4 w-4" aria-hidden="true" />
                                 </a>
                                 <a
                                     href={SOCIAL_LINKS.linkedin}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="accent-hover-icon"
-                                    aria-label="LinkedIn"
+                                    aria-label="LinkedIn profile"
                                 >
-                                    <Linkedin className="h-4 w-4" />
+                                    <Linkedin className="h-4 w-4" aria-hidden="true" />
                                 </a>
                             </div>
                         </div>
@@ -39,6 +39,7 @@ export function Footer() {
                         <a
                             href={`mailto:${CONTACT_EMAIL}`}
                             className="accent-hover-text break-all text-sm text-muted-foreground"
+                            aria-label={`Send email to ${CONTACT_EMAIL}`}
                         >
                             {CONTACT_EMAIL}
                         </a>

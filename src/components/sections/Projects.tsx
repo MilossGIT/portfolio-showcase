@@ -13,9 +13,10 @@ interface ProjectsProps {
 
 export function Projects({ initialProjects = [] }: ProjectsProps) {
     return (
-        <section className="relative overflow-x-clip section-spacing">
+        <section id="projects" aria-labelledby="projects-heading" className="relative overflow-x-clip section-spacing scroll-mt-16">
             <Container className="max-w-6xl">
                 <SectionHeader
+                    id="projects-heading"
                     title="Open Source Projects"
                     subtitle={`${initialProjects.length} selected repositories, updated live from GitHub`}
                 />
@@ -41,7 +42,7 @@ export function Projects({ initialProjects = [] }: ProjectsProps) {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-lg border border-border bg-card/50 px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
-                    <Github className="h-4 w-4" />
+                    <Github className="h-4 w-4" aria-hidden="true" />
                     View all on GitHub
                     <span aria-hidden="true" className="text-muted-foreground">↗</span>
                 </a>

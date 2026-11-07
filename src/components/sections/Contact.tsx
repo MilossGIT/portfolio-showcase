@@ -1,4 +1,4 @@
-import { Mail, MapPin } from 'lucide-react'
+import { Github, Linkedin, Mail, MapPin } from 'lucide-react'
 import { Container } from '../ui/Container'
 import { SectionHeader } from '../ui/SectionHeader'
 import { FadeInView } from '../animations/FadeInView'
@@ -7,9 +7,10 @@ import { CONTACT_EMAIL, LOCATION_ADDRESS, SOCIAL_LINKS } from '@/lib/constants'
 
 export function Contact() {
     return (
-        <section className="relative section-spacing">
+        <section id="contact" aria-labelledby="contact-heading" className="relative section-spacing scroll-mt-16">
             <Container className="max-w-6xl">
                 <SectionHeader
+                    id="contact-heading"
                     title="Get in Touch"
                     subtitle="Open to conversations about AI product engineering, integrations and interesting projects."
                 />
@@ -17,7 +18,7 @@ export function Contact() {
                 <div className="grid max-w-5xl gap-10 md:grid-cols-2 md:gap-14 lg:gap-16">
                     <FadeInView delay={0.1} className="space-y-6 sm:space-y-8">
                         <div className="group touch-accent-group flex items-start gap-4">
-                            <MapPin className="h-5 w-5 text-muted-foreground mt-0.5 shrink-0" />
+                            <MapPin className="h-5 w-5 text-muted-foreground mt-0.5 shrink-0" aria-hidden="true" />
                             <div>
                                 <h3 className="text-sm font-medium text-foreground">Location</h3>
                                 <p className="accent-text-hover mt-1 text-sm text-muted-foreground">
@@ -27,12 +28,13 @@ export function Contact() {
                         </div>
 
                         <div className="group touch-accent-group flex items-start gap-4">
-                            <Mail className="h-5 w-5 text-muted-foreground mt-0.5 shrink-0" />
+                            <Mail className="h-5 w-5 text-muted-foreground mt-0.5 shrink-0" aria-hidden="true" />
                             <div>
                                 <h3 className="text-sm font-medium text-foreground">Email</h3>
                                 <a
                                     href={`mailto:${CONTACT_EMAIL}`}
                                     className="accent-hover-text mt-1 inline-block break-all text-sm text-muted-foreground"
+                                    aria-label={`Send email to ${CONTACT_EMAIL}`}
                                 >
                                     {CONTACT_EMAIL}
                                 </a>
@@ -40,7 +42,7 @@ export function Contact() {
                         </div>
 
                         <div className="group touch-accent-group flex items-start gap-4">
-                            <span className="mt-0.5 text-sm text-muted-foreground">in</span>
+                            <Linkedin className="h-5 w-5 text-muted-foreground mt-0.5 shrink-0" aria-hidden="true" />
                             <div>
                                 <h3 className="text-sm font-medium text-foreground">LinkedIn</h3>
                                 <a
@@ -48,6 +50,7 @@ export function Contact() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="accent-hover-text mt-1 inline-block text-sm text-muted-foreground"
+                                    aria-label="LinkedIn profile"
                                 >
                                     {SOCIAL_LINKS.linkedin}
                                 </a>
@@ -55,7 +58,7 @@ export function Contact() {
                         </div>
 
                         <div className="group touch-accent-group flex items-start gap-4">
-                            <span className="mt-0.5 text-sm text-muted-foreground">Git</span>
+                            <Github className="h-5 w-5 text-muted-foreground mt-0.5 shrink-0" aria-hidden="true" />
                             <div>
                                 <h3 className="text-sm font-medium text-foreground">GitHub</h3>
                                 <a
@@ -63,6 +66,7 @@ export function Contact() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="accent-hover-text mt-1 inline-block text-sm text-muted-foreground"
+                                    aria-label="GitHub profile"
                                 >
                                     {SOCIAL_LINKS.github}
                                 </a>

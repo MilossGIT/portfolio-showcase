@@ -82,7 +82,7 @@ export function Navbar() {
                 isScrolled && 'bg-background shadow-md shadow-black/30'
             )}
         >
-            <nav className="container mx-auto w-full min-w-0 max-w-6xl px-4 sm:px-6 lg:px-8">
+            <nav aria-label="Main navigation" className="container mx-auto w-full min-w-0 max-w-6xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                     {/* Desktop: Navigation links aligned to the left */}
                     <div className="hidden md:flex md:items-center md:gap-1 -ml-3">
@@ -116,7 +116,7 @@ export function Navbar() {
                             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-500 text-black text-xs font-semibold hover:bg-emerald-400 transition-colors shadow-sm shadow-emerald-500/20"
                         >
                             Contact
-                            <ArrowUpRight className="h-3.5 w-3.5" />
+                            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                         </button>
                     </div>
 
@@ -128,16 +128,18 @@ export function Navbar() {
                             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-500 text-black text-xs font-semibold hover:bg-emerald-400 transition-colors shadow-sm shadow-emerald-500/20"
                         >
                             Contact
-                            <ArrowUpRight className="h-3.5 w-3.5" />
+                            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                         </button>
 
                         <button
                             type="button"
                             onClick={() => setIsOpen((prev) => !prev)}
                             className="rounded-lg p-2 text-foreground hover:bg-muted transition-colors active:scale-95"
-                            aria-label="Toggle menu"
+                            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+                            aria-expanded={isOpen}
+                            aria-controls="mobile-nav"
                         >
-                            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                            {isOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
                         </button>
                     </div>
                 </div>
@@ -146,6 +148,7 @@ export function Navbar() {
                 <AnimatePresence>
                     {isOpen && (
                         <m.div
+                            id="mobile-nav"
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}

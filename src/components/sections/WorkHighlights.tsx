@@ -80,8 +80,9 @@ function WorkCard({
                             target="_blank"
                             rel="noopener noreferrer"
                             className="accent-hover-text group/live inline-flex items-center gap-1.5 text-sm text-foreground"
+                            aria-label={`Visit live site for ${work.title}`}
                         >
-                            <ExternalLink className="h-3.5 w-3.5 transition-all duration-300 group-hover/live:-translate-y-0.5 group-hover/live:translate-x-0.5 group-active/live:-translate-y-0.5 group-active/live:translate-x-0.5" />
+                            <ExternalLink className="h-3.5 w-3.5 transition-all duration-300 group-hover/live:-translate-y-0.5 group-hover/live:translate-x-0.5 group-active/live:-translate-y-0.5 group-active/live:translate-x-0.5" aria-hidden="true" />
                             Visit live site
                         </a>
                     </div>
@@ -93,9 +94,10 @@ function WorkCard({
 
 export function WorkHighlights() {
     return (
-        <section className="relative section-spacing">
+        <section id="work" aria-labelledby="work-heading" className="relative section-spacing scroll-mt-16">
             <Container className="max-w-6xl">
                 <SectionHeader
+                    id="work-heading"
                     badge="Professional Work"
                     title="Work &amp; Highlights"
                     subtitle="Selected client and production projects."

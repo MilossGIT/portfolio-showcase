@@ -61,7 +61,7 @@ function SpotlightSlideContent({ project }: { project: GitHubProject }) {
             <div className="mb-5 flex min-h-8 shrink-0 flex-wrap items-center gap-2 sm:mb-6 sm:gap-3">
                 {project.stars > 0 && (
                     <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                        <Star className="h-4 w-4" />
+                        <Star className="h-4 w-4" aria-hidden="true" />
                         {project.stars} stars
                     </span>
                 )}
@@ -81,8 +81,9 @@ function SpotlightSlideContent({ project }: { project: GitHubProject }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                    aria-label={`View ${project.name} on GitHub`}
                 >
-                    <Github className="h-4 w-4" />
+                    <Github className="h-4 w-4" aria-hidden="true" />
                     View on GitHub
                 </a>
                 {project.homepage ? (
@@ -91,8 +92,9 @@ function SpotlightSlideContent({ project }: { project: GitHubProject }) {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="accent-hover-text group/live inline-flex items-center gap-2 text-sm text-muted-foreground"
+                        aria-label={`Live demo for ${project.name}`}
                     >
-                        <ExternalLink className="h-4 w-4 transition-all duration-300 group-hover/live:-translate-y-0.5 group-hover/live:translate-x-0.5 group-active/live:-translate-y-0.5 group-active/live:translate-x-0.5" />
+                        <ExternalLink className="h-4 w-4 transition-all duration-300 group-hover/live:-translate-y-0.5 group-hover/live:translate-x-0.5 group-active/live:-translate-y-0.5 group-active/live:translate-x-0.5" aria-hidden="true" />
                         Live Demo
                     </a>
                 ) : (

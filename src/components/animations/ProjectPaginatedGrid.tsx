@@ -182,7 +182,7 @@ export function ProjectPaginatedGrid({ projects }: ProjectPaginatedGridProps) {
                         <div
                             key={`${breakpoint}-page-${pageIndex}`}
                             className="w-full shrink-0 snap-start"
-                            aria-hidden={pageIndex !== page}
+                            inert={pageIndex !== page ? true : undefined}
                         >
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 md:gap-7">
                                 {pageItems.map((project) => (

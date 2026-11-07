@@ -8,9 +8,10 @@ export function Experience() {
     const earlierExperience = EXPERIENCE.slice(3)
 
     return (
-        <section className="relative section-spacing">
+        <section id="experience" aria-labelledby="experience-heading" className="relative section-spacing scroll-mt-16">
             <Container className="max-w-6xl">
                 <SectionHeader
+                    id="experience-heading"
                     badge="Career"
                     title="Experience"
                     subtitle="A career spanning frontend engineering, enterprise integrations, AI automation, and customer-facing product delivery."
