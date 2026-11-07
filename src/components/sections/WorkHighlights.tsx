@@ -25,10 +25,13 @@ function WorkCard({
                         <div className="relative aspect-[16/9] w-full overflow-hidden rounded-md border border-border/40 bg-muted/20">
                             <Image
                                 src={work.image}
-                                alt={`Screenshot of ${work.title}`}
+                                alt={work.imageAlt || `${work.title} homepage`}
                                 fill
-                                sizes="(max-width: 768px) 100vw, 50vw"
+                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 560px"
                                 className="object-cover"
+                                loading="lazy"
+                                placeholder="blur"
+                                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
                             />
                         </div>
                     )}

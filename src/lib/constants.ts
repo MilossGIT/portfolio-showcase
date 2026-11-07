@@ -68,6 +68,9 @@ export const REPO_DESCRIPTIONS: Record<string, string> = {
         'React app for building a professional CV in a form-based editor and exporting it to PDF.',
 };
 
+// Set to true once public/cv.pdf is present. Controls visibility of the CV button in the Hero section.
+export const HAS_CV = false;
+
 export const WORK_HIGHLIGHTS = [
     {
         title: 'Kind Cadence',
@@ -80,6 +83,7 @@ export const WORK_HIGHLIGHTS = [
         role: undefined as string | undefined,
         outcome: undefined as string | undefined,
         image: undefined as string | undefined,
+        imageAlt: undefined as string | undefined,
     },
     {
         title: 'Lokacija.net',
@@ -92,6 +96,7 @@ export const WORK_HIGHLIGHTS = [
         role: undefined as string | undefined,
         outcome: undefined as string | undefined,
         image: undefined as string | undefined,
+        imageAlt: undefined as string | undefined,
     },
     {
         title: 'Ormarich',
@@ -104,6 +109,7 @@ export const WORK_HIGHLIGHTS = [
         role: undefined as string | undefined,
         outcome: undefined as string | undefined,
         image: undefined as string | undefined,
+        imageAlt: undefined as string | undefined,
     },
     {
         title: 'Savez za kliničku hipnoterapiju (ZKH)',
@@ -116,6 +122,7 @@ export const WORK_HIGHLIGHTS = [
         role: undefined as string | undefined,
         outcome: undefined as string | undefined,
         image: undefined as string | undefined,
+        imageAlt: undefined as string | undefined,
     },
 ];
 
