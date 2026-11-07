@@ -1,13 +1,9 @@
-import fs from 'node:fs'
-import path from 'node:path'
 import Image from 'next/image'
 import { Github, Linkedin, FileText } from 'lucide-react'
-import { SOCIAL_LINKS } from '@/lib/constants'
+import { HAS_CV, SOCIAL_LINKS } from '@/lib/constants'
 import { HeroBackground } from '../animations/HeroBackground'
 
 export function Hero() {
-    const hasCv = fs.existsSync(path.join(process.cwd(), 'public/cv.pdf'))
-
     return (
         <section
             aria-label="Introduction"
@@ -73,15 +69,16 @@ export function Hero() {
                                 View Projects
                             </a>
 
-                            {hasCv && (
+                            {HAS_CV && (
                                 <a
                                     href="/cv.pdf"
-                                    download
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="accent-hover-outline inline-flex items-center justify-center rounded-lg font-medium transition-all h-11 px-5 text-sm sm:px-8 sm:text-base border border-border bg-transparent hover:!bg-transparent text-foreground w-full sm:w-auto"
-                                    aria-label="Download CV"
+                                    aria-label="View CV (opens in a new tab)"
                                 >
                                     <FileText className="mr-2 h-4 w-4" aria-hidden="true" />
-                                    Download CV
+                                    View CV
                                 </a>
                             )}
                         </div>
