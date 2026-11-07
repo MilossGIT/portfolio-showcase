@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Menu, X, ArrowUpRight } from 'lucide-react'
 import { AnimatePresence, m } from 'framer-motion'
 import { NAV_LINKS } from '@/lib/constants'
@@ -10,6 +10,8 @@ export function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
     const [activeSection, setActiveSection] = useState('')
+    const isManualScrollRef = useRef(false)
+    const manualScrollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
     useEffect(() => {
         let frame = 0
@@ -23,6 +25,9 @@ export function Navbar() {
                 lastScrolled = scrolled
                 setIsScrolled(scrolled)
             }
+
+            // Do not override active section while smooth scrolling to a user-clicked tab
+            if (isManualScrollRef.current) return
 
             const sections = NAV_LINKS.map((link) => link.href.replace('#', ''))
             let nextActive = ''
@@ -50,6 +55,7 @@ export function Navbar() {
         return () => {
             window.removeEventListener('scroll', handleScroll)
             if (frame) window.cancelAnimationFrame(frame)
+            if (manualScrollTimerRef.current) clearTimeout(manualScrollTimerRef.current)
         }
     }, [])
 
@@ -64,13 +70,24 @@ export function Navbar() {
 
         setIsOpen(false)
 
+        // Immediately activate clicked tab for instant 0ms visual feedback
+        setActiveSection(id)
+
         if (element) {
-            setTimeout(() => {
-                const headerHeight = 64
-                const elementPosition = element.getBoundingClientRect().top
-                const offsetPosition = elementPosition + window.pageYOffset - headerHeight
-                window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
-            }, 250)
+            // Lock activeSection from scroll-listener override while smooth scrolling to target
+            isManualScrollRef.current = true
+            if (manualScrollTimerRef.current) {
+                clearTimeout(manualScrollTimerRef.current)
+            }
+            manualScrollTimerRef.current = setTimeout(() => {
+                isManualScrollRef.current = false
+            }, 800)
+
+            // Trigger smooth scrolling instantly without artificial delay
+            const headerHeight = 64
+            const elementPosition = element.getBoundingClientRect().top
+            const offsetPosition = elementPosition + window.pageYOffset - headerHeight
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
         }
     }
 
@@ -95,14 +112,19 @@ export function Navbar() {
                                     type="button"
                                     onClick={() => handleNavClick(link.href)}
                                     className={cn(
-                                        'accent-hover-text relative px-3.5 py-1.5 text-sm transition-colors rounded-md',
+                                        'relative px-3.5 py-1.5 text-sm font-medium transition-colors duration-150 rounded-md',
                                         isActive
-                                            ? 'nav-link-active font-medium'
+                                            ? 'nav-link-active'
                                             : 'text-muted-foreground hover:text-foreground'
                                     )}
                                 >
                                     {link.name}
-                                    {isActive && <span className="nav-link-underline" />}
+                                    {isActive && (
+                                        <span
+                                            className="nav-link-underline animate-in fade-in zoom-in-95 duration-150"
+                                            aria-hidden="true"
+                                        />
+                                    )}
                                 </button>
                             )
                         })}
@@ -113,7 +135,7 @@ export function Navbar() {
                         <button
                             type="button"
                             onClick={() => handleNavClick('#contact')}
-                            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-500 text-black text-xs font-semibold hover:bg-emerald-400 transition-colors shadow-sm shadow-emerald-500/20"
+                            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-500 text-black text-xs font-semibold hover:bg-emerald-400 transition-colors duration-150 shadow-sm shadow-emerald-500/20"
                         >
                             Contact
                             <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -125,7 +147,7 @@ export function Navbar() {
                         <button
                             type="button"
                             onClick={() => handleNavClick('#contact')}
-                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-500 text-black text-xs font-semibold hover:bg-emerald-400 transition-colors shadow-sm shadow-emerald-500/20"
+                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-500 text-black text-xs font-semibold hover:bg-emerald-400 transition-colors duration-150 shadow-sm shadow-emerald-500/20"
                         >
                             Contact
                             <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -165,7 +187,7 @@ export function Navbar() {
                                             type="button"
                                             onClick={() => handleNavClick(link.href)}
                                             className={cn(
-                                                'flex w-full items-center justify-between px-3 py-3 rounded-lg text-sm transition-colors active:bg-muted/70',
+                                                'flex w-full items-center justify-between px-3 py-3 rounded-lg text-sm transition-colors duration-150 active:bg-muted/70',
                                                 isActive
                                                     ? 'text-emerald-400 bg-muted/50 font-medium'
                                                     : 'text-foreground hover:bg-muted/30'

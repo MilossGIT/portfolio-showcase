@@ -226,7 +226,7 @@
   }
 
   .nav-link-underline {
-    @apply absolute bottom-1 left-3 right-3 h-px;
+    @apply absolute bottom-1 left-3 right-3 h-0.5 rounded-full;
     background-color: rgb(16 185 129);
     box-shadow: 0 0 10px rgb(16 185 129 / 0.45);
   }
