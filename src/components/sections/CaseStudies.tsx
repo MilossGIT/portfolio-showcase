@@ -33,37 +33,12 @@ export function CaseStudies() {
                                     </div>
 
                                     <div className="space-y-3 text-sm leading-relaxed">
-                                        {study.problem && (
-                                            <div>
-                                                <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground block mb-0.5">
-                                                    Problem
-                                                </span>
-                                                <p className="text-muted-foreground text-xs sm:text-sm">{study.problem}</p>
-                                            </div>
-                                        )}
-                                        {study.approach ? (
-                                            <div>
-                                                <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground block mb-0.5">
-                                                    Approach
-                                                </span>
-                                                <p className="text-foreground text-xs sm:text-sm leading-relaxed">{study.approach}</p>
-                                            </div>
-                                        ) : (
-                                            <div>
-                                                <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground block mb-1">
-                                                    System
-                                                </span>
-                                                <p className="text-foreground">{study.claim}</p>
-                                            </div>
-                                        )}
-                                        {study.result && (
-                                            <div>
-                                                <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 block mb-0.5">
-                                                    Result
-                                                </span>
-                                                <p className="text-foreground font-medium text-xs sm:text-sm">{study.result}</p>
-                                            </div>
-                                        )}
+                                        <div>
+                                            <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground block mb-1">
+                                                System
+                                            </span>
+                                            <p className="text-foreground">{study.claim}</p>
+                                        </div>
 
                                         {study.stack && study.stack.length > 0 && (
                                             <div>

@@ -12,9 +12,9 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://milosminic.net'),
+  metadataBase: new URL('https://www.milosminic.net'),
   alternates: {
-    canonical: 'https://milosminic.net',
+    canonical: 'https://www.milosminic.net',
   },
   title: {
     default: 'Miloš Minić - Product engineer · AI-powered tools',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://milosminic.net',
+    url: 'https://www.milosminic.net',
     siteName: 'Miloš Minić - Portfolio',
     title: 'Miloš Minić - Product engineer · AI-powered tools',
     description: 'Product engineer building AI-powered tools, automation and production web products with TypeScript, React, Next.js and LLM APIs.',
@@ -87,7 +87,7 @@ const personJsonLd = {
   '@type': 'Person',
   name: 'Miloš Minić',
   jobTitle: 'Product Engineer',
-  url: 'https://milosminic.net',
+  url: 'https://www.milosminic.net',
   sameAs: [
     'https://github.com/MilossGIT',
     'https://www.linkedin.com/in/milos-minic-0302b96b/',
