@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { ExternalLink } from 'lucide-react'
 import { Container } from '../ui/Container'
 import { SectionHeader } from '../ui/SectionHeader'
@@ -20,6 +21,18 @@ function WorkCard({
         <FadeInView delay={index * 0.1} y={24} className="h-full">
             <div className={cardClass}>
                 <div className="space-y-4 sm:space-y-5">
+                    {work.image && (
+                        <div className="relative aspect-[16/9] w-full overflow-hidden rounded-md border border-border/40 bg-muted/20">
+                            <Image
+                                src={work.image}
+                                alt={`Screenshot of ${work.title}`}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                className="object-cover"
+                            />
+                        </div>
+                    )}
+
                     <div>
                         <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
                             {work.company}
@@ -43,6 +56,21 @@ function WorkCard({
                             </span>
                         ))}
                     </div>
+
+                    {(work.role || work.outcome) && (
+                        <div className="border-t border-border/50 pt-3 text-xs leading-relaxed text-muted-foreground space-y-1">
+                            {work.role && (
+                                <p>
+                                    <span className="font-medium text-foreground">Role:</span> {work.role}
+                                </p>
+                            )}
+                            {work.outcome && (
+                                <p>
+                                    <span className="font-medium text-foreground">Outcome:</span> {work.outcome}
+                                </p>
+                            )}
+                        </div>
+                    )}
                 </div>
 
                 {work.url && (
@@ -69,8 +97,8 @@ export function WorkHighlights() {
             <Container className="max-w-6xl">
                 <SectionHeader
                     badge="Professional Work"
-                    title="Work & Highlights"
-                    subtitle="AI tooling I've built at Sportradar and products I've shipped on my own."
+                    title="Work &amp; Highlights"
+                    subtitle="Selected client and production projects."
                 />
 
                 <div className="grid gap-10 md:grid-cols-2 lg:gap-12">

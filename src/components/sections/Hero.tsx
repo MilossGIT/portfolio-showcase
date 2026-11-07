@@ -1,9 +1,13 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import Image from 'next/image'
-import { Github, Linkedin } from 'lucide-react'
+import { Github, Linkedin, FileText } from 'lucide-react'
 import { SOCIAL_LINKS } from '@/lib/constants'
 import { HeroBackground } from '../animations/HeroBackground'
 
 export function Hero() {
+    const hasCv = fs.existsSync(path.join(process.cwd(), 'public/cv.pdf'))
+
     return (
         <section className="relative z-10 flex flex-col justify-center pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 lg:min-h-screen lg:pb-24">
             <HeroBackground />
@@ -65,6 +69,18 @@ export function Hero() {
                                 <Github className="mr-2 h-4 w-4" />
                                 View Projects
                             </a>
+
+                            {hasCv && (
+                                <a
+                                    href="/cv.pdf"
+                                    download
+                                    className="accent-hover-outline inline-flex items-center justify-center rounded-lg font-medium transition-all h-11 px-5 text-sm sm:px-8 sm:text-base border border-border bg-transparent hover:!bg-transparent text-foreground w-full sm:w-auto"
+                                    aria-label="Download CV"
+                                >
+                                    <FileText className="mr-2 h-4 w-4" />
+                                    Download CV
+                                </a>
+                            )}
                         </div>
 
                         <div className="flex justify-center gap-5 lg:justify-start">
