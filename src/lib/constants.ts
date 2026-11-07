@@ -68,7 +68,7 @@ export const REPO_DESCRIPTIONS: Record<string, string> = {
         'React app for building a professional CV in a form-based editor and exporting it to PDF.',
 };
 
-// Set to true once public/cv.pdf is present. Controls visibility of the CV button in the Hero section.
+// Commit public/cv.pdf and set this to true in the same commit.
 export const HAS_CV = false;
 
 export const WORK_HIGHLIGHTS = [

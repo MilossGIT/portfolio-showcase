@@ -75,7 +75,7 @@ export function Hero() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="accent-hover-outline inline-flex items-center justify-center rounded-lg font-medium transition-all h-11 px-5 text-sm sm:px-8 sm:text-base border border-border bg-transparent hover:!bg-transparent text-foreground w-full sm:w-auto"
-                                    aria-label="Open Miloš Minić CV in a new tab"
+                                    aria-label="View CV (opens in a new tab)"
                                 >
                                     <FileText className="mr-2 h-4 w-4" aria-hidden="true" />
                                     View CV
