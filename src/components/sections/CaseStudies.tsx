@@ -57,12 +57,14 @@ export function CaseStudies() {
                                             </div>
                                         )}
 
-                                        <div>
-                                            <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground block mb-1">
-                                                In production
-                                            </span>
-                                            <p className="text-muted-foreground">{study.inProduction}</p>
-                                        </div>
+                                        {study.inProduction && (
+                                            <div>
+                                                <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground block mb-1">
+                                                    In production
+                                                </span>
+                                                <p className="text-muted-foreground">{study.inProduction}</p>
+                                            </div>
+                                        )}
 
                                         {study.metrics && study.metrics.length > 0 && (
                                             <div className="pt-2">

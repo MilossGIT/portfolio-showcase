@@ -77,8 +77,8 @@ export const WORK_HIGHLIGHTS = [
             'A cycling readiness coach that recommends rides from Strava and health data, focusing on pacing and recovery.',
         tags: ['Mobile App', 'Strava API', 'Health Data', 'Coaching', 'Recovery'],
         impact: 'Calm, evidence-based guidance that helps riders recover better and ride more intelligently.',
-        role: 'Product Engineer (Solo)',
-        outcome: 'Deployed mobile app recommending rides based on Strava and biometric data.',
+        role: undefined as string | undefined,
+        outcome: undefined as string | undefined,
         image: undefined as string | undefined,
     },
     {
@@ -89,8 +89,8 @@ export const WORK_HIGHLIGHTS = [
             'A Django/PostgreSQL real-estate portal for Slovenia and the Adriatic region with location-first, SEO-friendly URLs.',
         tags: ['Django', 'Python', 'PostgreSQL', 'SEO', 'Real Estate'],
         impact: 'Location-first architecture powering property search across Slovenia and the Adriatic region.',
-        role: 'Full-Stack Engineer',
-        outcome: 'Production Django/PostgreSQL real-estate search portal for Slovenia and the Adriatic region.',
+        role: undefined as string | undefined,
+        outcome: undefined as string | undefined,
         image: undefined as string | undefined,
     },
     {
@@ -101,8 +101,8 @@ export const WORK_HIGHLIGHTS = [
             'A live Next.js storefront with Stripe checkout, webhook-driven inventory updates, and admin product management.',
         tags: ['Next.js', 'Stripe', 'Vercel KV', 'E-Commerce', 'Webhooks'],
         impact: 'Production store delivering a polished shopping experience with reliable inventory sync.',
-        role: 'Frontend & Integration Engineer',
-        outcome: 'Production Next.js storefront with Stripe checkout and webhook inventory synchronization.',
+        role: undefined as string | undefined,
+        outcome: undefined as string | undefined,
         image: undefined as string | undefined,
     },
     {
@@ -113,8 +113,8 @@ export const WORK_HIGHLIGHTS = [
             'A trilingual association site on Next.js and Payload CMS 3, with DeepL translation workflows for blog content and institutional pages.',
         tags: ['Next.js', 'Payload CMS', 'i18n', 'DeepL', 'SEO'],
         impact: 'A multilingual experience that keeps content management simple while maintaining SEO and editorial quality.',
-        role: 'Frontend Engineer',
-        outcome: 'Trilingual association platform on Next.js and Payload CMS with DeepL automated translation workflow.',
+        role: undefined as string | undefined,
+        outcome: undefined as string | undefined,
         image: undefined as string | undefined,
     },
 ];
@@ -125,7 +125,7 @@ export interface CaseStudyItem {
     context: string
     claim: string
     stack?: string[]
-    inProduction: string
+    inProduction?: string
     metrics?: { label: string; value: string }[]
 }
 
@@ -155,6 +155,7 @@ export const SKILL_CATEGORIES = {
         'Agentic Coding Tools',
         'MCP Integrations',
         'Prompt Engineering',
+        'LLM Evaluation',
         'Workflow Automation',
     ],
     'Frontend': [
