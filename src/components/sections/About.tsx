@@ -18,7 +18,7 @@ export function About() {
                         <li className="flex items-start gap-3">
                             <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
                             <span>
-                                <strong className="font-medium text-foreground">AI &amp; workflow automation:</strong> A retrieval-grounded knowledge assistant with source citations, and runbook automation across GitHub, Slack and Jira (100+ automated runs).
+                                <strong className="font-medium text-foreground">AI &amp; workflow automation:</strong> A retrieval-grounded knowledge assistant with source citations, and runbook automation across GitHub, Slack and Jira (100+ client activations).
                             </span>
                         </li>
                         <li className="flex items-start gap-3">
