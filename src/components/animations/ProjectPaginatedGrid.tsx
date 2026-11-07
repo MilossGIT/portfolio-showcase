@@ -11,40 +11,7 @@ interface ProjectPaginatedGridProps {
 }
 
 const SCROLL_SETTLE_MS = 120
-
-type GridBreakpoint = 'mobile' | 'tablet' | 'desktop'
-
-interface GridConfig {
-    breakpoint: GridBreakpoint
-    pageSize: number
-}
-
-function getGridConfig(width: number): GridConfig {
-    if (width >= 768) {
-        return { breakpoint: 'desktop', pageSize: 6 }
-    }
-    if (width >= 640) {
-        return { breakpoint: 'tablet', pageSize: 4 }
-    }
-    return { breakpoint: 'mobile', pageSize: 3 }
-}
-
-function useGridConfig(): GridConfig {
-    const [config, setConfig] = useState<GridConfig>(() =>
-        typeof window !== 'undefined'
-            ? getGridConfig(window.innerWidth)
-            : { breakpoint: 'desktop', pageSize: 6 }
-    )
-
-    useEffect(() => {
-        const update = () => setConfig(getGridConfig(window.innerWidth))
-        update()
-        window.addEventListener('resize', update)
-        return () => window.removeEventListener('resize', update)
-    }, [])
-
-    return config
-}
+const PAGE_SIZE = 6
 
 function getDisplayProjects(projects: GitHubProject[]): GitHubProject[] {
     const nonFeatured = projects.filter((p) => !p.featured)
@@ -64,10 +31,9 @@ function chunkProjects(
 
 export function ProjectPaginatedGrid({ projects }: ProjectPaginatedGridProps) {
     const items = getDisplayProjects(projects)
-    const { pageSize, breakpoint } = useGridConfig()
     const pages = useMemo(
-        () => chunkProjects(items, pageSize),
-        [items, pageSize]
+        () => chunkProjects(items, PAGE_SIZE),
+        [items]
     )
     const scrollerRef = useRef<HTMLDivElement>(null)
     const scrollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -106,11 +72,6 @@ export function ProjectPaginatedGrid({ projects }: ProjectPaginatedGridProps) {
     const goNext = useCallback(() => {
         scrollToPage(page + 1)
     }, [page, scrollToPage])
-
-    useEffect(() => {
-        setPage(0)
-        scrollerRef.current?.scrollTo({ left: 0, behavior: 'instant' })
-    }, [pageSize])
 
     useEffect(() => {
         const scroller = scrollerRef.current
@@ -180,15 +141,19 @@ export function ProjectPaginatedGrid({ projects }: ProjectPaginatedGridProps) {
                 >
                     {pages.map((pageItems, pageIndex) => (
                         <div
-                            key={`${breakpoint}-page-${pageIndex}`}
+                            key={`page-${pageIndex}`}
                             className="w-full shrink-0 snap-start"
                             inert={pageIndex !== page ? true : undefined}
                         >
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 md:gap-7">
-                                {pageItems.map((project) => (
+                                {pageItems.map((project, itemIndex) => (
                                     <div
                                         key={project.name}
-                                        className="min-w-0"
+                                        className={cn(
+                                            'min-w-0',
+                                            itemIndex === 3 && 'hidden sm:block',
+                                            itemIndex >= 4 && 'hidden md:block'
+                                        )}
                                     >
                                         <CarouselProjectTile project={project} />
                                     </div>

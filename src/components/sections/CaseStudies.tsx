@@ -15,7 +15,7 @@ export function CaseStudies() {
                 />
 
                 <div className="mb-8 text-xs font-mono text-muted-foreground">
-                    <span aria-hidden="true">ℹ️ </span>Internal systems and details are anonymized.
+                    <span aria-hidden="true">ℹ️ </span>Details are generalized; no confidential information is shown.
                 </div>
 
                 <div className="grid gap-8 md:grid-cols-2 lg:gap-10">
@@ -33,12 +33,50 @@ export function CaseStudies() {
                                     </div>
 
                                     <div className="space-y-3 text-sm leading-relaxed">
-                                        <div>
-                                            <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground block mb-1">
-                                                System
-                                            </span>
-                                            <p className="text-foreground">{study.claim}</p>
-                                        </div>
+                                        {study.claim && (
+                                            <div>
+                                                <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground block mb-1">
+                                                    System
+                                                </span>
+                                                <p className="text-foreground">{study.claim}</p>
+                                            </div>
+                                        )}
+
+                                        {study.problem && (
+                                            <div>
+                                                <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground block mb-1">
+                                                    Problem
+                                                </span>
+                                                <p className="text-muted-foreground">{study.problem}</p>
+                                            </div>
+                                        )}
+
+                                        {study.approach && (
+                                            <div>
+                                                <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground block mb-1">
+                                                    Approach
+                                                </span>
+                                                <p className="text-foreground">{study.approach}</p>
+                                            </div>
+                                        )}
+
+                                        {study.inProduction && (
+                                            <div>
+                                                <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground block mb-1">
+                                                    In production
+                                                </span>
+                                                <p className="text-muted-foreground">{study.inProduction}</p>
+                                            </div>
+                                        )}
+
+                                        {study.result && (
+                                            <div>
+                                                <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground block mb-1">
+                                                    Result
+                                                </span>
+                                                <p className="text-foreground">{study.result}</p>
+                                            </div>
+                                        )}
 
                                         {study.stack && study.stack.length > 0 && (
                                             <div>
@@ -55,15 +93,6 @@ export function CaseStudies() {
                                                         </span>
                                                     ))}
                                                 </div>
-                                            </div>
-                                        )}
-
-                                        {study.inProduction && (
-                                            <div>
-                                                <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground block mb-1">
-                                                    In production
-                                                </span>
-                                                <p className="text-muted-foreground">{study.inProduction}</p>
                                             </div>
                                         )}
 
