@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 import { CarouselProjectTile } from './CarouselProjectTile'
 import { GitHubProject } from '@/types'
 import { cn } from '@/lib/utils'
@@ -38,6 +38,7 @@ export function ProjectPaginatedGrid({ projects }: ProjectPaginatedGridProps) {
     const scrollerRef = useRef<HTMLDivElement>(null)
     const scrollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
     const [page, setPage] = useState(0)
+    const [showAllMobile, setShowAllMobile] = useState(false)
 
     const totalPages = pages.length
     const showNav = totalPages > 1
@@ -151,8 +152,7 @@ export function ProjectPaginatedGrid({ projects }: ProjectPaginatedGridProps) {
                                         key={project.name}
                                         className={cn(
                                             'min-w-0',
-                                            itemIndex === 3 && 'hidden sm:block',
-                                            itemIndex >= 4 && 'hidden md:block'
+                                            itemIndex >= 3 && !showAllMobile && 'hidden sm:block'
                                         )}
                                     >
                                         <CarouselProjectTile project={project} />
@@ -175,6 +175,26 @@ export function ProjectPaginatedGrid({ projects }: ProjectPaginatedGridProps) {
                     </button>
                 )}
             </div>
+
+            {items.length > 3 && (
+                <div className="mt-6 flex justify-center sm:hidden">
+                    <button
+                        type="button"
+                        onClick={() => setShowAllMobile((prev) => !prev)}
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card/60 px-4 py-2 text-xs font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                        aria-expanded={showAllMobile}
+                    >
+                        <span>{showAllMobile ? 'Show fewer projects' : `Show all projects (${items.length})`}</span>
+                        <ChevronDown
+                            className={cn(
+                                'h-3.5 w-3.5 transition-transform duration-200',
+                                showAllMobile && 'rotate-180'
+                            )}
+                            aria-hidden="true"
+                        />
+                    </button>
+                </div>
+            )}
         </div>
     )
 }
